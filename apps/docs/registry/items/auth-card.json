@@ -1,0 +1,180 @@
+{
+  "slug": "auth-card",
+  "name": "Auth Card",
+  "title": "登录注册卡片",
+  "category": "blocks",
+  "files": [
+    "components/auth-card/auth-card.tsx"
+  ],
+  "description": "登录 / 注册卡片：Logo、标题、第三方登录按钮、分隔线、邮箱与密码表单、条款说明，以及一次性验证码步骤；可在登录、注册、找回密码、验证码之间自动切换，也可受控。",
+  "keywords": [
+    "auth",
+    "login",
+    "sign in",
+    "sign up",
+    "register",
+    "otp",
+    "登录",
+    "注册",
+    "验证码",
+    "找回密码",
+    "第三方登录"
+  ],
+  "exports": [
+    "AuthCard",
+    "type AuthCardValues",
+    "type AuthCardMode"
+  ],
+  "demos": [
+    {
+      "file": "auth-card/overview.tsx",
+      "title": "概览",
+      "description": "演示密码为 orra2026，输错会显示错误提示。",
+      "height": 640
+    },
+    {
+      "file": "auth-card/sign-up.tsx",
+      "title": "注册 + 验证码",
+      "description": "onSubmit 返回 \"verify\" 即进入验证码步骤；社交按钮可放在表单下方并两列排列。演示验证码 246810。",
+      "height": 720
+    },
+    {
+      "file": "auth-card/passwordless.tsx",
+      "title": "免密登录",
+      "description": "method=\"code\"：只填邮箱，提交后直接进入验证码步骤，带重新发送倒计时。",
+      "height": 520
+    }
+  ],
+  "notes": [
+    "表单使用原生校验（必填、邮箱格式、注册时密码至少 8 位），通过后才调用 onSubmit；回调返回 Promise 时按钮显示加载状态。",
+    "在 onSubmit / onVerify / onSocial 中抛出 Error，它的 message 会显示在卡片顶部；验证码错误会把输入框标红。",
+    "找回密码和免密登录提交后自动进入验证码步骤；mode / onModeChange 可完全受控。"
+  ],
+  "props": [
+    {
+      "component": "AuthCard",
+      "props": [
+        {
+          "name": "mode",
+          "type": "\"signIn\" | \"signUp\" | \"forgot\" | \"verify\"",
+          "description": "当前步骤（受控），配合 onModeChange。"
+        },
+        {
+          "name": "defaultMode",
+          "type": "AuthCardMode",
+          "default": "\"signIn\"",
+          "description": "初始步骤。"
+        },
+        {
+          "name": "logo",
+          "type": "ReactNode",
+          "description": "标题上方的品牌标识。"
+        },
+        {
+          "name": "title / description",
+          "type": "ReactNode",
+          "description": "覆盖登录 / 注册步骤的默认标题与说明（验证码等步骤保持默认）。"
+        },
+        {
+          "name": "providers",
+          "type": "SocialProvider[]",
+          "default": "[\"google\", \"github\"]",
+          "description": "第三方登录方式，[] 隐藏。"
+        },
+        {
+          "name": "socialLayout",
+          "type": "\"stack\" | \"grid\" | \"icons\"",
+          "default": "\"stack\"",
+          "description": "社交按钮排列方式。"
+        },
+        {
+          "name": "socialPosition",
+          "type": "\"top\" | \"bottom\"",
+          "default": "\"top\"",
+          "description": "社交按钮在表单上方还是下方。"
+        },
+        {
+          "name": "method",
+          "type": "\"password\" | \"code\"",
+          "default": "\"password\"",
+          "description": "密码登录或免密验证码登录。"
+        },
+        {
+          "name": "collectName",
+          "type": "boolean",
+          "default": "true",
+          "description": "注册时收集姓名。"
+        },
+        {
+          "name": "onSubmit",
+          "type": "(values: AuthCardValues) => unknown",
+          "description": "提交表单；返回 \"verify\" 进入验证码步骤，抛错显示错误。"
+        },
+        {
+          "name": "onSocial",
+          "type": "(provider) => unknown",
+          "description": "点击第三方登录。"
+        },
+        {
+          "name": "onVerify",
+          "type": "(code, email) => unknown",
+          "description": "验证码填满或点击验证时调用，抛错表示无效。"
+        },
+        {
+          "name": "onResend",
+          "type": "(email) => unknown",
+          "description": "重新发送验证码。"
+        },
+        {
+          "name": "resendCooldown",
+          "type": "number",
+          "default": "30",
+          "description": "重新发送前的等待秒数。"
+        },
+        {
+          "name": "codeLength",
+          "type": "number",
+          "default": "6",
+          "description": "验证码位数。"
+        },
+        {
+          "name": "termsHref / privacyHref",
+          "type": "string",
+          "description": "条款与隐私政策链接。"
+        },
+        {
+          "name": "terms",
+          "type": "ReactNode | false",
+          "description": "替换条款文字，false 隐藏。"
+        },
+        {
+          "name": "allowModeSwitch",
+          "type": "boolean",
+          "default": "true",
+          "description": "显示登录 / 注册切换链接。"
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode",
+          "description": "卡片底部附加内容。"
+        },
+        {
+          "name": "variant",
+          "type": "\"card\" | \"plain\"",
+          "default": "\"card\"",
+          "description": "是否绘制卡片外观。"
+        },
+        {
+          "name": "defaultEmail",
+          "type": "string",
+          "description": "预填邮箱。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<AuthCardLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ]
+}

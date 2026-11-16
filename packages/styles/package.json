@@ -1,0 +1,40 @@
+{
+  "name": "@orra-ui/styles",
+  "version": "0.1.0",
+  "description": "Orra UI design tokens (Tailwind CSS v4 @theme), type scale and component CSS — shared by every Orra UI framework package.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DingxinTao0417/orra-ui.git",
+    "directory": "packages/styles"
+  },
+  "style": "./index.css",
+  "exports": {
+    ".": {
+      "style": "./index.css",
+      "default": "./index.css"
+    },
+    "./*.css": "./*.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "*.css",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "keywords": [
+    "tailwindcss",
+    "design-tokens",
+    "theme",
+    "css"
+  ],
+  "peerDependencies": {
+    "tailwindcss": ">=4.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

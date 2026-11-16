@@ -1,0 +1,112 @@
+{
+  "slug": "segmented-control",
+  "name": "Segmented Control",
+  "title": "分段控制器",
+  "category": "base",
+  "files": [
+    "components/segmented-control/segmented-control.tsx"
+  ],
+  "description": "分段控制器：行内单选切换，选中背景在选项间平滑滑动；支持图标、纯图标选项、三种尺寸与占满宽度。",
+  "keywords": [
+    "segmented control",
+    "toggle group",
+    "switcher",
+    "tabs",
+    "分段控制器",
+    "切换",
+    "分段选择"
+  ],
+  "exports": [
+    "SegmentedControl",
+    "SegmentedControlItem"
+  ],
+  "demos": [
+    {
+      "file": "segmented-control/overview.tsx",
+      "title": "概览",
+      "height": 180
+    },
+    {
+      "file": "segmented-control/icons.tsx",
+      "title": "图标",
+      "description": "子元素写法与 options 数据写法等价；纯图标选项需提供 aria-label。",
+      "height": 200
+    },
+    {
+      "file": "segmented-control/sizes.tsx",
+      "title": "尺寸与占满宽度",
+      "height": 220
+    }
+  ],
+  "notes": [
+    "滑动指示器基于 React Aria SelectionIndicator，用纯 CSS 过渡实现，开启「减少动态效果」时直接切换。",
+    "总有一项被选中（不可取消选择）；受控使用 value + onChange(value: string)。",
+    "用于切换同一内容的视图或筛选条件；切换不同页面内容时请用 Tabs。"
+  ],
+  "props": [
+    {
+      "component": "SegmentedControl",
+      "description": "其余属性透传给 React Aria ToggleButtonGroup（isDisabled、orientation 等）。",
+      "props": [
+        {
+          "name": "options",
+          "type": "SegmentedControlOption[]",
+          "description": "选项数据：{ id, label?, icon?, isDisabled?, aria-label? }。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "或者直接写 SegmentedControlItem。"
+        },
+        {
+          "name": "value / defaultValue",
+          "type": "string",
+          "description": "受控 / 非受控的选中 id。"
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "description": "选中变化回调。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸：32 / 36 / 44 px。"
+        },
+        {
+          "name": "fullWidth",
+          "type": "boolean",
+          "default": "false",
+          "description": "占满容器宽度，各段等宽。"
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "description": "控件的无障碍名称。"
+        }
+      ]
+    },
+    {
+      "component": "SegmentedControlItem",
+      "description": "其余属性透传给 React Aria ToggleButton。",
+      "props": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "选项 id。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "图标元素。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "文字。"
+        }
+      ]
+    }
+  ]
+}

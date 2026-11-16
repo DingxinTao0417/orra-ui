@@ -1,0 +1,41 @@
+{
+  "name": "@orra-ui/cli",
+  "version": "0.1.0",
+  "description": "Orra UI CLI and MCP server: list, search and add components, and give AI agents live access to the design system.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DingxinTao0417/orra-ui.git",
+    "directory": "packages/cli"
+  },
+  "type": "module",
+  "bin": {
+    "orra-ui": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "registry.json",
+    "skill",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node scripts/copy-skill.mjs && tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

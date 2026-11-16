@@ -1,0 +1,112 @@
+{
+  "slug": "announcement",
+  "name": "Announcement",
+  "title": "公告",
+  "category": "base",
+  "files": [
+    "components/announcement/announcement.tsx"
+  ],
+  "description": "产品公告：页面顶部可关闭的通栏横幅，或放在标题上方的紧凑胶囊；包含「新」徽标、消息、链接和关闭按钮。",
+  "keywords": [
+    "announcement",
+    "banner",
+    "news",
+    "promo",
+    "changelog",
+    "公告",
+    "横幅",
+    "通知栏",
+    "新功能"
+  ],
+  "exports": [
+    "Announcement"
+  ],
+  "demos": [
+    {
+      "file": "announcement/overview.tsx",
+      "title": "概览",
+      "layout": "padded",
+      "height": 320
+    },
+    {
+      "file": "announcement/tones.tsx",
+      "title": "色调与关闭",
+      "description": "tone 有 accent / neutral / inverse；open + onOpenChange 可受控，例如把关闭状态存到本地。",
+      "layout": "padded",
+      "height": 260
+    }
+  ],
+  "notes": [
+    "横幅是带 aria-label 的 region；关闭按钮的读屏名称为「关闭公告」。",
+    "胶囊样式下整个胶囊就是链接；badge={null} 隐藏徽标。",
+    "需要记住用户已关闭时，用受控的 open / onOpenChange 自行持久化。"
+  ],
+  "props": [
+    {
+      "component": "Announcement",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "公告内容。"
+        },
+        {
+          "name": "variant",
+          "type": "\"banner\" | \"pill\"",
+          "default": "\"banner\"",
+          "description": "通栏或胶囊。"
+        },
+        {
+          "name": "tone",
+          "type": "\"accent\" | \"neutral\" | \"inverse\"",
+          "default": "banner 为 \"accent\"，pill 为 \"neutral\"",
+          "description": "色调。"
+        },
+        {
+          "name": "badge",
+          "type": "ReactNode | null",
+          "default": "\"新\"",
+          "description": "徽标文字；null 隐藏。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "前置图标。"
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "description": "链接地址。"
+        },
+        {
+          "name": "onPress",
+          "type": "(e: PressEvent) => void",
+          "description": "点击链接时触发（替代 href）。"
+        },
+        {
+          "name": "linkLabel",
+          "type": "ReactNode",
+          "default": "\"了解详情\"",
+          "description": "链接文字（仅横幅）。"
+        },
+        {
+          "name": "dismissible",
+          "type": "boolean",
+          "default": "false",
+          "description": "显示关闭按钮。"
+        },
+        {
+          "name": "open / defaultOpen / onOpenChange",
+          "type": "boolean / boolean / (open) => void",
+          "description": "受控或非受控的显示状态。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<AnnouncementLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ]
+}

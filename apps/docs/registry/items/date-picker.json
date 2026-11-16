@@ -1,0 +1,94 @@
+{
+  "slug": "date-picker",
+  "name": "Date Picker",
+  "title": "日期选择器",
+  "category": "base",
+  "files": [
+    "components/date-picker/date-picker.tsx"
+  ],
+  "description": "日期输入框 + 日历浮层：可键盘逐段输入或从日历选择，内置「今天 / 明天 / 一周后」快捷选项与清除按钮，支持标签、描述、校验和三种尺寸。",
+  "keywords": [
+    "date picker",
+    "datepicker",
+    "calendar",
+    "date input",
+    "日期选择器",
+    "日期",
+    "选择日期"
+  ],
+  "exports": [
+    "DatePicker"
+  ],
+  "demos": [
+    {
+      "file": "date-picker/overview.tsx",
+      "title": "概览",
+      "height": 200
+    },
+    {
+      "file": "date-picker/presets.tsx",
+      "title": "自定义快捷选项",
+      "description": "presets 接收 { label, value }，value 可以是函数，参数为今天的日期；presets={false} 隐藏快捷栏。",
+      "height": 220
+    },
+    {
+      "file": "date-picker/states.tsx",
+      "title": "尺寸与状态",
+      "description": "minValue 等约束会触发校验并显示 errorMessage；isDisabled 禁用整个字段。",
+      "layout": "padded",
+      "height": 280
+    }
+  ],
+  "notes": [
+    "日期段（年 / 月 / 日）可用方向键调整、直接输入数字，顺序与分隔符随语言环境变化。",
+    "value / onChange 使用 @internationalized/date 的日期对象（CalendarDate 等）。",
+    "清除按钮只在有值时出现；isClearable={false} 可关闭。",
+    "需要区间时使用 DateRangePicker。"
+  ],
+  "props": [
+    {
+      "component": "DatePicker",
+      "description": "其余属性透传给 React Aria DatePicker（value、defaultValue、onChange、minValue、maxValue、isDateUnavailable、granularity、isRequired、isInvalid、isDisabled…）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "字段标签。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "辅助说明。"
+        },
+        {
+          "name": "errorMessage",
+          "type": "ReactNode",
+          "description": "校验失败时的提示。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸。"
+        },
+        {
+          "name": "presets",
+          "type": "DatePickerPreset[] | false",
+          "default": "今天 / 明天 / 一周后",
+          "description": "快捷选项：{ label, value: DateValue | (today) => DateValue }。"
+        },
+        {
+          "name": "isClearable",
+          "type": "boolean",
+          "default": "true",
+          "description": "有值时显示清除按钮。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<DatePickerLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "slug": "avatar",
+  "name": "Avatar",
+  "title": "头像",
+  "category": "base",
+  "files": [
+    "components/avatar/avatar.tsx"
+  ],
+  "description": "用户、团队或机器人的头像：图片加载失败时回退为姓名首字母，底色由姓名稳定生成；支持五种尺寸、在线状态点、方形样式，以及带「+N」溢出的重叠头像组。",
+  "keywords": [
+    "avatar",
+    "user",
+    "profile",
+    "initials",
+    "presence",
+    "avatar group",
+    "头像",
+    "用户",
+    "首字母",
+    "在线状态",
+    "头像组"
+  ],
+  "exports": [
+    "Avatar",
+    "AvatarGroup",
+    "avatarInitials",
+    "avatarSwatchIndex"
+  ],
+  "demos": [
+    {
+      "file": "avatar/overview.tsx",
+      "title": "概览",
+      "height": 220
+    },
+    {
+      "file": "avatar/sizes.tsx",
+      "title": "尺寸与方形",
+      "description": "xs 24 → xl 64；square 用于团队、工作区或机器人。",
+      "height": 240
+    },
+    {
+      "file": "avatar/group.tsx",
+      "title": "头像组",
+      "description": "max 控制最多显示几个，其余折叠为「+N」；total 可传入真实总人数（例如分页加载的成员列表）。",
+      "height": 240
+    }
+  ],
+  "notes": [
+    "没有 src 或图片加载失败时显示首字母：中文姓名取后两个字，英文取首尾单词首字母；也可以用 initials 自定义。",
+    "颜色由 name 计算，同一个人在任何地方颜色一致；无需手动指定。",
+    "头像带 role=\"img\" 与 aria-label（姓名 + 状态），状态点本身不只靠颜色传达信息。",
+    "AvatarGroup 内的头像会继承组的 size / square，并加上与背景同色的描边以区分重叠。"
+  ],
+  "props": [
+    {
+      "component": "Avatar",
+      "description": "其余属性透传给外层 <span>。",
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "description": "显示名：用于无障碍名称、首字母与配色。"
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "description": "图片地址；缺失或加载失败时回退为首字母。"
+        },
+        {
+          "name": "initials",
+          "type": "string",
+          "description": "自定义首字母，覆盖自动计算。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "既没有图片也没有首字母时显示的图标元素。"
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "default": "\"md\"",
+          "description": "尺寸：24 / 32 / 40 / 48 / 64 px。"
+        },
+        {
+          "name": "square",
+          "type": "boolean",
+          "default": "false",
+          "description": "圆角方形，用于团队、机器人。"
+        },
+        {
+          "name": "status",
+          "type": "\"online\" | \"away\" | \"busy\" | \"offline\"",
+          "description": "右下角在线状态点。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<AvatarLabels>",
+          "description": "覆盖内置文案（状态名称等）。"
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLSpanElement>",
+          "description": "转发到外层 <span>。"
+        }
+      ]
+    },
+    {
+      "component": "AvatarGroup",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "Avatar 元素。"
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "description": "最多显示的头像数，其余折叠为「+N」。"
+        },
+        {
+          "name": "total",
+          "type": "number",
+          "description": "真实总人数，大于子元素数量时用于计算「+N」。"
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "default": "\"md\"",
+          "description": "组内所有头像的尺寸。"
+        },
+        {
+          "name": "square",
+          "type": "boolean",
+          "description": "组内头像使用方形。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<AvatarLabels>",
+          "description": "覆盖「还有 N 人」文案。"
+        }
+      ]
+    }
+  ]
+}

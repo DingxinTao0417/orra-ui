@@ -1,0 +1,193 @@
+{
+  "slug": "calendar",
+  "name": "Calendar",
+  "title": "日程日历",
+  "category": "blocks",
+  "files": [
+    "components/calendar/calendar.tsx",
+    "components/calendar/calendar-types.ts",
+    "components/calendar/calendar-sample.ts"
+  ],
+  "description": "完整的日程日历：月 / 周 / 列表三种视图，月份导航与「今天」，按日历着色的事件条、日历筛选、「还有 N 项」溢出、今日高亮和事件详情浮层；事件通过属性传入，高度填满容器。",
+  "keywords": [
+    "calendar",
+    "schedule",
+    "events",
+    "month view",
+    "week view",
+    "agenda",
+    "日历",
+    "日程",
+    "排期",
+    "月视图",
+    "周视图"
+  ],
+  "exports": [
+    "EventCalendar",
+    "type CalendarEvent",
+    "type CalendarSource"
+  ],
+  "demos": [
+    {
+      "file": "calendar/overview.tsx",
+      "title": "概览",
+      "description": "点击日期数字查看当天全部日程；事件浮层里可以放编辑、删除等操作。",
+      "height": 720,
+      "layout": "padded"
+    },
+    {
+      "file": "calendar/week.tsx",
+      "title": "周视图",
+      "description": "时间网格中重叠的事件并排显示，今天显示当前时间线。",
+      "height": 640,
+      "layout": "padded"
+    },
+    {
+      "file": "calendar/compact.tsx",
+      "title": "窄容器",
+      "description": "容器较窄时日期格只显示彩色圆点，点击日期查看详情。",
+      "height": 500
+    }
+  ],
+  "notes": [
+    "时间写成本地时间字符串：全天事件用 \"2026-11-16\"，定时事件用 \"2026-11-16T09:30\"；也接受 @internationalized/date 的日期对象。全天事件的 end 包含当天。",
+    "「今天」在客户端挂载后才确定，因此服务端渲染不会因时区不同产生水合不一致；不传 defaultDate 时首屏会在挂载后显示当前月份。",
+    "外层需要明确高度（如 h-[680px] 或 flex-1）；周与时间格式随语言变化，hourCycle 可强制 12 / 24 小时制。"
+  ],
+  "props": [
+    {
+      "component": "EventCalendar",
+      "props": [
+        {
+          "name": "events",
+          "type": "CalendarEvent[]",
+          "default": "示例日程",
+          "description": "事件列表。"
+        },
+        {
+          "name": "calendars",
+          "type": "CalendarSource[]",
+          "description": "日历分类：决定颜色和筛选项。"
+        },
+        {
+          "name": "date / defaultDate / onDateChange",
+          "type": "CalendarDate",
+          "description": "聚焦日期，决定显示哪个月 / 周。"
+        },
+        {
+          "name": "view / defaultView / onViewChange",
+          "type": "\"month\" | \"week\" | \"agenda\"",
+          "default": "\"month\"",
+          "description": "当前视图。"
+        },
+        {
+          "name": "views",
+          "type": "EventCalendarView[]",
+          "default": "三种全部",
+          "description": "切换器中提供的视图，只有一个时隐藏切换器。"
+        },
+        {
+          "name": "onEventPress",
+          "type": "(event) => void",
+          "description": "点击事件。"
+        },
+        {
+          "name": "eventActions",
+          "type": "(event, close) => ReactNode",
+          "description": "事件浮层底部的操作。"
+        },
+        {
+          "name": "onCreate",
+          "type": "(date: CalendarDate) => void",
+          "description": "提供后显示「新建日程」按钮。"
+        },
+        {
+          "name": "maxEventsPerDay",
+          "type": "number",
+          "default": "3",
+          "description": "月视图每格最多显示的事件条数。"
+        },
+        {
+          "name": "dayStartHour / dayEndHour",
+          "type": "number",
+          "default": "7 / 21",
+          "description": "周视图时间范围。"
+        },
+        {
+          "name": "showCalendarFilter",
+          "type": "boolean",
+          "default": "多个日历时为 true",
+          "description": "显示日历筛选。"
+        },
+        {
+          "name": "hourCycle",
+          "type": "12 | 24",
+          "description": "时间制式。"
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode",
+          "description": "标题栏末尾的额外内容。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<EventCalendarLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "CalendarEvent",
+      "props": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "唯一标识。"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "description": "标题。"
+        },
+        {
+          "name": "start",
+          "type": "string | DateValue",
+          "required": true,
+          "description": "开始时间。"
+        },
+        {
+          "name": "end",
+          "type": "string | DateValue",
+          "description": "结束时间，定时事件默认 1 小时。"
+        },
+        {
+          "name": "allDay",
+          "type": "boolean",
+          "description": "全天事件，默认根据 start 推断。"
+        },
+        {
+          "name": "calendarId",
+          "type": "string",
+          "description": "所属日历。"
+        },
+        {
+          "name": "location / description",
+          "type": "string / ReactNode",
+          "description": "地点与描述。"
+        },
+        {
+          "name": "attendees",
+          "type": "{ name: string; src?: string }[]",
+          "description": "参与者。"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "description": "覆盖日历颜色（CSS 颜色）。"
+        }
+      ]
+    }
+  ]
+}

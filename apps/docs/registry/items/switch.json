@@ -1,0 +1,80 @@
+{
+  "slug": "switch",
+  "name": "Switch",
+  "title": "开关",
+  "category": "base",
+  "files": [
+    "components/switch/switch.tsx"
+  ],
+  "description": "开关：即时生效的二元切换，带标签与说明、两种尺寸；row / card 样式让标签在前、开关在后，适合设置列表。",
+  "keywords": [
+    "switch",
+    "toggle",
+    "on off",
+    "settings",
+    "开关",
+    "切换",
+    "设置项"
+  ],
+  "exports": [
+    "Switch",
+    "SwitchIndicator"
+  ],
+  "demos": [
+    {
+      "file": "switch/overview.tsx",
+      "title": "概览",
+      "height": 240
+    },
+    {
+      "file": "switch/settings.tsx",
+      "title": "设置列表",
+      "description": "variant=\"row\" 占满整行，配合分隔线组成设置面板。",
+      "height": 280
+    },
+    {
+      "file": "switch/cards.tsx",
+      "title": "卡片样式",
+      "height": 220
+    }
+  ],
+  "notes": [
+    "开关用于立即生效的设置；需要提交才生效的选项请用 Checkbox。",
+    "受控使用 isSelected + onChange(boolean)；整行可点击，空格键切换。"
+  ],
+  "props": [
+    {
+      "component": "Switch",
+      "description": "其余属性透传给 React Aria Switch（isSelected、defaultSelected、onChange、isDisabled、isReadOnly、name 等）。",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "标签文字。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "说明文字。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\"",
+          "default": "\"md\"",
+          "description": "开关尺寸。"
+        },
+        {
+          "name": "variant",
+          "type": "\"inline\" | \"row\" | \"card\"",
+          "default": "\"inline\"",
+          "description": "inline：开关在前；row：整行，开关在末端；card：带边框的行卡片。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "row / card 样式的前置图标。"
+        }
+      ]
+    }
+  ]
+}

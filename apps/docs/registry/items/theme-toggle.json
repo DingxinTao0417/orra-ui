@@ -1,0 +1,97 @@
+{
+  "slug": "theme-toggle",
+  "name": "Theme Toggle",
+  "title": "主题切换",
+  "category": "blocks",
+  "files": [
+    "components/theme-toggle/theme-toggle.tsx"
+  ],
+  "description": "浅色 / 深色 / 跟随系统切换器，直接接入库内主题存储（setThemeMode / useThemeMode），选择会持久化并在页面内所有切换器间同步；提供分段、图标按钮、下拉菜单三种形态，切换时整页平滑过渡。",
+  "keywords": [
+    "theme",
+    "dark mode",
+    "light mode",
+    "toggle",
+    "color scheme",
+    "主题",
+    "深色模式",
+    "暗色",
+    "夜间模式",
+    "切换"
+  ],
+  "exports": [
+    "ThemeToggle",
+    "setThemeModeWithTransition"
+  ],
+  "demos": [
+    {
+      "file": "theme-toggle/overview.tsx",
+      "title": "概览",
+      "height": 220
+    },
+    {
+      "file": "theme-toggle/variants.tsx",
+      "title": "三种形态",
+      "description": "segmented 适合设置页；icon 在浅色与深色间一键翻转；menu 用一个图标按钮收纳三个选项，适合顶栏。",
+      "height": 240
+    },
+    {
+      "file": "theme-toggle/header.tsx",
+      "title": "放在顶栏",
+      "description": "顶栏空间有限时用 menu 形态。",
+      "height": 180
+    }
+  ],
+  "notes": [
+    "状态来自 lib/theme.ts，无需自己保存：刷新页面后仍保持选择。为避免首屏闪烁，请在 <head> 中注入 themeScript。",
+    "服务端渲染时按「跟随系统」输出，客户端挂载后立即同步真实选择，不会产生水合不一致。",
+    "平滑过渡优先使用 View Transitions，不支持时退化为短暂的颜色过渡；系统开启「减少动态效果」时直接切换。也可以单独调用 setThemeModeWithTransition(mode)。"
+  ],
+  "props": [
+    {
+      "component": "ThemeToggle",
+      "props": [
+        {
+          "name": "variant",
+          "type": "\"segmented\" | \"icon\" | \"menu\"",
+          "default": "\"segmented\"",
+          "description": "形态：分段切换、单个图标按钮（浅/深翻转）或下拉菜单。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸。"
+        },
+        {
+          "name": "showLabels",
+          "type": "boolean",
+          "default": "false",
+          "description": "分段形态下在图标旁显示文字。"
+        },
+        {
+          "name": "fullWidth",
+          "type": "boolean",
+          "default": "false",
+          "description": "分段形态撑满容器宽度。"
+        },
+        {
+          "name": "animated",
+          "type": "boolean",
+          "default": "true",
+          "description": "切换时整页淡入过渡。"
+        },
+        {
+          "name": "onChange",
+          "type": "(mode: ThemeMode) => void",
+          "description": "模式变化后回调。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ThemeToggleLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ]
+}

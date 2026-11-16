@@ -1,0 +1,190 @@
+{
+  "slug": "settings-modal",
+  "name": "Settings Modal",
+  "title": "设置弹窗",
+  "category": "blocks",
+  "files": [
+    "components/settings-modal/settings-modal.tsx",
+    "components/settings-modal/settings-parts.tsx",
+    "components/settings-modal/settings-sample.tsx"
+  ],
+  "description": "多页面设置弹窗：左侧分区导航（通用、个人资料、通知、外观、账单……），每页由设置行（标题 + 说明 + 控件）组成，有改动时浮出保存栏，支持异步保存、放弃更改与保存成功提示；窄屏时导航移到顶部。",
+  "keywords": [
+    "settings",
+    "preferences",
+    "dialog",
+    "modal",
+    "account",
+    "设置",
+    "偏好设置",
+    "系统设置",
+    "账号设置",
+    "弹窗"
+  ],
+  "exports": [
+    "SettingsModal",
+    "SettingsGroup",
+    "SettingsRow",
+    "useSettingsModal",
+    "type SettingsSection"
+  ],
+  "demos": [
+    {
+      "file": "settings-modal/overview.tsx",
+      "title": "概览",
+      "description": "不传 sections 时使用内置示例页面，外观页直接复用 ThemeToggle 与 AccentPicker。",
+      "height": 200
+    },
+    {
+      "file": "settings-modal/custom.tsx",
+      "title": "自定义页面",
+      "description": "用 SettingsGroup / SettingsRow 搭建页面；不触发原生 change 事件的控件（如 Select）调用 useSettingsModal().markDirty() 标记改动。",
+      "height": 220
+    }
+  ],
+  "notes": [
+    "页面内原生输入（输入框、开关、复选框）的改动会自动标记为未保存；其他控件调用 markDirty()，或用 dirty / onDirtyChange 完全受控。",
+    "onSave 返回 Promise 时保存按钮显示加载状态，成功后清除改动并提示「已保存」，抛错则保留改动并提示失败。放弃更改会重新挂载当前页面以恢复非受控字段。",
+    "有未保存改动时点击遮罩不会关闭弹窗；导航是 React Aria 的竖向 Tabs，方向键切换分区。"
+  ],
+  "props": [
+    {
+      "component": "SettingsModal",
+      "props": [
+        {
+          "name": "trigger",
+          "type": "ReactElement",
+          "description": "打开弹窗的可按压元素；省略则用 isOpen 受控。"
+        },
+        {
+          "name": "isOpen / defaultOpen / onOpenChange",
+          "type": "boolean",
+          "description": "开关状态。"
+        },
+        {
+          "name": "sections",
+          "type": "SettingsSection[]",
+          "default": "示例页面",
+          "description": "分区及其内容。"
+        },
+        {
+          "name": "section / defaultSection / onSectionChange",
+          "type": "string",
+          "description": "当前分区。"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "default": "\"设置\"",
+          "description": "导航上方标题。"
+        },
+        {
+          "name": "dirty / onDirtyChange",
+          "type": "boolean",
+          "description": "是否有未保存改动（受控）。"
+        },
+        {
+          "name": "onSave",
+          "type": "() => unknown",
+          "description": "保存处理，可返回 Promise。"
+        },
+        {
+          "name": "onDiscard",
+          "type": "() => void",
+          "description": "放弃更改时回调。"
+        },
+        {
+          "name": "navFooter",
+          "type": "ReactNode",
+          "description": "导航底部内容（版本号、帮助链接）。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<SettingsModalLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "SettingsSection",
+      "props": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "唯一标识。"
+        },
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "required": true,
+          "description": "导航名称与页面标题。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "导航图标。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "页面标题下的说明。"
+        },
+        {
+          "name": "content",
+          "type": "ReactNode | ((api: SettingsModalApi) => ReactNode)",
+          "required": true,
+          "description": "页面内容，函数形式可拿到 markDirty / close 等。"
+        }
+      ]
+    },
+    {
+      "component": "SettingsRow",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "required": true,
+          "description": "设置名称。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "说明文字。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "控件，默认放在行尾。"
+        },
+        {
+          "name": "stacked",
+          "type": "boolean",
+          "default": "false",
+          "description": "控件放在文字下方。"
+        },
+        {
+          "name": "htmlFor",
+          "type": "string",
+          "description": "标签关联的原生输入 id。"
+        }
+      ]
+    },
+    {
+      "component": "SettingsGroup",
+      "props": [
+        {
+          "name": "title / description",
+          "type": "ReactNode",
+          "description": "分组标题与说明。"
+        },
+        {
+          "name": "bordered",
+          "type": "boolean",
+          "default": "false",
+          "description": "把行包在带边框的卡片里。"
+        }
+      ]
+    }
+  ]
+}

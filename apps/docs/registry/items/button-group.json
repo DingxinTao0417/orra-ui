@@ -1,0 +1,128 @@
+{
+  "slug": "button-group",
+  "name": "Button Group",
+  "title": "按钮组",
+  "category": "base",
+  "files": [
+    "components/button-group/button-group.tsx"
+  ],
+  "description": "把多个按钮融合成一组：共享边框、仅首尾圆角，尺寸、形态和语气自动传给子按钮；设置 selectionMode 后变为可单选/多选的切换按钮组，支持横向与纵向。",
+  "keywords": [
+    "button group",
+    "toggle group",
+    "segmented",
+    "toolbar",
+    "按钮组",
+    "切换",
+    "工具栏",
+    "组合按钮"
+  ],
+  "exports": [
+    "ButtonGroup",
+    "ButtonGroupItem"
+  ],
+  "demos": [
+    {
+      "file": "button-group/overview.tsx",
+      "title": "概览",
+      "height": 260
+    },
+    {
+      "file": "button-group/selectable.tsx",
+      "title": "可选中",
+      "description": "selectionMode 为 single / multiple 时使用 ButtonGroupItem，选中状态可受控。",
+      "height": 240
+    },
+    {
+      "file": "button-group/vertical.tsx",
+      "title": "纵向",
+      "height": 240
+    }
+  ],
+  "notes": [
+    "子元素是 Button、IconButton、ButtonLink 时，未显式设置的 size / variant / tone 会继承自组。",
+    "可选中的组基于 React Aria ToggleButtonGroup，支持方向键在项之间移动焦点。",
+    "纯图标的 ButtonGroupItem 必须提供 aria-label。"
+  ],
+  "props": [
+    {
+      "component": "ButtonGroup",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "按钮元素。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "传给子按钮的尺寸。"
+        },
+        {
+          "name": "variant",
+          "type": "ButtonVariant",
+          "default": "\"outline\"",
+          "description": "传给子按钮的形态。"
+        },
+        {
+          "name": "tone",
+          "type": "ButtonTone",
+          "default": "\"neutral\"",
+          "description": "传给子按钮的语气。"
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "default": "\"horizontal\"",
+          "description": "方向。"
+        },
+        {
+          "name": "selectionMode",
+          "type": "\"single\" | \"multiple\"",
+          "description": "开启可选中模式。"
+        },
+        {
+          "name": "selectedKeys / defaultSelectedKeys / onSelectionChange",
+          "type": "Iterable<Key> / Iterable<Key> / (keys: Set<Key>) => void",
+          "description": "受控或非受控的选中项。"
+        },
+        {
+          "name": "disallowEmptySelection",
+          "type": "boolean",
+          "default": "false",
+          "description": "至少保留一个选中项。"
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "禁用整组。"
+        }
+      ]
+    },
+    {
+      "component": "ButtonGroupItem",
+      "description": "其余属性透传给 React Aria ToggleButton（id 必填）。",
+      "props": [
+        {
+          "name": "id",
+          "type": "Key",
+          "required": true,
+          "description": "项的标识。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "图标；单独使用时为方形图标按钮。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "文字。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "slug": "slider",
+  "name": "Slider",
+  "title": "滑块",
+  "category": "base",
+  "files": [
+    "components/slider/slider.tsx"
+  ],
+  "description": "滑块：单值或区间（传数组即为区间），显示格式化后的数值，可加刻度与带文字的标记点，拖动或键盘聚焦时在滑块上方浮出数值气泡。",
+  "keywords": [
+    "slider",
+    "range",
+    "range slider",
+    "volume",
+    "price range",
+    "滑块",
+    "滑动条",
+    "区间",
+    "范围"
+  ],
+  "exports": [
+    "Slider"
+  ],
+  "demos": [
+    {
+      "file": "slider/overview.tsx",
+      "title": "概览",
+      "height": 220
+    },
+    {
+      "file": "slider/marks.tsx",
+      "title": "刻度与标记",
+      "description": "marks 为 true 时每个 step 一个刻度，传数组可放带文字的标记点。",
+      "height": 240
+    },
+    {
+      "file": "slider/controlled.tsx",
+      "title": "受控区间",
+      "description": "value 为数组即为区间滑块；bubble=\"always\" 常显数值气泡，formatValue 自定义顶部数值文本。",
+      "height": 280
+    }
+  ],
+  "notes": [
+    "value / defaultValue 为 number 时是单值，为 number[] 时是区间；区间滑块请用 thumbLabels 给每个滑块命名。",
+    "formatOptions（Intl.NumberFormat 选项）同时作用于顶部数值、气泡与读屏播报。",
+    "方向键按 step 调整，PageUp / PageDown 大步调整，Home / End 跳到两端；RTL 下自动镜像。"
+  ],
+  "props": [
+    {
+      "component": "Slider",
+      "description": "其余属性透传给 React Aria Slider（value、defaultValue、onChange、onChangeEnd、minValue、maxValue、step、formatOptions、isDisabled 等）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "标签。"
+        },
+        {
+          "name": "showValue",
+          "type": "boolean",
+          "description": "在标签右侧显示当前值，有 label 时默认显示。"
+        },
+        {
+          "name": "formatValue",
+          "type": "(values: number[]) => ReactNode",
+          "description": "自定义顶部数值文本。"
+        },
+        {
+          "name": "marks",
+          "type": "boolean | number | Array<number | { value: number; label?: ReactNode }>",
+          "description": "刻度 / 标记点：true 为每个 step，数字为等分数量，数组为指定位置。"
+        },
+        {
+          "name": "bubble",
+          "type": "\"active\" | \"always\" | \"never\"",
+          "default": "\"active\"",
+          "description": "数值气泡：拖动或键盘聚焦时 / 常显 / 不显示。"
+        },
+        {
+          "name": "thumbLabels",
+          "type": "string[]",
+          "description": "区间滑块各滑块的无障碍名称。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "下方说明文字。"
+        },
+        {
+          "name": "minValue / maxValue / step",
+          "type": "number",
+          "default": "0 / 100 / 1",
+          "description": "范围与步长。"
+        }
+      ]
+    }
+  ]
+}

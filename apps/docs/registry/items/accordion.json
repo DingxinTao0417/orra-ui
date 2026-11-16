@@ -1,0 +1,120 @@
+{
+  "slug": "accordion",
+  "name": "Accordion",
+  "title": "手风琴",
+  "category": "base",
+  "files": [
+    "components/accordion/accordion.tsx"
+  ],
+  "description": "可展开的分区列表：单开或多开、平滑的高度动画、可选图标与副标题，提供 bordered 卡片、flush 无边框和 separated 分离三种样式。",
+  "keywords": [
+    "accordion",
+    "collapse",
+    "disclosure",
+    "faq",
+    "expand",
+    "手风琴",
+    "折叠面板",
+    "展开"
+  ],
+  "exports": [
+    "Accordion",
+    "AccordionItem"
+  ],
+  "demos": [
+    {
+      "file": "accordion/overview.tsx",
+      "title": "概览",
+      "layout": "padded",
+      "height": 340
+    },
+    {
+      "file": "accordion/icons.tsx",
+      "title": "图标、副标题与多开",
+      "description": "variant=\"separated\" 让每项成为独立卡片；allowsMultipleExpanded 允许同时展开多项；end 放置徽标等附加信息。",
+      "layout": "padded",
+      "height": 380
+    },
+    {
+      "file": "accordion/flush.tsx",
+      "title": "无边框",
+      "description": "flush 只保留分隔线，适合放在已有卡片内部。",
+      "layout": "padded",
+      "height": 260
+    }
+  ],
+  "notes": [
+    "基于 React Aria DisclosureGroup：标题是带 aria-expanded 的按钮，Enter / 空格切换。",
+    "受控用 expandedKeys / onExpandedChange，非受控用 defaultExpandedKeys；AccordionItem 需要 id。",
+    "折叠的内容使用 hidden=\"until-found\"，浏览器的页内查找可以搜到并自动展开。",
+    "标题外层是 h3，可通过 headingLevel 调整以匹配页面层级。"
+  ],
+  "props": [
+    {
+      "component": "Accordion",
+      "description": "其余属性透传给 React Aria DisclosureGroup。",
+      "props": [
+        {
+          "name": "variant",
+          "type": "\"bordered\" | \"flush\" | \"separated\"",
+          "default": "\"bordered\"",
+          "description": "样式。"
+        },
+        {
+          "name": "allowsMultipleExpanded",
+          "type": "boolean",
+          "default": "false",
+          "description": "允许同时展开多项。"
+        },
+        {
+          "name": "expandedKeys / defaultExpandedKeys / onExpandedChange",
+          "type": "Iterable<Key> / … / (keys: Set<Key>) => void",
+          "description": "展开项。"
+        },
+        {
+          "name": "headingLevel",
+          "type": "2 | 3 | 4 | 5 | 6",
+          "default": "3",
+          "description": "标题的标签级别。"
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "description": "禁用全部项。"
+        }
+      ]
+    },
+    {
+      "component": "AccordionItem",
+      "description": "其余属性透传给 React Aria Disclosure（id、isDisabled、isExpanded…）。",
+      "props": [
+        {
+          "name": "id",
+          "type": "Key",
+          "description": "标识。"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "required": true,
+          "description": "标题。"
+        },
+        {
+          "name": "subtitle",
+          "type": "ReactNode",
+          "description": "副标题。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "标题前的图标。"
+        },
+        {
+          "name": "end",
+          "type": "ReactNode",
+          "description": "箭头前的附加内容。"
+        }
+      ]
+    }
+  ]
+}

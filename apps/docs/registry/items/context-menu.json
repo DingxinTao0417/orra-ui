@@ -1,0 +1,122 @@
+{
+  "slug": "context-menu",
+  "name": "Context Menu",
+  "title": "右键菜单",
+  "category": "base",
+  "files": [
+    "components/context-menu/context-menu.tsx"
+  ],
+  "description": "在任意区域右键、触屏长按或按 Shift+F10 / 菜单键打开的上下文菜单，在指针位置弹出，菜单项能力与下拉菜单一致。",
+  "keywords": [
+    "context menu",
+    "right click",
+    "long press",
+    "右键菜单",
+    "上下文菜单",
+    "长按"
+  ],
+  "exports": [
+    "ContextMenu",
+    "ContextMenuItem",
+    "ContextMenuSection",
+    "ContextMenuSeparator",
+    "ContextMenuSubmenu"
+  ],
+  "demos": [
+    {
+      "file": "context-menu/overview.tsx",
+      "title": "概览",
+      "description": "在虚线区域内右键；键盘用户聚焦区域后按 Shift+F10。",
+      "height": 300
+    },
+    {
+      "file": "context-menu/list.tsx",
+      "title": "列表项菜单",
+      "description": "每一行单独包一层 ContextMenu；打开时区域带有 data-open，可用于高亮当前行。",
+      "height": 300
+    }
+  ],
+  "notes": [
+    "ContextMenuItem / Section / Separator / Submenu 与 Dropdown 的对应组件完全相同，可混用。",
+    "区域默认可聚焦（tabIndex=0），以便键盘打开；内部已有可聚焦元素时可设 focusable={false}。",
+    "菜单打开时右键遮罩会关闭菜单而不是弹出浏览器原生菜单。"
+  ],
+  "props": [
+    {
+      "component": "ContextMenu",
+      "description": "其余属性透传给 React Aria Menu（onAction、aria-label、disabledKeys 等）。",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "响应右键的区域内容。"
+        },
+        {
+          "name": "menu",
+          "type": "ReactNode",
+          "required": true,
+          "description": "菜单内容：ContextMenuItem 等。"
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "description": "禁用菜单。"
+        },
+        {
+          "name": "onOpenChange",
+          "type": "(isOpen: boolean) => void",
+          "description": "菜单打开 / 关闭时调用。"
+        },
+        {
+          "name": "focusable",
+          "type": "boolean",
+          "default": "true",
+          "description": "区域本身可聚焦。"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "description": "区域附加类名。"
+        },
+        {
+          "name": "menuClassName",
+          "type": "string",
+          "description": "菜单面板附加类名。"
+        }
+      ]
+    },
+    {
+      "component": "ContextMenuItem",
+      "description": "同 DropdownItem。",
+      "props": [
+        {
+          "name": "id",
+          "type": "Key",
+          "description": "传给 onAction 的标识。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "标签前的图标元素。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "标签下方的辅助说明。"
+        },
+        {
+          "name": "shortcut",
+          "type": "string | string[]",
+          "description": "快捷键提示，如 \"mod+d\"。"
+        },
+        {
+          "name": "tone",
+          "type": "\"default\" | \"danger\"",
+          "default": "\"default\"",
+          "description": "danger 用于删除等破坏性操作。"
+        }
+      ]
+    }
+  ]
+}

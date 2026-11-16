@@ -1,0 +1,123 @@
+{
+  "slug": "combo-chart",
+  "name": "Combo Chart",
+  "title": "组合图",
+  "category": "charts",
+  "files": [
+    "components/combo-chart/combo-chart.tsx"
+  ],
+  "description": "柱线组合图：柱状系列在左轴、折线系列在右轴，两侧各自使用独立的数字格式，例如营收 + 毛利率。",
+  "keywords": [
+    "combo chart",
+    "composed",
+    "dual axis",
+    "bar line",
+    "组合图",
+    "双轴",
+    "柱线图",
+    "毛利率"
+  ],
+  "exports": [
+    "ComboChart",
+    "ChartCard"
+  ],
+  "demos": [
+    {
+      "file": "combo-chart/overview.tsx",
+      "title": "概览",
+      "description": "营收柱状 + 毛利率折线（示例数据）。",
+      "height": 440,
+      "layout": "padded"
+    },
+    {
+      "file": "combo-chart/orders.tsx",
+      "title": "堆叠柱 + 货币折线",
+      "description": "stacked 堆叠线上与门店订单，右轴客单价使用货币格式。",
+      "height": 420,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "barFormat / lineFormat 分别控制左右轴与提示框的格式，series.format 可覆盖单个系列。",
+    "折线颜色默认接在柱状系列之后，避免撞色。"
+  ],
+  "props": [
+    {
+      "component": "ComboChart",
+      "props": [
+        {
+          "name": "data",
+          "type": "readonly object[]",
+          "description": "数据行；缺省为示例数据。"
+        },
+        {
+          "name": "index",
+          "type": "string",
+          "default": "\"label\"",
+          "description": "x 轴字段。"
+        },
+        {
+          "name": "barSeries",
+          "type": "ChartSeries[]",
+          "description": "柱状系列（左轴）。"
+        },
+        {
+          "name": "lineSeries",
+          "type": "ChartSeries[]",
+          "description": "折线系列（右轴）。"
+        },
+        {
+          "name": "barFormat",
+          "type": "\"number\" | \"compact\" | \"percent\" | \"currency\" | Intl.NumberFormatOptions | ((v: number) => string)",
+          "default": "\"number\"",
+          "description": "左轴格式。"
+        },
+        {
+          "name": "lineFormat",
+          "type": "\"number\" | \"compact\" | \"percent\" | \"currency\" | Intl.NumberFormatOptions | ((v: number) => string)",
+          "default": "\"percent\"",
+          "description": "右轴格式。"
+        },
+        {
+          "name": "currency",
+          "type": "string",
+          "description": "货币代码。"
+        },
+        {
+          "name": "stacked",
+          "type": "boolean",
+          "default": "false",
+          "description": "堆叠柱状系列。"
+        },
+        {
+          "name": "curve",
+          "type": "\"smooth\" | \"linear\" | \"step\"",
+          "default": "\"smooth\"",
+          "description": "折线线型。"
+        },
+        {
+          "name": "lineDomain",
+          "type": "[min, max]",
+          "description": "右轴范围。"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": "260",
+          "description": "绘图区高度。"
+        },
+        {
+          "name": "showLegend / interactiveLegend / showGrid",
+          "type": "boolean",
+          "default": "true",
+          "description": "图例与网格开关。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ComboChartLabels>",
+          "description": "覆盖文案。"
+        }
+      ]
+    }
+  ]
+}

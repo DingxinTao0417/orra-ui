@@ -1,0 +1,138 @@
+{
+  "slug": "heatmap-chart",
+  "name": "Heatmap Chart",
+  "title": "热力图",
+  "category": "charts",
+  "files": [
+    "components/heatmap-chart/heatmap-chart.tsx"
+  ],
+  "description": "热力图：行 × 列矩阵（如星期 × 小时、同期群留存）或按年展示每日数值的日历热力图，分级色阶并附「少 → 多」图例。",
+  "keywords": [
+    "heatmap",
+    "calendar heatmap",
+    "contribution",
+    "matrix",
+    "cohort",
+    "热力图",
+    "日历热力图",
+    "贡献图",
+    "矩阵",
+    "同期群"
+  ],
+  "exports": [
+    "HeatmapChart",
+    "ChartCard"
+  ],
+  "demos": [
+    {
+      "file": "heatmap-chart/overview.tsx",
+      "title": "概览",
+      "description": "星期 × 小时的会话分布（示例数据）。",
+      "height": 400,
+      "layout": "padded"
+    },
+    {
+      "file": "heatmap-chart/calendar.tsx",
+      "title": "日历",
+      "description": "variant=\"calendar\"，窄屏时在容器内横向滚动并自动定位到最近日期。",
+      "height": 340,
+      "layout": "padded"
+    },
+    {
+      "file": "heatmap-chart/retention.tsx",
+      "title": "同期群留存",
+      "description": "缺失的单元格以空白色显示，数值按百分比格式化。",
+      "height": 320,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "色阶由 color 与 steps 决定：0 或缺失为底色，其余按最大值等分。",
+    "矩阵宽度随容器自适应；日历单元格 10–18px，超出时容器内滚动，不会撑出页面。",
+    "日期使用 YYYY-MM-DD 字符串，月份与星期名称按语言环境格式化。"
+  ],
+  "props": [
+    {
+      "component": "HeatmapChart",
+      "description": "variant 决定数据形态；其余属性两种形态共用。",
+      "props": [
+        {
+          "name": "variant",
+          "type": "\"matrix\" | \"calendar\"",
+          "default": "\"matrix\"",
+          "description": "矩阵或日历。"
+        },
+        {
+          "name": "data",
+          "type": "HeatmapCell[] | HeatmapDay[]",
+          "description": "矩阵：{ row, column, value }；日历：{ date, value }。缺省为示例数据。"
+        },
+        {
+          "name": "rows / columns",
+          "type": "string[]",
+          "description": "矩阵的行 / 列顺序。"
+        },
+        {
+          "name": "columnLabelEvery",
+          "type": "number",
+          "description": "每隔 n 列显示列标签。"
+        },
+        {
+          "name": "cellHeight",
+          "type": "number",
+          "default": "22",
+          "description": "矩阵单元格高度（px）。"
+        },
+        {
+          "name": "endDate",
+          "type": "string",
+          "description": "日历最后一天（ISO）。"
+        },
+        {
+          "name": "weeks",
+          "type": "number",
+          "default": "53",
+          "description": "日历周数。"
+        },
+        {
+          "name": "weekStart",
+          "type": "0 | 1",
+          "default": "1",
+          "description": "一周起始：周日 / 周一。"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "description": "色阶最深色。"
+        },
+        {
+          "name": "steps",
+          "type": "number",
+          "default": "5",
+          "description": "色阶级数（含空）。"
+        },
+        {
+          "name": "valueFormat",
+          "type": "\"number\" | \"compact\" | \"percent\" | \"currency\" | Intl.NumberFormatOptions | ((v: number) => string)",
+          "description": "数值格式。"
+        },
+        {
+          "name": "valueLabel",
+          "type": "string",
+          "description": "提示框中的数值名称。"
+        },
+        {
+          "name": "showLegend",
+          "type": "boolean",
+          "default": "true",
+          "description": "显示色阶图例。"
+        },
+        {
+          "name": "legendStart",
+          "type": "ReactNode",
+          "description": "图例行起始侧的内容。"
+        }
+      ]
+    }
+  ]
+}

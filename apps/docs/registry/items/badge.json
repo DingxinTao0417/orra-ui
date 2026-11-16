@@ -1,0 +1,122 @@
+{
+  "slug": "badge",
+  "name": "Badge",
+  "title": "徽标",
+  "category": "base",
+  "files": [
+    "components/badge/badge.tsx"
+  ],
+  "description": "小型状态标签：neutral / accent / success / warning / danger / info 六种语气，soft / solid / outline 三种形态，可带圆点或图标；另附可脉冲的独立状态点 StatusDot。",
+  "keywords": [
+    "badge",
+    "tag",
+    "label",
+    "status",
+    "pill",
+    "dot",
+    "徽标",
+    "标签",
+    "状态",
+    "状态点"
+  ],
+  "exports": [
+    "Badge",
+    "StatusDot",
+    "badgeClass"
+  ],
+  "demos": [
+    {
+      "file": "badge/overview.tsx",
+      "title": "概览",
+      "height": 180
+    },
+    {
+      "file": "badge/variants.tsx",
+      "title": "形态与语气",
+      "description": "tone 决定颜色角色，variant 决定填充方式；solid 适合需要强提示的计数或「新」标记。",
+      "height": 320
+    },
+    {
+      "file": "badge/status-dot.tsx",
+      "title": "状态点",
+      "description": "StatusDot 用于服务健康、在线状态等，pulse 表示正在进行中。",
+      "height": 300
+    }
+  ],
+  "notes": [
+    "颜色不应是唯一信号：徽标里始终写出状态文字，圆点只是辅助。",
+    "StatusDot 默认是装饰性的；单独使用（旁边没有文字）时请传 label 作为无障碍名称。",
+    "badgeClass() 可以把其他元素（例如链接）样式化为徽标。"
+  ],
+  "props": [
+    {
+      "component": "Badge",
+      "description": "其余属性透传给 <span>。",
+      "props": [
+        {
+          "name": "tone",
+          "type": "\"neutral\" | \"accent\" | \"success\" | \"warning\" | \"danger\" | \"info\"",
+          "default": "\"neutral\"",
+          "description": "颜色角色。"
+        },
+        {
+          "name": "variant",
+          "type": "\"soft\" | \"solid\" | \"outline\"",
+          "default": "\"soft\"",
+          "description": "填充形态。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "高度 20 / 24 / 28 px。"
+        },
+        {
+          "name": "dot",
+          "type": "boolean",
+          "default": "false",
+          "description": "前置状态圆点。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "前置图标元素。"
+        },
+        {
+          "name": "square",
+          "type": "boolean",
+          "default": "false",
+          "description": "圆角矩形而非胶囊形。"
+        }
+      ]
+    },
+    {
+      "component": "StatusDot",
+      "props": [
+        {
+          "name": "tone",
+          "type": "BadgeTone",
+          "default": "\"success\"",
+          "description": "颜色。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "直径 6 / 8 / 10 px。"
+        },
+        {
+          "name": "pulse",
+          "type": "boolean",
+          "default": "false",
+          "description": "向外扩散的光晕，表示进行中。"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "description": "无障碍名称；不传时为装饰性元素。"
+        }
+      ]
+    }
+  ]
+}

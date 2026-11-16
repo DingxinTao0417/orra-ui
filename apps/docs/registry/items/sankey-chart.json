@@ -1,0 +1,96 @@
+{
+  "slug": "sankey-chart",
+  "name": "Sankey Chart",
+  "title": "桑基图",
+  "category": "charts",
+  "files": [
+    "components/sankey-chart/sankey-chart.tsx"
+  ],
+  "description": "桑基图：展示从来源到去向的流量，节点显示名称与数值，连线按两端颜色渐变着色，悬停高亮单条路径或节点。",
+  "keywords": [
+    "sankey",
+    "flow",
+    "alluvial",
+    "user journey",
+    "桑基图",
+    "流向",
+    "路径",
+    "资金流"
+  ],
+  "exports": [
+    "SankeyChart",
+    "ChartCard"
+  ],
+  "demos": [
+    {
+      "file": "sankey-chart/overview.tsx",
+      "title": "概览",
+      "description": "渠道 → 着陆页 → 结果（示例数据）。",
+      "height": 440,
+      "layout": "padded"
+    },
+    {
+      "file": "sankey-chart/budget.tsx",
+      "title": "按名称连接",
+      "description": "links 的 source / target 可直接写节点名称；节点可单独指定颜色。",
+      "height": 400,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "终点节点的标签放在节点左侧，避免超出容器。",
+    "连线 source / target 支持索引或节点名称，无效连线会被忽略。"
+  ],
+  "props": [
+    {
+      "component": "SankeyChart",
+      "props": [
+        {
+          "name": "data",
+          "type": "{ nodes: { name; color? }[]; links: { source; target; value }[] }",
+          "description": "节点与连线；缺省为示例数据。"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": "300",
+          "description": "高度（px）。"
+        },
+        {
+          "name": "valueFormat",
+          "type": "\"number\" | \"compact\" | \"percent\" | \"currency\" | Intl.NumberFormatOptions | ((v: number) => string)",
+          "description": "数值格式。"
+        },
+        {
+          "name": "currency",
+          "type": "string",
+          "description": "货币代码。"
+        },
+        {
+          "name": "nodeWidth",
+          "type": "number",
+          "default": "10",
+          "description": "节点宽度。"
+        },
+        {
+          "name": "nodePadding",
+          "type": "number",
+          "default": "18",
+          "description": "节点间距。"
+        },
+        {
+          "name": "showValues",
+          "type": "boolean",
+          "default": "true",
+          "description": "节点旁显示数值。"
+        },
+        {
+          "name": "gradientLinks",
+          "type": "boolean",
+          "default": "true",
+          "description": "连线使用两端颜色渐变。"
+        }
+      ]
+    }
+  ]
+}

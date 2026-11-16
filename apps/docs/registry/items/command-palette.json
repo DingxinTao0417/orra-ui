@@ -1,0 +1,130 @@
+{
+  "slug": "command-palette",
+  "name": "Command Palette",
+  "title": "命令面板",
+  "category": "base",
+  "files": [
+    "components/command-palette/command-palette.tsx"
+  ],
+  "description": "⌘K 命令面板：顶部搜索框 + 分组结果（页面、操作、最近访问），条目支持图标、描述、快捷键与同义词搜索，带空状态和按键提示，可配置或关闭全局快捷键。",
+  "keywords": [
+    "command palette",
+    "command menu",
+    "cmdk",
+    "spotlight",
+    "search",
+    "命令面板",
+    "快捷搜索",
+    "全局搜索"
+  ],
+  "exports": [
+    "CommandPalette",
+    "CommandPaletteGroup",
+    "CommandPaletteItem"
+  ],
+  "demos": [
+    {
+      "file": "command-palette/overview.tsx",
+      "title": "概览",
+      "description": "试着输入「报表」「dark」或「invite」。",
+      "height": 200
+    },
+    {
+      "file": "command-palette/shortcut.tsx",
+      "title": "自定义快捷键",
+      "description": "shortcut=\"mod+j\" 注册全局快捷键，再次按下可关闭；页脚可自定义。",
+      "height": 200
+    }
+  ],
+  "notes": [
+    "shortcut 默认为 \"mod+k\"（Apple 平台为 ⌘K，其他平台为 Ctrl+K）；页面已有同名快捷键时传 shortcut={false}。",
+    "keywords 为条目添加额外的搜索词（英文名、同义词），不会显示出来。",
+    "方向键在结果间移动（焦点保持在输入框），Enter 执行，Esc 先清空输入再关闭。",
+    "执行条目后面板自动关闭；onAction 接收条目 id。"
+  ],
+  "props": [
+    {
+      "component": "CommandPalette",
+      "props": [
+        {
+          "name": "isOpen / defaultOpen / onOpenChange",
+          "type": "boolean / boolean / (isOpen: boolean) => void",
+          "description": "打开状态。"
+        },
+        {
+          "name": "trigger",
+          "type": "ReactElement",
+          "description": "可选的触发按钮。"
+        },
+        {
+          "name": "shortcut",
+          "type": "string | false",
+          "default": "\"mod+k\"",
+          "description": "全局快捷键，false 表示不注册。"
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "description": "搜索框占位文字。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "CommandPaletteGroup / CommandPaletteItem。"
+        },
+        {
+          "name": "onAction",
+          "type": "(key: Key) => void",
+          "description": "条目被执行时调用。"
+        },
+        {
+          "name": "inputValue / defaultInputValue / onInputChange",
+          "type": "string / string / (value: string) => void",
+          "description": "搜索文本。"
+        },
+        {
+          "name": "filter",
+          "type": "(textValue: string, inputValue: string) => boolean",
+          "description": "自定义过滤；默认忽略大小写与重音的包含匹配。"
+        },
+        {
+          "name": "emptyState",
+          "type": "ReactNode",
+          "description": "替换默认空状态。"
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode | false",
+          "description": "替换按键提示页脚，false 隐藏。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<CommandPaletteLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "CommandPaletteItem",
+      "description": "其余属性同 DropdownItem（id、icon、description、shortcut、tone…）。",
+      "props": [
+        {
+          "name": "keywords",
+          "type": "string[]",
+          "description": "额外的搜索词。"
+        }
+      ]
+    },
+    {
+      "component": "CommandPaletteGroup",
+      "props": [
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "分组标题；分组内没有匹配项时整组隐藏。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "slug": "number-field",
+  "name": "Number Field",
+  "title": "数字输入",
+  "category": "base",
+  "files": [
+    "components/number-field/number-field.tsx"
+  ],
+  "description": "数字输入框：带增减步进按钮，支持 min / max / step、键盘与滚轮调整，并通过 formatOptions 按语言环境格式化货币、百分比和单位。",
+  "keywords": [
+    "number",
+    "numeric",
+    "stepper",
+    "spinbutton",
+    "currency",
+    "数字",
+    "数量",
+    "步进器",
+    "金额"
+  ],
+  "exports": [
+    "NumberField"
+  ],
+  "demos": [
+    {
+      "file": "number-field/overview.tsx",
+      "title": "概览",
+      "height": 320
+    },
+    {
+      "file": "number-field/formats.tsx",
+      "title": "格式化",
+      "description": "formatOptions 即 Intl.NumberFormat 选项：单位、货币、紧凑记数、固定小数位都可以。stepper=\"none\" 隐藏步进按钮。",
+      "height": 220
+    },
+    {
+      "file": "number-field/controlled.tsx",
+      "title": "受控与校验",
+      "height": 260
+    }
+  ],
+  "notes": [
+    "onChange 返回 number；清空输入时为 NaN，请自行处理。",
+    "stepper 控制按钮布局：stacked（末端上下箭头，默认）、split（两端 − / +）、none。",
+    "↑ ↓ 键按 step 调整，PageUp / PageDown 大步调整，Home / End 跳到最小 / 最大值。"
+  ],
+  "props": [
+    {
+      "component": "NumberField",
+      "description": "其余属性透传给 React Aria NumberField（value、defaultValue、onChange、minValue、maxValue、step、formatOptions、isDisabled、isInvalid 等）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "字段标签。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "标签下方的辅助说明。"
+        },
+        {
+          "name": "errorMessage",
+          "type": "ReactNode | ((v: ValidationResult) => ReactNode)",
+          "description": "校验失败（isInvalid 或原生校验）时显示的错误文案。"
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "description": "占位文本。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸：32 / 36 / 44 px。"
+        },
+        {
+          "name": "stepper",
+          "type": "\"stacked\" | \"split\" | \"none\"",
+          "default": "\"stacked\"",
+          "description": "步进按钮布局。"
+        },
+        {
+          "name": "formatOptions",
+          "type": "Intl.NumberFormatOptions",
+          "description": "数字格式（货币、百分比、单位…）。"
+        },
+        {
+          "name": "startIcon",
+          "type": "ReactNode",
+          "description": "前置图标（split 布局下不显示）。"
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLInputElement>",
+          "description": "转发到 <input>。"
+        }
+      ]
+    }
+  ]
+}

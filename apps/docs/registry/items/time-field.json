@@ -1,0 +1,95 @@
+{
+  "slug": "time-field",
+  "name": "Time Field",
+  "title": "时间输入",
+  "category": "base",
+  "files": [
+    "components/time-field/time-field.tsx"
+  ],
+  "description": "分段式时间输入：时 / 分（可选秒）/ 上下午各自可键入或用方向键调整，支持 12 / 24 小时制、最小最大时间与校验；首屏不渲染分段，避免 SSR 水合不一致。",
+  "keywords": [
+    "time",
+    "time field",
+    "time input",
+    "clock",
+    "hour",
+    "时间",
+    "时间输入",
+    "时刻"
+  ],
+  "exports": [
+    "TimeField"
+  ],
+  "demos": [
+    {
+      "file": "time-field/overview.tsx",
+      "title": "概览",
+      "height": 240
+    },
+    {
+      "file": "time-field/seconds.tsx",
+      "title": "秒、尺寸与禁用",
+      "height": 240
+    },
+    {
+      "file": "time-field/controlled.tsx",
+      "title": "受控与范围校验",
+      "description": "minValue / maxValue 超出范围时自动标记为无效并显示 errorMessage。",
+      "height": 240
+    }
+  ],
+  "notes": [
+    "值是 @internationalized/date 的 Time（或 CalendarDateTime / ZonedDateTime）对象，例如 new Time(9, 30)。",
+    "分段格式依赖浏览器语言，所以服务端和首帧只渲染空的外框，水合完成后再显示分段，不会产生 hydration mismatch。"
+  ],
+  "props": [
+    {
+      "component": "TimeField",
+      "description": "其余属性透传给 React Aria TimeField（value、defaultValue、onChange、minValue、maxValue、placeholderValue、isRequired、isDisabled 等）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "字段标签。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "标签下方的辅助说明。"
+        },
+        {
+          "name": "errorMessage",
+          "type": "ReactNode | ((v: ValidationResult) => ReactNode)",
+          "description": "校验失败（isInvalid 或原生校验）时显示的错误文案。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸：32 / 36 / 44 px。"
+        },
+        {
+          "name": "hourCycle",
+          "type": "12 | 24",
+          "description": "12 或 24 小时制，默认跟随语言环境。"
+        },
+        {
+          "name": "showSeconds",
+          "type": "boolean",
+          "default": "false",
+          "description": "显示秒分段。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "前置图标，默认时钟；传 null 隐藏。"
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDivElement>",
+          "description": "转发到外层容器。"
+        }
+      ]
+    }
+  ]
+}

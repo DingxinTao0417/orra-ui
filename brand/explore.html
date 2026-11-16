@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Orra UI — Logo exploration</title>
+<style>
+  :root { --bg: #f6f7f9; --card: #fff; --ink: #0b0d12; --muted: #6b7280; --line: #e6e8ec; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 32px; background: var(--bg); color: var(--ink); font: 14px/1.5 Inter, ui-sans-serif, system-ui, "PingFang SC", sans-serif; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  p.lead { color: var(--muted); margin: 0 0 24px; }
+  .concept { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 20px; margin-bottom: 20px; }
+  .concept h2 { font-size: 15px; margin: 0 0 2px; }
+  .concept .desc { color: var(--muted); margin: 0 0 16px; font-size: 13px; }
+  .row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .cell { width: 150px; height: 150px; border-radius: 18px; display: grid; place-items: center; border: 1px solid var(--line); }
+  .cell.light { background: #fff; }
+  .cell.dark { background: #0b0d12; border-color: #0b0d12; }
+  .cell svg { width: 96px; height: 96px; }
+  .cell.tile svg { width: 112px; height: 112px; }
+  .sizes { display: flex; gap: 14px; align-items: end; padding: 0 12px; height: 150px; border: 1px solid var(--line); border-radius: 18px; background: #fff; }
+  .sizes svg { display: block; }
+  .word { display: flex; align-items: center; gap: 10px; padding: 0 20px; height: 150px; border-radius: 18px; border: 1px solid var(--line); background: #fff; }
+  .word span { font-weight: 600; font-size: 26px; letter-spacing: -0.02em; }
+  .word.dark { background: #0b0d12; color: #fff; border-color: #0b0d12; }
+  .word svg { width: 40px; height: 40px; }
+</style>
+</head>
+<body>
+<h1>Orra UI · Logo 方向</h1>
+<p class="lead">每个方向依次展示：白底、黑底、深色 App 图标、品牌色 App 图标、16–64px 小尺寸、横版组合。</p>
+<div id="root"></div>
+
+<script>
+// Brand palette
+const C = { blue: "#3B82F6", indigo: "#6366F1", violet: "#8B5CF6", sky: "#38BDF8", cyan: "#67E8F9", navy0: "#0B1020", navy1: "#1E1B4B" };
+let uid = 0;
+
+/** Shared gradient defs; `mode` = "color" (gradient strokes) or "white" (on a colored tile). */
+function defs(id, mode) {
+  return `
+  <linearGradient id="${id}-ring" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="${C.sky}"/><stop offset=".45" stop-color="${C.blue}"/><stop offset="1" stop-color="${C.violet}"/>
+  </linearGradient>
+  <radialGradient id="${id}-orb" cx=".35" cy=".35" r=".75">
+    <stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="${mode === "white" ? "#fff" : C.cyan}"/><stop offset="1" stop-color="${mode === "white" ? "#e0e7ff" : C.blue}"/>
+  </radialGradient>
+  <filter id="${id}-glow" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="2.2"/></filter>
+  <radialGradient id="${id}-aura" cx=".5" cy=".5" r=".5">
+    <stop offset=".45" stop-color="${mode === "white" ? "#fff" : C.blue}" stop-opacity=".28"/><stop offset="1" stop-color="${mode === "white" ? "#fff" : C.blue}" stop-opacity="0"/>
+  </radialGradient>`;
+}
+
+const CONCEPTS = [
+  {
+    key: "halo",
+    name: "A · 断环光点 Halo",
+    desc: "光环在右上角断开，一颗光点停在缺口处——像轨道上被点亮的卫星，也像「正在运行」的信号。极简、有动势，小尺寸辨识度高。",
+    draw: (id, mode) => {
+      const ring = mode === "white" ? "#fff" : `url(#${id}-ring)`;
+      return `
+      <path d="M36.66 14.61 A18 18 0 1 0 49.39 27.34" fill="none" stroke="${ring}" stroke-width="6.5" stroke-linecap="round"/>
+      <circle cx="44.73" cy="19.27" r="6" fill="${mode === "white" ? "#fff" : C.cyan}" opacity=".55" filter="url(#${id}-glow)"/>
+      <circle cx="44.73" cy="19.27" r="4.6" fill="url(#${id}-orb)"/>`;
+    },
+  },
+  {
+    key: "aura",
+    name: "B · 双层光晕 Aura",
+    desc: "实心内环 + 细外轨道，光点在外轨缺口处。层次更丰富，像「光环」的扩散，适合大尺寸展示。",
+    draw: (id, mode) => {
+      const ring = mode === "white" ? "#fff" : `url(#${id}-ring)`;
+      return `
+      <circle cx="32" cy="32" r="22" fill="url(#${id}-aura)"/>
+      <circle cx="32" cy="32" r="13" fill="none" stroke="${ring}" stroke-width="5.5"/>
+      <path d="M44 11.22 A24 24 0 1 0 52.78 20" fill="none" stroke="${ring}" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+      <circle cx="48.97" cy="15.03" r="5" fill="${mode === "white" ? "#fff" : C.cyan}" opacity=".5" filter="url(#${id}-glow)"/>
+      <circle cx="48.97" cy="15.03" r="3.7" fill="url(#${id}-orb)"/>`;
+    },
+  },
+  {
+    key: "orbit",
+    name: "C · 轨道 Orbit",
+    desc: "粗光环外绕一条倾斜轨道，光点在轨道前侧穿过——立体感和「智能体在运转」的叙事最强，但细节多，16px 下会糊。",
+    draw: (id, mode) => {
+      const ring = mode === "white" ? "#fff" : `url(#${id}-ring)`;
+      return `
+      <g transform="translate(32 32) rotate(-28)">
+        <ellipse cx="0" cy="0" rx="27" ry="9" fill="none" stroke="${ring}" stroke-width="1.8" opacity=".45"/>
+      </g>
+      <circle cx="32" cy="32" r="14" fill="none" stroke="${ring}" stroke-width="6"/>
+      <g transform="translate(32 32) rotate(-28)">
+        <path d="M-27 0 A27 9 0 0 0 27 0" fill="none" stroke="${ring}" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="13.5" cy="7.79" r="5" fill="${mode === "white" ? "#fff" : C.cyan}" opacity=".5" filter="url(#${id}-glow)"/>
+        <circle cx="13.5" cy="7.79" r="3.6" fill="url(#${id}-orb)"/>
+      </g>`;
+    },
+  },
+  {
+    key: "eclipse",
+    name: "D · 日冕 Eclipse",
+    desc: "一个实心圆被光从右上方勾出一圈渐隐的光冕，像日全食。最有「高级感」和氛围，但依赖渐变，单色或很小时表现弱。",
+    draw: (id, mode) => {
+      const disc = mode === "white" ? "rgba(255,255,255,.18)" : C.navy0;
+      return `
+      <defs>
+        <linearGradient id="${id}-corona" x1="52" y1="10" x2="16" y2="50" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="${mode === "white" ? "#fff" : C.cyan}"/>
+          <stop offset=".35" stop-color="${mode === "white" ? "#fff" : C.blue}"/>
+          <stop offset="1" stop-color="${mode === "white" ? "#fff" : C.violet}" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="20" fill="none" stroke="url(#${id}-corona)" stroke-width="7" opacity=".35" filter="url(#${id}-glow)"/>
+      <circle cx="32" cy="32" r="18" fill="${disc}"/>
+      <circle cx="32" cy="32" r="18" fill="none" stroke="url(#${id}-corona)" stroke-width="3.5"/>
+      <circle cx="44.73" cy="19.27" r="3.2" fill="#fff"/>`;
+    },
+  },
+];
+
+function svg(concept, mode, size, bg) {
+  const id = `${concept.key}-${mode}-${uid++}`;
+  const tile =
+    bg === "navy"
+      ? `<rect width="64" height="64" rx="15" fill="url(#${id}-tile)"/><rect x=".5" y=".5" width="63" height="63" rx="14.5" fill="none" stroke="#fff" stroke-opacity=".08"/>`
+      : bg === "brand"
+        ? `<rect width="64" height="64" rx="15" fill="url(#${id}-tile)"/><rect x=".5" y=".5" width="63" height="63" rx="14.5" fill="none" stroke="#fff" stroke-opacity=".22"/>`
+        : "";
+  const tileDefs =
+    bg === "navy"
+      ? `<linearGradient id="${id}-tile" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#151a33"/><stop offset="1" stop-color="${C.navy0}"/></linearGradient>`
+      : bg === "brand"
+        ? `<linearGradient id="${id}-tile" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4F8BFF"/><stop offset="1" stop-color="#4338CA"/></linearGradient>`
+        : "";
+  const inner = bg ? `<g transform="translate(8 8) scale(.75)">${concept.draw(id, mode)}</g>` : concept.draw(id, mode);
+  return `<svg viewBox="0 0 64 64" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg"><defs>${defs(id, mode)}${tileDefs}</defs>${tile}${inner}</svg>`;
+}
+
+const root = document.getElementById("root");
+for (const c of CONCEPTS) {
+  const el = document.createElement("section");
+  el.className = "concept";
+  el.innerHTML = `
+    <h2>${c.name}</h2><p class="desc">${c.desc}</p>
+    <div class="row">
+      <div class="cell light">${svg(c, "color", 96)}</div>
+      <div class="cell dark">${svg(c, "color", 96)}</div>
+      <div class="cell tile" style="background:#fff">${svg(c, "color", 112, "navy")}</div>
+      <div class="cell tile" style="background:#fff">${svg(c, "white", 112, "brand")}</div>
+      <div class="sizes">${[64, 32, 24, 16].map((s) => svg(c, "white", s, "brand")).join("")}</div>
+      <div class="word">${svg(c, "color", 40)}<span>Orra UI</span></div>
+      <div class="word dark">${svg(c, "color", 40)}<span>Orra UI</span></div>
+    </div>`;
+  root.appendChild(el);
+}
+</script>
+</body>
+</html>

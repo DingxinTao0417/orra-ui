@@ -1,0 +1,89 @@
+{
+  "slug": "kbd",
+  "name": "Kbd",
+  "title": "键盘按键",
+  "category": "base",
+  "files": [
+    "components/kbd/kbd.tsx"
+  ],
+  "description": "键盘按键样式：把 \"mod+k\" 之类的组合渲染为按键，修饰键随平台自动切换（macOS 显示 ⌘ ⌥ ⇧，其他平台显示 Ctrl / Alt / Shift），并为符号提供读屏名称。",
+  "keywords": [
+    "kbd",
+    "keyboard",
+    "shortcut",
+    "hotkey",
+    "key",
+    "快捷键",
+    "按键",
+    "键盘",
+    "组合键"
+  ],
+  "exports": [
+    "Kbd",
+    "useKeyboardPlatform"
+  ],
+  "demos": [
+    {
+      "file": "kbd/overview.tsx",
+      "title": "概览",
+      "height": 280
+    },
+    {
+      "file": "kbd/variants.tsx",
+      "title": "平台、合并与样式",
+      "description": "platform 可强制指定平台；joined 把组合键放进一个按键里；variant 有 outline / soft / ghost。",
+      "height": 260
+    }
+  ],
+  "notes": [
+    "mod 在 macOS 上是 ⌘，在 Windows / Linux 上是 Ctrl；服务端渲染时先按非 Mac 输出，水合后再切换，不会产生不匹配警告。",
+    "keys 可以是 \"shift+enter\" 这样的字符串，也可以是数组；单个字符会转为大写。",
+    "符号键（⌘ ⇧ ↵ 等）带有 title 与 aria-label，读屏会读出按键名称。"
+  ],
+  "props": [
+    {
+      "component": "Kbd",
+      "description": "其余属性透传给 <kbd>。",
+      "props": [
+        {
+          "name": "keys",
+          "type": "string | string[]",
+          "description": "组合键，如 \"mod+k\"、[\"shift\", \"enter\"]。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "不使用 keys 时的自由内容（渲染为单个按键）。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "按键高度 18 / 22 / 26 px。"
+        },
+        {
+          "name": "variant",
+          "type": "\"outline\" | \"soft\" | \"ghost\"",
+          "default": "\"outline\"",
+          "description": "外观。"
+        },
+        {
+          "name": "joined",
+          "type": "boolean",
+          "default": "false",
+          "description": "整个组合放在一个按键里（⌘K）。"
+        },
+        {
+          "name": "platform",
+          "type": "\"mac\" | \"other\"",
+          "description": "强制平台；默认自动检测。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<KbdLabels>",
+          "description": "覆盖按键的读屏名称。"
+        }
+      ]
+    }
+  ]
+}

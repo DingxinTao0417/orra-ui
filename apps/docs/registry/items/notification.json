@@ -1,0 +1,160 @@
+{
+  "slug": "notification",
+  "name": "Notification",
+  "title": "通知",
+  "category": "base",
+  "files": [
+    "components/notification/notification.tsx"
+  ],
+  "description": "页面内的通知横幅：info / success / warning / danger 语气，图标、标题、描述、操作与关闭；另有带头像的 NotificationCard，用于动态与消息中心。",
+  "keywords": [
+    "notification",
+    "alert",
+    "banner",
+    "callout",
+    "activity",
+    "通知",
+    "提示条",
+    "横幅",
+    "动态"
+  ],
+  "exports": [
+    "Notification",
+    "NotificationCard"
+  ],
+  "demos": [
+    {
+      "file": "notification/overview.tsx",
+      "title": "概览",
+      "layout": "padded",
+      "height": 360
+    },
+    {
+      "file": "notification/variants.tsx",
+      "title": "样式",
+      "description": "soft 浅色底（默认）、outline 卡片底、accent 侧边色条；actionsPlacement=\"end\" 把操作放到结束侧。",
+      "layout": "padded",
+      "height": 360
+    },
+    {
+      "file": "notification/card.tsx",
+      "title": "动态卡片",
+      "description": "NotificationCard 展示「谁做了什么」，未读项有强调色圆点，悬停时出现关闭按钮。",
+      "height": 440
+    }
+  ],
+  "notes": [
+    "warning 与 danger 使用 role=\"alert\" 会被读屏软件立即播报，其他语气使用 role=\"status\"。",
+    "dismissible 时点击关闭会隐藏自身；也可用 isOpen 受控。",
+    "NotificationCard 的 title 中用 <b> 包裹人名和对象，会自动加粗为主文字色。"
+  ],
+  "props": [
+    {
+      "component": "Notification",
+      "description": "其余属性透传给外层 div。",
+      "props": [
+        {
+          "name": "tone",
+          "type": "\"neutral\" | \"info\" | \"success\" | \"warning\" | \"danger\"",
+          "default": "\"info\"",
+          "description": "语气。"
+        },
+        {
+          "name": "variant",
+          "type": "\"soft\" | \"outline\" | \"accent\"",
+          "default": "\"soft\"",
+          "description": "样式。"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "标题。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "描述，也可用 children。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode | false",
+          "description": "自定义图标，false 隐藏。"
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode",
+          "description": "操作按钮。"
+        },
+        {
+          "name": "actionsPlacement",
+          "type": "\"bottom\" | \"end\"",
+          "default": "\"bottom\"",
+          "description": "操作位置。"
+        },
+        {
+          "name": "dismissible",
+          "type": "boolean",
+          "default": "false",
+          "description": "显示关闭按钮。"
+        },
+        {
+          "name": "isOpen",
+          "type": "boolean",
+          "description": "受控显示。"
+        },
+        {
+          "name": "onDismiss",
+          "type": "() => void",
+          "description": "点击关闭时调用。"
+        }
+      ]
+    },
+    {
+      "component": "NotificationCard",
+      "props": [
+        {
+          "name": "actor",
+          "type": "{ name: string; src?: string }",
+          "description": "操作者，显示为头像。"
+        },
+        {
+          "name": "media",
+          "type": "ReactNode",
+          "description": "替代头像的内容（如系统图标）。"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "required": true,
+          "description": "动态内容。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "引用的内容或详情。"
+        },
+        {
+          "name": "time",
+          "type": "ReactNode",
+          "description": "时间。"
+        },
+        {
+          "name": "unread",
+          "type": "boolean",
+          "default": "false",
+          "description": "未读状态。"
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode",
+          "description": "操作按钮。"
+        },
+        {
+          "name": "dismissible / onDismiss",
+          "type": "boolean / () => void",
+          "description": "悬停时显示关闭按钮。"
+        }
+      ]
+    }
+  ]
+}

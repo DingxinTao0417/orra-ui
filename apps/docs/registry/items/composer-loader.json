@@ -1,0 +1,121 @@
+{
+  "slug": "composer-loader",
+  "name": "Composer Loader",
+  "title": "输入框加载光效",
+  "category": "agents",
+  "files": [
+    "components/composer-loader/composer-loader.tsx"
+  ],
+  "description": "对话输入框的「工作中」状态：一束光沿着输入框边缘流转并带柔和辉光，上方显示进度文字、计时与停止按钮；另附可单独使用的圆形停止按钮。",
+  "keywords": [
+    "composer loader",
+    "generating",
+    "border beam",
+    "glow",
+    "stop button",
+    "生成中",
+    "加载光效",
+    "流光边框",
+    "停止生成"
+  ],
+  "exports": [
+    "ComposerLoader",
+    "ComposerStopButton"
+  ],
+  "demos": [
+    {
+      "file": "composer-loader/overview.tsx",
+      "title": "概览",
+      "description": "包裹任意输入框即可；点击停止后 active 变为 false，光效消失。",
+      "height": 260
+    },
+    {
+      "file": "composer-loader/stop-button.tsx",
+      "title": "停止按钮",
+      "description": "ComposerStopButton 可单独用在自定义输入框中，外圈弧线表示仍在运行。",
+      "height": 160
+    },
+    {
+      "file": "composer-loader/radius.tsx",
+      "title": "贴合圆角",
+      "description": "radius 让光效贴合被包裹元素的圆角（control / menu / card）；showStatus={false} 只保留边框光效。",
+      "height": 180
+    }
+  ],
+  "notes": [
+    "光效是叠加在子元素边缘之上的 1.5px 遮罩层，不影响子元素布局与交互。",
+    "开启「减少动效」时光束静止，状态文字不再闪烁，但仍可读。",
+    "ComposerPanel 的 loading 属性内部就使用了 ComposerLoader。"
+  ],
+  "props": [
+    {
+      "component": "ComposerLoader",
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "description": "是否显示工作状态。",
+          "default": "true"
+        },
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "状态行文字。",
+          "default": "\"正在生成…\""
+        },
+        {
+          "name": "onStop",
+          "type": "() => void",
+          "description": "传入后在状态行显示停止按钮。"
+        },
+        {
+          "name": "showStatus",
+          "type": "boolean",
+          "description": "显示上方状态行。",
+          "default": "true"
+        },
+        {
+          "name": "showTimer",
+          "type": "boolean",
+          "description": "状态行显示计时。",
+          "default": "true"
+        },
+        {
+          "name": "radius",
+          "type": "\"control\" | \"menu\" | \"card\"",
+          "description": "被包裹元素的圆角。",
+          "default": "\"card\""
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "被包裹的输入框或面板。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ComposerLoaderLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "ComposerStopButton",
+      "description": "其余属性透传给 React Aria Button（onPress、isDisabled 等）。",
+      "props": [
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\"",
+          "description": "32 / 36 px。",
+          "default": "\"md\""
+        },
+        {
+          "name": "spinning",
+          "type": "boolean",
+          "description": "外圈旋转弧线。",
+          "default": "true"
+        }
+      ]
+    }
+  ],
+  "isNew": true
+}

@@ -1,0 +1,107 @@
+{
+  "slug": "meter",
+  "name": "Meter",
+  "title": "用量计",
+  "category": "base",
+  "files": [
+    "components/meter/meter.tsx"
+  ],
+  "description": "用量计：显示数值相对上限的占比，随填充程度从正常 → 警告 → 严重自动变色，并给出「x / y」文字和状态词；支持分段样式与「余量」反向模式。",
+  "keywords": [
+    "meter",
+    "usage",
+    "quota",
+    "limit",
+    "capacity",
+    "storage",
+    "用量",
+    "配额",
+    "容量",
+    "存储",
+    "额度"
+  ],
+  "exports": [
+    "Meter",
+    "meterLevel"
+  ],
+  "demos": [
+    {
+      "file": "meter/overview.tsx",
+      "title": "概览",
+      "height": 380
+    },
+    {
+      "file": "meter/segmented.tsx",
+      "title": "分段与反向",
+      "description": "segments 绘制分段条；invert 用于剩余额度、电量等「越少越危险」的场景。",
+      "height": 260
+    }
+  ],
+  "notes": [
+    "thresholds 用 0–1 的比例表示，默认 75% 警告、90% 严重（invert 时为 30% / 10%）。",
+    "状态词（如「接近上限」）与数值一起读出，颜色不是唯一信号。",
+    "formatOptions 会同时用于可见文字与读屏，例如 { style: \"unit\", unit: \"gigabyte\" }。"
+  ],
+  "props": [
+    {
+      "component": "Meter",
+      "description": "其余属性透传给 React Aria Meter（value、minValue、maxValue、formatOptions、aria-label 等）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "可见标签。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "下方说明，如重置时间。"
+        },
+        {
+          "name": "thresholds",
+          "type": "{ warning?: number; critical?: number }",
+          "description": "变色阈值（0–1 比例）。"
+        },
+        {
+          "name": "invert",
+          "type": "boolean",
+          "default": "false",
+          "description": "低值为危险。"
+        },
+        {
+          "name": "segments",
+          "type": "number",
+          "description": "分段数量。"
+        },
+        {
+          "name": "showStatus",
+          "type": "boolean",
+          "default": "true",
+          "description": "非正常状态时显示状态词。"
+        },
+        {
+          "name": "valueLabel",
+          "type": "string",
+          "description": "替换「x / y」文字。"
+        },
+        {
+          "name": "accentWhenOk",
+          "type": "boolean",
+          "default": "false",
+          "description": "正常状态使用品牌色而非绿色。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "轨道粗细。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<MeterLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ]
+}

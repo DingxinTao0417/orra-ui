@@ -1,0 +1,119 @@
+{
+  "slug": "radio",
+  "name": "Radio",
+  "title": "单选框",
+  "category": "base",
+  "files": [
+    "components/radio/radio.tsx"
+  ],
+  "description": "单选组：纵向或横向排列，选项可带说明；variant=\"card\" 变为可选中的卡片，可放图标和价格等附加信息，适合方案选择。",
+  "keywords": [
+    "radio",
+    "radio group",
+    "option",
+    "plan picker",
+    "单选",
+    "单选框",
+    "选项卡片"
+  ],
+  "exports": [
+    "RadioGroup",
+    "Radio",
+    "RadioIndicator"
+  ],
+  "demos": [
+    {
+      "file": "radio/overview.tsx",
+      "title": "概览",
+      "height": 340
+    },
+    {
+      "file": "radio/cards.tsx",
+      "title": "方案选择卡片",
+      "description": "variant=\"card\" 配合 icon、description 和 aside（价格）。",
+      "height": 340
+    },
+    {
+      "file": "radio/grid.tsx",
+      "title": "网格卡片",
+      "description": "columns 让卡片按列平铺。",
+      "height": 200
+    }
+  ],
+  "notes": [
+    "variant 设置在 RadioGroup 上，组内所有 Radio 自动跟随。",
+    "方向键在选项间移动并选中（React Aria），Tab 只停留在当前选中项。",
+    "受控使用 value + onChange(value: string)。"
+  ],
+  "props": [
+    {
+      "component": "RadioGroup",
+      "description": "其余属性透传给 React Aria RadioGroup（value、defaultValue、onChange、orientation、isRequired、isDisabled 等）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "字段标签。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "标签下方的辅助说明。"
+        },
+        {
+          "name": "errorMessage",
+          "type": "ReactNode | ((v: ValidationResult) => ReactNode)",
+          "description": "校验失败时显示的错误文案。"
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"card\"",
+          "default": "\"default\"",
+          "description": "普通或卡片样式。"
+        },
+        {
+          "name": "orientation",
+          "type": "\"vertical\" | \"horizontal\"",
+          "default": "\"vertical\"",
+          "description": "排列方向。"
+        },
+        {
+          "name": "columns",
+          "type": "number",
+          "description": "按 N 列网格排列。"
+        }
+      ]
+    },
+    {
+      "component": "Radio",
+      "description": "其余属性透传给 React Aria Radio（value、isDisabled）。",
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "description": "选项值。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "标签文字。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "说明文字。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "卡片样式的前置图标。"
+        },
+        {
+          "name": "aside",
+          "type": "ReactNode",
+          "description": "卡片样式末端的附加内容，如价格。"
+        }
+      ]
+    }
+  ]
+}

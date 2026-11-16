@@ -1,0 +1,161 @@
+{
+  "slug": "select",
+  "name": "Select",
+  "title": "选择器",
+  "category": "base",
+  "files": [
+    "components/select/select.tsx"
+  ],
+  "description": "下拉选择器：从浮层列表中选择一项，支持图标、说明文字、分组、禁用项和三种尺寸，选中项带对勾；键入首字母即可快速定位。",
+  "keywords": [
+    "select",
+    "dropdown",
+    "picker",
+    "listbox",
+    "option",
+    "选择器",
+    "下拉框",
+    "下拉选择"
+  ],
+  "exports": [
+    "Select",
+    "SelectItem",
+    "SelectSection",
+    "SelectPopover"
+  ],
+  "demos": [
+    {
+      "file": "select/overview.tsx",
+      "title": "概览",
+      "height": 360
+    },
+    {
+      "file": "select/sections.tsx",
+      "title": "分组、附加信息与禁用项",
+      "height": 420
+    },
+    {
+      "file": "select/controlled.tsx",
+      "title": "动态数据与受控",
+      "description": "items + 渲染函数生成选项，selectedKey / onSelectionChange 受控。",
+      "height": 300
+    },
+    {
+      "file": "select/sizes.tsx",
+      "title": "尺寸与禁用",
+      "height": 300
+    }
+  ],
+  "notes": [
+    "触发器复用输入框的外框（fieldBox），浮层与菜单共用 floatingPanel / menuItem，视觉与其他表单控件一致。",
+    "触发器只显示选中项的图标和文字，description / meta 不会出现在触发器中。",
+    "受控时使用 selectedKey + onSelectionChange；非受控用 defaultSelectedKey。没有可见标签时传 aria-label。"
+  ],
+  "props": [
+    {
+      "component": "Select",
+      "description": "其余属性透传给 React Aria Select（selectedKey、defaultSelectedKey、onSelectionChange、placeholder、disabledKeys、isRequired、isDisabled、isInvalid 等）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "字段标签。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "标签下方的辅助说明。"
+        },
+        {
+          "name": "errorMessage",
+          "type": "ReactNode | ((v: ValidationResult) => ReactNode)",
+          "description": "校验失败时显示的错误文案。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸：32 / 36 / 44 px。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode | ((item: T) => ReactNode)",
+          "description": "静态选项，或配合 items 的渲染函数。"
+        },
+        {
+          "name": "items",
+          "type": "Iterable<T>",
+          "description": "动态数据（每项需要 id）。"
+        },
+        {
+          "name": "startIcon",
+          "type": "ReactNode",
+          "description": "触发器前置图标。"
+        },
+        {
+          "name": "placement",
+          "type": "Placement",
+          "default": "\"bottom start\"",
+          "description": "浮层位置。"
+        },
+        {
+          "name": "triggerClassName / popoverClassName",
+          "type": "string",
+          "description": "附加到触发器 / 浮层的类名。"
+        }
+      ]
+    },
+    {
+      "component": "SelectItem",
+      "description": "选项行，同时用于 Combobox（ComboboxItem 是同一个组件）。其余属性透传给 React Aria ListBoxItem（id、isDisabled、textValue 等）。",
+      "props": [
+        {
+          "name": "id",
+          "type": "Key",
+          "description": "选项的唯一键。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "选项文字；为字符串时自动作为 textValue。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "前置图标 / 头像 / 色块元素。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "第二行说明，在触发器中会被隐藏。"
+        },
+        {
+          "name": "meta",
+          "type": "ReactNode",
+          "description": "末端附加信息，如数量、时区。"
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "description": "用于键入搜索与过滤的文本（children 非字符串时需要）。"
+        }
+      ]
+    },
+    {
+      "component": "SelectSection",
+      "description": "带标题的选项分组（ComboboxSection 相同）。",
+      "props": [
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "分组标题。"
+        },
+        {
+          "name": "items",
+          "type": "Iterable<T>",
+          "description": "动态数据，配合 children 渲染函数。"
+        }
+      ]
+    }
+  ]
+}

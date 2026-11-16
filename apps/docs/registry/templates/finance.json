@@ -1,0 +1,29 @@
+{
+  "slug": "finance",
+  "name": "Finance Dashboard",
+  "title": "财务仪表盘",
+  "description": "财务中心：账户余额与现金跑道、收入支出对比、现金流桑基图、支出构成环形图、部门预算仪表，以及可按收支类型、分类和关键词筛选的交易明细表。",
+  "route": "/templates/finance",
+  "files": [
+    "templates/finance/finance.tsx"
+  ],
+  "exports": [
+    "FinanceTemplate"
+  ],
+  "usage": "<FinanceTemplate />",
+  "keywords": [
+    "finance",
+    "cash flow",
+    "budget",
+    "transactions",
+    "sankey",
+    "expenses",
+    "accounting",
+    "财务",
+    "现金流",
+    "预算",
+    "交易",
+    "收支",
+    "账户"
+  ]
+}

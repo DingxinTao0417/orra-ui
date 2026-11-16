@@ -1,0 +1,147 @@
+{
+  "slug": "area-chart",
+  "name": "Area Chart",
+  "title": "面积图",
+  "category": "charts",
+  "files": [
+    "components/area-chart/area-chart.tsx"
+  ],
+  "description": "平滑面积图：支持重叠、堆叠与百分比三种形态，渐变填充、虚线对比系列、悬停十字准线与统一提示框，图例可切换系列。",
+  "keywords": [
+    "area chart",
+    "area",
+    "stacked",
+    "trend",
+    "面积图",
+    "堆叠",
+    "趋势",
+    "渐变"
+  ],
+  "exports": [
+    "AreaChart",
+    "ChartCard"
+  ],
+  "demos": [
+    {
+      "file": "area-chart/overview.tsx",
+      "title": "概览",
+      "description": "默认示例数据：本期（实线渐变）与上期（虚线对比）。",
+      "height": 420,
+      "layout": "padded"
+    },
+    {
+      "file": "area-chart/stacked.tsx",
+      "title": "堆叠与百分比",
+      "description": "type=\"stacked\" 求和并在提示框显示合计；type=\"percent\" 展示构成占比。",
+      "height": 360,
+      "layout": "padded"
+    },
+    {
+      "file": "area-chart/minimal.tsx",
+      "title": "极简",
+      "description": "隐藏坐标轴与网格，作为卡片中的小型趋势。",
+      "height": 220,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "在 ChartCard 内使用即可获得统一的标题、数值与范围选择。",
+    "series 中 comparison: true 的系列以虚线绘制且不填充，适合「上一周期」。",
+    "绘图区高度由 height 固定，宽度随容器自适应。"
+  ],
+  "props": [
+    {
+      "component": "AreaChart",
+      "props": [
+        {
+          "name": "data",
+          "type": "readonly object[]",
+          "description": "数据行；不传时使用标注为示例的演示数据。"
+        },
+        {
+          "name": "index",
+          "type": "string",
+          "default": "\"label\"",
+          "description": "x 轴（类目）字段名。"
+        },
+        {
+          "name": "series",
+          "type": "ChartSeries[]",
+          "description": "系列配置：key（数据字段）、label、color、comparison（对比系列：虚线/淡色）、format。"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "description": "绘图区高度（px），保证在普通纵向布局中不塌陷。"
+        },
+        {
+          "name": "valueFormat",
+          "type": "\"number\" | \"compact\" | \"percent\" | \"currency\" | Intl.NumberFormatOptions | ((v: number) => string)",
+          "default": "\"number\"",
+          "description": "数值格式，跟随 React Aria 语言环境。"
+        },
+        {
+          "name": "currency",
+          "type": "string",
+          "default": "\"USD\"",
+          "description": "valueFormat 为 currency 时的币种。"
+        },
+        {
+          "name": "indexFormatter",
+          "type": "(value: unknown) => string",
+          "description": "格式化 x 轴刻度与提示框标题。"
+        },
+        {
+          "name": "showLegend",
+          "type": "boolean",
+          "description": "显示图例；多系列时默认显示。"
+        },
+        {
+          "name": "interactiveLegend",
+          "type": "boolean",
+          "default": "true",
+          "description": "点击图例显示 / 隐藏系列。"
+        },
+        {
+          "name": "showGrid / showXAxis / showYAxis",
+          "type": "boolean",
+          "default": "true",
+          "description": "网格线与坐标轴开关。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ChartLabels>",
+          "description": "覆盖内置文案（en / zh）。"
+        },
+        {
+          "name": "type",
+          "type": "\"default\" | \"stacked\" | \"percent\"",
+          "default": "\"default\"",
+          "description": "重叠 / 堆叠 / 百分比。"
+        },
+        {
+          "name": "curve",
+          "type": "\"smooth\" | \"linear\" | \"step\"",
+          "default": "\"smooth\"",
+          "description": "曲线类型。"
+        },
+        {
+          "name": "gradient",
+          "type": "boolean",
+          "default": "true",
+          "description": "纵向渐变填充，否则为浅色平涂。"
+        },
+        {
+          "name": "yDomain",
+          "type": "[number | \"auto\", number | \"auto\"]",
+          "description": "固定 y 轴范围。"
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDivElement>",
+          "description": "转发到外层容器。"
+        }
+      ]
+    }
+  ]
+}

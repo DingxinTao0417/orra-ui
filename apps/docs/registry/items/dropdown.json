@@ -1,0 +1,187 @@
+{
+  "slug": "dropdown",
+  "name": "Dropdown",
+  "title": "下拉菜单",
+  "category": "base",
+  "files": [
+    "components/dropdown/dropdown.tsx"
+  ],
+  "description": "由触发元素打开的操作菜单：图标、描述、快捷键、分组标题、分隔线、危险项、子菜单，以及复选 / 单选项。",
+  "keywords": [
+    "dropdown",
+    "menu",
+    "action menu",
+    "submenu",
+    "下拉菜单",
+    "菜单",
+    "操作菜单",
+    "更多"
+  ],
+  "exports": [
+    "Dropdown",
+    "DropdownItem",
+    "DropdownSection",
+    "DropdownSeparator",
+    "DropdownSubmenu"
+  ],
+  "demos": [
+    {
+      "file": "dropdown/overview.tsx",
+      "title": "概览",
+      "height": 420
+    },
+    {
+      "file": "dropdown/selection.tsx",
+      "title": "复选与单选",
+      "description": "在 DropdownSection 上设置 selectionMode，multiple 显示对勾，single 显示圆点；选中后菜单保持打开。",
+      "height": 420
+    },
+    {
+      "file": "dropdown/account.tsx",
+      "title": "账户菜单",
+      "description": "任意 React Aria 按钮都可作为触发器；onAction 接收被选中项的 id。",
+      "height": 340
+    }
+  ],
+  "notes": [
+    "基于 React Aria Menu：方向键移动、Enter 执行、输入字母跳转、→ 打开子菜单、Esc 关闭。",
+    "onAction 写在 Dropdown 上统一处理，也可写在单个 DropdownItem 上。",
+    "子菜单用 DropdownSubmenu，悬停、→ 或 Enter 打开。",
+    "dropdownPanelClass 导出了菜单面板的样式，可用于自定义的弹出菜单。"
+  ],
+  "props": [
+    {
+      "component": "Dropdown",
+      "description": "其余属性透传给 React Aria Menu（onAction、selectionMode、selectedKeys、disabledKeys、aria-label 等）。",
+      "props": [
+        {
+          "name": "trigger",
+          "type": "ReactElement",
+          "required": true,
+          "description": "打开菜单的元素。"
+        },
+        {
+          "name": "isOpen / defaultOpen / onOpenChange",
+          "type": "boolean / boolean / (isOpen: boolean) => void",
+          "description": "打开状态。"
+        },
+        {
+          "name": "placement",
+          "type": "Placement",
+          "default": "\"bottom start\"",
+          "description": "菜单位置。"
+        },
+        {
+          "name": "triggerMode",
+          "type": "\"press\" | \"longPress\"",
+          "default": "\"press\"",
+          "description": "按下或长按打开。"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "description": "菜单面板附加类名（如固定宽度）。"
+        }
+      ]
+    },
+    {
+      "component": "DropdownItem",
+      "description": "其余属性透传给 React Aria MenuItem。",
+      "props": [
+        {
+          "name": "id",
+          "type": "Key",
+          "description": "传给 onAction 的标识。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "标签前的图标元素。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "标签下方的辅助说明。"
+        },
+        {
+          "name": "shortcut",
+          "type": "string | string[]",
+          "description": "快捷键提示，如 \"mod+d\"。"
+        },
+        {
+          "name": "tone",
+          "type": "\"default\" | \"danger\"",
+          "default": "\"default\"",
+          "description": "danger 用于删除等破坏性操作。"
+        },
+        {
+          "name": "end",
+          "type": "ReactNode",
+          "description": "结束侧的附加内容（徽标、计数）。"
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "description": "标签不是纯文本时，用于输入跳转的文本。"
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "description": "作为链接项。"
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "description": "禁用此项。"
+        }
+      ]
+    },
+    {
+      "component": "DropdownSection",
+      "props": [
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "分组标题。"
+        },
+        {
+          "name": "selectionMode",
+          "type": "\"single\" | \"multiple\"",
+          "description": "让分组内的项可选。"
+        },
+        {
+          "name": "selectedKeys / defaultSelectedKeys / onSelectionChange",
+          "type": "Iterable<Key> / … / (keys: Selection) => void",
+          "description": "选中项。"
+        }
+      ]
+    },
+    {
+      "component": "DropdownSubmenu",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "required": true,
+          "description": "打开子菜单的那一行。"
+        },
+        {
+          "name": "icon / description",
+          "type": "ReactNode",
+          "description": "该行的图标与说明。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "子菜单项。"
+        },
+        {
+          "name": "menuProps",
+          "type": "MenuProps",
+          "description": "子菜单的选择相关属性。"
+        }
+      ]
+    }
+  ]
+}

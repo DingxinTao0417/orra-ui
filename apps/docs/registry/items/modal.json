@@ -1,0 +1,176 @@
+{
+  "slug": "modal",
+  "name": "Modal",
+  "title": "对话框",
+  "category": "base",
+  "files": [
+    "components/modal/modal.tsx"
+  ],
+  "description": "遮罩之上的对话框：标题、描述、可滚动正文与底部操作，四种尺寸，可禁止点击遮罩关闭；另附 ConfirmDialog 确认变体，支持危险操作与异步等待。",
+  "keywords": [
+    "modal",
+    "dialog",
+    "confirm",
+    "alert",
+    "对话框",
+    "弹窗",
+    "模态框",
+    "确认框"
+  ],
+  "exports": [
+    "Modal",
+    "ConfirmDialog",
+    "ModalTrigger"
+  ],
+  "demos": [
+    {
+      "file": "modal/overview.tsx",
+      "title": "概览",
+      "height": 220
+    },
+    {
+      "file": "modal/confirm.tsx",
+      "title": "确认对话框",
+      "description": "ConfirmDialog 使用 alertdialog 角色，不响应遮罩点击；onConfirm 返回 Promise 时确认按钮进入加载状态，完成后自动关闭。",
+      "height": 200
+    },
+    {
+      "file": "modal/sizes.tsx",
+      "title": "尺寸",
+      "description": "sm 400px、md 520px（默认）、lg 720px，以及几乎铺满视口的 full。",
+      "height": 180
+    },
+    {
+      "file": "modal/controlled.tsx",
+      "title": "受控与不可遮罩关闭",
+      "description": "不传 trigger 时用 isOpen / onOpenChange 自行控制；isDismissable={false} 后只能通过按钮或 Esc 关闭。",
+      "height": 200
+    }
+  ],
+  "notes": [
+    "trigger 传入任意 React Aria 可按压元素（如 Button），无需手动管理状态；也可用 ModalTrigger 自行组合。",
+    "children / footer 可以是函数，拿到 { close } 后在按钮里关闭对话框。",
+    "焦点会被限制在对话框内，关闭后回到触发按钮；Esc 默认可关闭（isKeyboardDismissDisabled 可禁用）。",
+    "没有可见标题时请提供 aria-label。"
+  ],
+  "props": [
+    {
+      "component": "Modal",
+      "props": [
+        {
+          "name": "trigger",
+          "type": "ReactElement",
+          "description": "打开对话框的元素；省略时用 isOpen 受控。"
+        },
+        {
+          "name": "isOpen / defaultOpen / onOpenChange",
+          "type": "boolean / boolean / (isOpen: boolean) => void",
+          "description": "打开状态（受控 / 非受控）。"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "标题，作为对话框的可访问名称。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "标题下的说明文字，自动关联 aria-describedby。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "标题前带底色圆形的图标。"
+        },
+        {
+          "name": "tone",
+          "type": "\"accent\" | \"neutral\" | \"success\" | \"warning\" | \"danger\"",
+          "default": "\"accent\"",
+          "description": "图标底色。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode | ((api: { close }) => ReactNode)",
+          "description": "可滚动正文。"
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode | ((api: { close }) => ReactNode)",
+          "description": "底部操作区，靠结束侧对齐。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\" | \"full\"",
+          "default": "\"md\"",
+          "description": "宽度。"
+        },
+        {
+          "name": "isDismissable",
+          "type": "boolean",
+          "default": "true",
+          "description": "点击遮罩是否关闭。"
+        },
+        {
+          "name": "isKeyboardDismissDisabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "禁用 Esc 关闭。"
+        },
+        {
+          "name": "hideCloseButton",
+          "type": "boolean",
+          "default": "false",
+          "description": "隐藏右上角关闭按钮。"
+        },
+        {
+          "name": "role",
+          "type": "\"dialog\" | \"alertdialog\"",
+          "default": "\"dialog\"",
+          "description": "对话框角色。"
+        },
+        {
+          "name": "className / bodyClassName",
+          "type": "string",
+          "description": "面板 / 正文的附加类名。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ModalLabels>",
+          "description": "覆盖内置文案（关闭、取消、确定）。"
+        }
+      ]
+    },
+    {
+      "component": "ConfirmDialog",
+      "description": "同样支持 trigger、isOpen、title、description、children。",
+      "props": [
+        {
+          "name": "tone",
+          "type": "\"accent\" | \"danger\"",
+          "default": "\"accent\"",
+          "description": "danger 时确认按钮与图标为危险色。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode | false",
+          "description": "标题前图标；默认问号 / 警告图标，false 隐藏。"
+        },
+        {
+          "name": "confirmLabel / cancelLabel",
+          "type": "ReactNode",
+          "description": "按钮文字，默认「确定」「取消」。"
+        },
+        {
+          "name": "onConfirm",
+          "type": "() => unknown",
+          "description": "返回 Promise 时显示加载并在完成后关闭；Promise 失败则保持打开。"
+        },
+        {
+          "name": "onCancel",
+          "type": "() => void",
+          "description": "点击取消时调用。"
+        }
+      ]
+    }
+  ]
+}

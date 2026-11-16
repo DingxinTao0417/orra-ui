@@ -1,0 +1,137 @@
+{
+  "slug": "meeting-scheduler",
+  "name": "Meeting Scheduler",
+  "title": "会议预约",
+  "category": "base",
+  "files": [
+    "components/meeting-scheduler/meeting-scheduler.tsx"
+  ],
+  "description": "会议预约面板：主持人与会议信息（头像、标题、时长、地点 / 视频、时区）、可预约日期的日历、当天的时间段列表与确认按钮；宽时三栏，窄时自动堆叠。",
+  "keywords": [
+    "scheduler",
+    "booking",
+    "appointment",
+    "calendar",
+    "time slots",
+    "会议预约",
+    "预约",
+    "日程",
+    "时间段"
+  ],
+  "exports": [
+    "MeetingScheduler",
+    "sampleMeetingSlots"
+  ],
+  "demos": [
+    {
+      "file": "meeting-scheduler/overview.tsx",
+      "title": "概览",
+      "layout": "padded",
+      "height": 560
+    },
+    {
+      "file": "meeting-scheduler/compact.tsx",
+      "title": "窄布局与自定义时段",
+      "description": "getSlots 返回某天可预约的开始时间（\"HH:mm\"）；hourCycle 切换 12 / 24 小时制；confirming 显示提交中的状态。",
+      "height": 900
+    }
+  ],
+  "notes": [
+    "value 为 { date: CalendarDate, time: \"HH:mm\" }，支持受控与非受控；切换日期会清除其他日期的时间选择。",
+    "默认 getSlots 为 sampleMeetingSlots（演示数据），实际使用请根据日程接口返回可用时间。",
+    "默认周末不可预约、最早从今天开始；可通过 isDateUnavailable / minValue / maxValue 修改。",
+    "时区标签默认取访问者的时区；服务端渲染时先显示 UTC，避免水合不一致。"
+  ],
+  "props": [
+    {
+      "component": "MeetingScheduler",
+      "props": [
+        {
+          "name": "host",
+          "type": "{ name: string; avatarSrc?: string; subtitle?: ReactNode }",
+          "required": true,
+          "description": "主持人。"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "required": true,
+          "description": "会议名称。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "会议说明。"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": "30",
+          "description": "时长（分钟）。"
+        },
+        {
+          "name": "locationType",
+          "type": "\"video\" | \"phone\" | \"in-person\"",
+          "default": "\"video\"",
+          "description": "会议形式（决定图标与默认文案）。"
+        },
+        {
+          "name": "location",
+          "type": "ReactNode",
+          "description": "地点、会议软件或电话。"
+        },
+        {
+          "name": "timeZone",
+          "type": "string",
+          "default": "访问者时区",
+          "description": "IANA 时区，用于时区标签。"
+        },
+        {
+          "name": "getSlots",
+          "type": "(date: CalendarDate) => string[]",
+          "default": "sampleMeetingSlots",
+          "description": "某天可预约的开始时间。"
+        },
+        {
+          "name": "isDateUnavailable",
+          "type": "(date: DateValue) => boolean",
+          "default": "周末",
+          "description": "不可预约的日期。"
+        },
+        {
+          "name": "minValue / maxValue",
+          "type": "CalendarDate",
+          "default": "minValue = 今天",
+          "description": "可预约的日期范围。"
+        },
+        {
+          "name": "value / defaultValue / onChange",
+          "type": "MeetingSlot | null",
+          "description": "选中的时间段。"
+        },
+        {
+          "name": "onConfirm",
+          "type": "(value: MeetingSlot) => void",
+          "description": "点击确认时调用。"
+        },
+        {
+          "name": "confirming",
+          "type": "boolean",
+          "default": "false",
+          "description": "确认按钮显示加载状态。"
+        },
+        {
+          "name": "hourCycle",
+          "type": "12 | 24",
+          "default": "跟随语言环境",
+          "description": "时间显示格式。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<MeetingSchedulerLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ]
+}

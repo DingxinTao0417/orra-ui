@@ -1,0 +1,85 @@
+{
+  "slug": "date-calendar",
+  "name": "Date Calendar",
+  "title": "日历",
+  "category": "base",
+  "files": [
+    "components/date-calendar/date-calendar.tsx"
+  ],
+  "description": "内联的月历：单日选择与范围选择两种形态，支持最小 / 最大日期、不可用日期、多月并排，每周起始日随语言环境变化。",
+  "keywords": [
+    "calendar",
+    "date",
+    "range calendar",
+    "month",
+    "日历",
+    "日期",
+    "月历",
+    "范围选择"
+  ],
+  "exports": [
+    "DateCalendar",
+    "DateRangeCalendar"
+  ],
+  "demos": [
+    {
+      "file": "date-calendar/overview.tsx",
+      "title": "概览",
+      "height": 420
+    },
+    {
+      "file": "date-calendar/range.tsx",
+      "title": "范围选择",
+      "description": "DateRangeCalendar 用连续的色带标出区间；visibleMonths={2} 并排显示两个月，窄屏时上下堆叠。",
+      "height": 440
+    },
+    {
+      "file": "date-calendar/unavailable.tsx",
+      "title": "不可用日期与周起始日",
+      "description": "isDateUnavailable 标记不可选的日期（划线显示）；firstDayOfWeek 覆盖语言环境默认的周起始日。",
+      "height": 440
+    }
+  ],
+  "notes": [
+    "日期值使用 @internationalized/date（如 today(getLocalTimeZone())、parseDate(\"2026-11-18\")）。",
+    "月份标题、星期和数字都按 React Aria 的语言环境格式化，服务端渲染不会出现水合不一致。",
+    "方向键按天移动，PageUp / PageDown 按月翻页，Home / End 跳到周首尾。",
+    "这两个组件也被 DatePicker、DateRangePicker 与 MeetingScheduler 复用。"
+  ],
+  "props": [
+    {
+      "component": "DateCalendar",
+      "description": "其余属性透传给 React Aria Calendar（value、defaultValue、onChange、minValue、maxValue、isDateUnavailable、firstDayOfWeek、focusedValue…）。",
+      "props": [
+        {
+          "name": "visibleMonths",
+          "type": "1 | 2 | 3",
+          "default": "1",
+          "description": "并排显示的月份数。"
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "description": "没有可见标签时的可访问名称。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<DateCalendarLabels>",
+          "description": "覆盖内置文案（上个月 / 下个月）。"
+        }
+      ]
+    },
+    {
+      "component": "DateRangeCalendar",
+      "description": "其余属性透传给 React Aria RangeCalendar（value 为 { start, end }、allowsNonContiguousRanges…）。",
+      "props": [
+        {
+          "name": "visibleMonths",
+          "type": "1 | 2 | 3",
+          "default": "1",
+          "description": "并排显示的月份数。"
+        }
+      ]
+    }
+  ]
+}

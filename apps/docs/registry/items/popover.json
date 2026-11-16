@@ -1,0 +1,127 @@
+{
+  "slug": "popover",
+  "name": "Popover",
+  "title": "气泡卡片",
+  "category": "base",
+  "files": [
+    "components/popover/popover.tsx"
+  ],
+  "description": "锚定在触发元素旁的浮层：标题 + 正文 + 操作的结构，可选箭头与关闭按钮，支持各方向定位、自动翻转和非模态模式。",
+  "keywords": [
+    "popover",
+    "popup",
+    "floating",
+    "气泡卡片",
+    "浮层",
+    "弹出框"
+  ],
+  "exports": [
+    "Popover",
+    "PopoverArrow"
+  ],
+  "demos": [
+    {
+      "file": "popover/overview.tsx",
+      "title": "概览",
+      "height": 320
+    },
+    {
+      "file": "popover/placement.tsx",
+      "title": "位置与箭头",
+      "description": "placement 支持 top / bottom / start / end 及其组合（如 \"bottom start\"），空间不足时自动翻转，箭头随之旋转。",
+      "height": 260
+    },
+    {
+      "file": "popover/non-modal.tsx",
+      "title": "非模态",
+      "description": "isNonModal 让页面其余部分在浮层打开时仍可交互，适合指标说明这类辅助信息。",
+      "height": 260
+    }
+  ],
+  "notes": [
+    "需要富内容（按钮、输入框）时用 Popover；只是一句提示请用 Tooltip。",
+    "children / footer 可以是函数 ({ close }) => …，用于在操作后关闭浮层。",
+    "没有 title 时请提供 aria-label，作为对话框的可访问名称。",
+    "PopoverArrow 可在任意 React Aria Popover / Tooltip 中复用。"
+  ],
+  "props": [
+    {
+      "component": "Popover",
+      "description": "定位相关的 offset、crossOffset、shouldFlip 透传给 React Aria Popover。",
+      "props": [
+        {
+          "name": "trigger",
+          "type": "ReactElement",
+          "required": true,
+          "description": "触发元素（React Aria 可按压元素）。"
+        },
+        {
+          "name": "isOpen / defaultOpen / onOpenChange",
+          "type": "boolean / boolean / (isOpen: boolean) => void",
+          "description": "打开状态。"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "标题。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode | ((api: { close }) => ReactNode)",
+          "description": "正文。"
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode | ((api: { close }) => ReactNode)",
+          "description": "底部操作区。"
+        },
+        {
+          "name": "placement",
+          "type": "Placement",
+          "default": "\"bottom\"",
+          "description": "相对触发元素的位置。"
+        },
+        {
+          "name": "showArrow",
+          "type": "boolean",
+          "default": "true",
+          "description": "显示指向触发元素的箭头。"
+        },
+        {
+          "name": "showCloseButton",
+          "type": "boolean",
+          "default": "false",
+          "description": "在头部显示关闭按钮。"
+        },
+        {
+          "name": "isNonModal",
+          "type": "boolean",
+          "default": "false",
+          "description": "非模态：不遮挡页面交互。"
+        },
+        {
+          "name": "width",
+          "type": "\"sm\" | \"md\" | \"lg\" | \"auto\"",
+          "default": "\"md\"",
+          "description": "面板宽度（256 / 320 / 400 px）。"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "description": "面板附加类名。"
+        }
+      ]
+    },
+    {
+      "component": "PopoverArrow",
+      "props": [
+        {
+          "name": "inverse",
+          "type": "boolean",
+          "default": "false",
+          "description": "深色填充（用于深色提示框）。"
+        }
+      ]
+    }
+  ]
+}

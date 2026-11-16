@@ -1,0 +1,96 @@
+{
+  "slug": "tree-view",
+  "name": "Tree View",
+  "title": "树形视图",
+  "category": "base",
+  "files": [
+    "components/tree-view/tree-view.tsx"
+  ],
+  "description": "嵌套的树形视图（文件夹 / 文件、组织架构等）：展开折叠、单选或带复选框的多选、默认文件夹图标、悬停时显示的行内操作，以及完整的键盘导航。",
+  "keywords": [
+    "tree",
+    "tree view",
+    "file tree",
+    "hierarchy",
+    "树",
+    "树形控件",
+    "文件树",
+    "目录"
+  ],
+  "exports": [
+    "TreeView"
+  ],
+  "demos": [
+    {
+      "file": "tree-view/overview.tsx",
+      "title": "概览",
+      "height": 360
+    },
+    {
+      "file": "tree-view/checkboxes.tsx",
+      "title": "复选框多选",
+      "description": "selectionMode=\"multiple\" 时每行显示复选框，受控的 selectedKeys 可以直接读取结果。",
+      "height": 380
+    },
+    {
+      "file": "tree-view/actions.tsx",
+      "title": "行内操作",
+      "description": "renderActions 返回的按钮在悬停或键盘聚焦该行时出现。",
+      "height": 300
+    }
+  ],
+  "notes": [
+    "数据通过 items 传入：{ id, name, icon?, meta?, children? }，有 children 的节点视为文件夹。",
+    "方向键上下移动、左右折叠展开，输入字符跳转到匹配的节点。",
+    "展开状态用 expandedKeys / defaultExpandedKeys，选择用 selectedKeys / onSelectionChange（均透传给 React Aria Tree）。",
+    "复选框不会联动父子节点，需要级联时在 onSelectionChange 中自行计算。"
+  ],
+  "props": [
+    {
+      "component": "TreeView",
+      "description": "其余属性透传给 React Aria Tree（selectionMode、selectedKeys、expandedKeys、onAction、disabledKeys…）。",
+      "props": [
+        {
+          "name": "items",
+          "type": "TreeViewNode[]",
+          "required": true,
+          "description": "树形数据。"
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "required": true,
+          "description": "可访问名称。"
+        },
+        {
+          "name": "showCheckboxes",
+          "type": "boolean",
+          "default": "true",
+          "description": "多选时显示复选框。"
+        },
+        {
+          "name": "renderActions",
+          "type": "(node: TreeViewNode) => ReactNode",
+          "description": "行内操作，悬停 / 聚焦时显示。"
+        },
+        {
+          "name": "defaultIcons",
+          "type": "boolean",
+          "default": "true",
+          "description": "未指定 icon 时使用默认的文件夹 / 文件图标。"
+        },
+        {
+          "name": "density",
+          "type": "\"compact\" | \"comfortable\"",
+          "default": "\"comfortable\"",
+          "description": "行高（32 / 36 px）。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<TreeViewLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ]
+}

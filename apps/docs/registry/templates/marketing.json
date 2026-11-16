@@ -1,0 +1,29 @@
+{
+  "slug": "marketing",
+  "name": "Marketing Dashboard",
+  "title": "营销仪表盘",
+  "description": "营销增长看板：投放 KPI、获客漏斗、花费与 ROAS 组合图、多维流量来源、渠道分时转化热力图，以及可按状态筛选的投放活动表。",
+  "route": "/templates/marketing",
+  "files": [
+    "templates/marketing/marketing.tsx"
+  ],
+  "exports": [
+    "MarketingTemplate"
+  ],
+  "usage": "<MarketingTemplate />",
+  "keywords": [
+    "marketing",
+    "campaign",
+    "funnel",
+    "roas",
+    "acquisition",
+    "heatmap",
+    "growth",
+    "营销",
+    "投放",
+    "漏斗",
+    "获客",
+    "渠道",
+    "活动"
+  ]
+}

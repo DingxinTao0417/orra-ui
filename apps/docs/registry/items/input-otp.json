@@ -1,0 +1,133 @@
+{
+  "slug": "input-otp",
+  "name": "Input OTP",
+  "title": "验证码输入",
+  "category": "base",
+  "files": [
+    "components/input-otp/input-otp.tsx"
+  ],
+  "description": "一次性验证码输入：N 个单字符格子，可每 K 位插入分隔符；输入自动跳格，Backspace 回退，方向键移动，粘贴或短信自动填充会把整串验证码分配到各格。",
+  "keywords": [
+    "otp",
+    "pin",
+    "verification code",
+    "2fa",
+    "one-time code",
+    "验证码",
+    "动态码",
+    "短信"
+  ],
+  "exports": [
+    "InputOTP"
+  ],
+  "demos": [
+    {
+      "file": "input-otp/overview.tsx",
+      "title": "概览",
+      "height": 220
+    },
+    {
+      "file": "input-otp/validation.tsx",
+      "title": "校验流程",
+      "description": "在 onComplete 中提交校验，校验期间禁用输入，失败后用 isInvalid + errorMessage 提示。",
+      "height": 260
+    },
+    {
+      "file": "input-otp/alphanumeric.tsx",
+      "title": "字母数字与掩码",
+      "description": "mode=\"alphanumeric\" 接受字母（自动转为大写）；mask 以圆点隐藏已输入内容。",
+      "height": 260
+    }
+  ],
+  "notes": [
+    "第一个格子带有 autocomplete=\"one-time-code\"，iOS / Android 的短信验证码建议可以一键填入。",
+    "值始终是连续的字符串：删除中间某位时，后面的字符会前移，与普通文本框一致。",
+    "每个格子都有「第 n 位，共 N 位」的无障碍名称；整体是一个带标签的 group。传 name 时会输出隐藏 input 参与表单提交。"
+  ],
+  "props": [
+    {
+      "component": "InputOTP",
+      "props": [
+        {
+          "name": "length",
+          "type": "number",
+          "default": "6",
+          "description": "格子数量。"
+        },
+        {
+          "name": "value / defaultValue",
+          "type": "string",
+          "description": "受控 / 非受控的值。"
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "description": "值变化回调。"
+        },
+        {
+          "name": "onComplete",
+          "type": "(value: string) => void",
+          "description": "所有格子填满时触发。"
+        },
+        {
+          "name": "mode",
+          "type": "\"numeric\" | \"alphanumeric\"",
+          "default": "\"numeric\"",
+          "description": "可输入的字符范围。"
+        },
+        {
+          "name": "groupSize",
+          "type": "number",
+          "description": "每隔几位插入一个分隔符。"
+        },
+        {
+          "name": "separator",
+          "type": "ReactNode",
+          "description": "自定义分隔符元素。"
+        },
+        {
+          "name": "label / description",
+          "type": "ReactNode",
+          "description": "标签与说明。"
+        },
+        {
+          "name": "errorMessage",
+          "type": "ReactNode",
+          "description": "isInvalid 时显示的错误文案。"
+        },
+        {
+          "name": "isInvalid / isDisabled",
+          "type": "boolean",
+          "description": "无效 / 禁用状态。"
+        },
+        {
+          "name": "mask",
+          "type": "boolean",
+          "default": "false",
+          "description": "用圆点隐藏字符。"
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "description": "挂载时聚焦第一个格子。"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": "表单字段名（输出隐藏 input）。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸：32 / 36 / 44 px。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<InputOTPLabels>",
+          "description": "覆盖无障碍文案。"
+        }
+      ]
+    }
+  ]
+}

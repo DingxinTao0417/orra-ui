@@ -1,0 +1,29 @@
+{
+  "slug": "hr",
+  "name": "HR Management",
+  "title": "人力资源管理",
+  "description": "人力概览：在职人数、入职与离职率指标，招聘管道、团队分布、敬业度雷达、人员流动、新入职引导进度，以及可按部门筛选的员工名册。",
+  "route": "/templates/hr",
+  "files": [
+    "templates/hr/hr.tsx"
+  ],
+  "exports": [
+    "HrTemplate"
+  ],
+  "usage": "<HrTemplate />",
+  "keywords": [
+    "hr",
+    "people",
+    "hiring",
+    "recruiting",
+    "employees",
+    "headcount",
+    "engagement",
+    "人力",
+    "人事",
+    "招聘",
+    "员工",
+    "花名册",
+    "敬业度"
+  ]
+}

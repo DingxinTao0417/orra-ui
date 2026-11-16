@@ -1,0 +1,30 @@
+{
+  "slug": "icon-button",
+  "name": "Icon Button",
+  "title": "图标按钮",
+  "category": "base",
+  "files": ["components/icon-button/icon-button.tsx"],
+  "description": "只有图标的正方形按钮，默认是工具栏里常用的安静样式，同样支持四种形态、三种语气、三种尺寸、圆形与加载状态。",
+  "keywords": ["icon button", "toolbar", "图标按钮", "工具栏"],
+  "exports": ["IconButton"],
+  "demos": [
+    { "file": "icon-button/overview.tsx", "title": "概览", "height": 180 },
+    { "file": "icon-button/sizes.tsx", "title": "尺寸与加载", "height": 160 }
+  ],
+  "notes": ["aria-label 是必填项：纯图标按钮需要可访问名称，读屏软件会读出它。"],
+  "props": [
+    {
+      "component": "IconButton",
+      "description": "其余属性透传给 React Aria Button。",
+      "props": [
+        { "name": "icon", "type": "ReactNode", "required": true, "description": "图标元素。" },
+        { "name": "aria-label", "type": "string", "required": true, "description": "可访问名称。" },
+        { "name": "variant", "type": "\"solid\" | \"outline\" | \"soft\" | \"plain\"", "default": "\"plain\"", "description": "填充形态。" },
+        { "name": "tone", "type": "\"accent\" | \"neutral\" | \"danger\"", "default": "\"neutral\"", "description": "颜色角色。" },
+        { "name": "size", "type": "\"sm\" | \"md\" | \"lg\"", "default": "\"md\"", "description": "32 / 36 / 44 px 正方形。" },
+        { "name": "round", "type": "boolean", "default": "false", "description": "圆形。" },
+        { "name": "loading", "type": "boolean", "default": "false", "description": "加载中。" }
+      ]
+    }
+  ]
+}

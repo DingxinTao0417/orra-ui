@@ -1,0 +1,123 @@
+/* ===========================================================================
+ * Orra UI — motion
+ *
+ * Durations: fast 120ms (hovers, toggles), base 200ms (overlays), slow 320ms
+ * (dialogs, layout). Overlays enter with `animate-in` (fade + 6px rise +
+ * 0.97 scale) and leave with the quicker `animate-out`. Everything honours
+ * prefers-reduced-motion.
+ * ======================================================================== */
+
+@theme {
+  --animate-in: orra-in 200ms var(--ease-out-soft) both;
+  --animate-out: orra-out 140ms var(--ease-in-out-soft) both;
+  --animate-fade-in: orra-fade-in 200ms var(--ease-out-soft) both;
+  --animate-dialog-in: orra-dialog-in 320ms var(--ease-out-soft) both;
+  --animate-dialog-out: orra-dialog-out 180ms var(--ease-in-out-soft) both;
+  --animate-sheet-in-right: orra-sheet-in-right 320ms var(--ease-out-soft) both;
+  --animate-sheet-out-right: orra-sheet-out-right 200ms var(--ease-in-out-soft) both;
+  --animate-sheet-in-left: orra-sheet-in-left 320ms var(--ease-out-soft) both;
+  --animate-sheet-out-left: orra-sheet-out-left 200ms var(--ease-in-out-soft) both;
+  --animate-sheet-in-bottom: orra-sheet-in-bottom 320ms var(--ease-out-soft) both;
+  --animate-sheet-out-bottom: orra-sheet-out-bottom 200ms var(--ease-in-out-soft) both;
+  --animate-shimmer: orra-shimmer 1.6s linear infinite;
+  --animate-glow: orra-glow 2.4s var(--ease-in-out-soft) infinite;
+  --animate-rise: orra-rise 420ms var(--ease-out-soft) both;
+
+  @keyframes orra-in {
+    from { opacity: 0; transform: translateY(6px) scale(0.97); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes orra-out {
+    from { opacity: 1; transform: none; }
+    to { opacity: 0; transform: translateY(4px) scale(0.98); }
+  }
+  @keyframes orra-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes orra-dialog-in {
+    from { opacity: 0; transform: translateY(12px) scale(0.96); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes orra-dialog-out {
+    to { opacity: 0; transform: translateY(8px) scale(0.98); }
+  }
+  @keyframes orra-sheet-in-right {
+    from { transform: translateX(100%); }
+    to { transform: none; }
+  }
+  @keyframes orra-sheet-out-right {
+    to { transform: translateX(100%); }
+  }
+  @keyframes orra-sheet-in-left {
+    from { transform: translateX(-100%); }
+    to { transform: none; }
+  }
+  @keyframes orra-sheet-out-left {
+    to { transform: translateX(-100%); }
+  }
+  @keyframes orra-sheet-in-bottom {
+    from { transform: translateY(100%); }
+    to { transform: none; }
+  }
+  @keyframes orra-sheet-out-bottom {
+    to { transform: translateY(100%); }
+  }
+  @keyframes orra-shimmer {
+    from { background-position: 150% 0; }
+    to { background-position: -50% 0; }
+  }
+  @keyframes orra-glow {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
+  @keyframes orra-rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+/* Shimmering text, e.g. an agent's "working" label. */
+@utility text-shimmer {
+  color: transparent;
+  background-image: linear-gradient(90deg, var(--orra-fg-subtle) 0%, var(--orra-fg-subtle) 40%, var(--orra-fg) 50%, var(--orra-fg-subtle) 60%, var(--orra-fg-subtle) 100%);
+  background-size: 250% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: var(--animate-shimmer);
+}
+
+/* Loading placeholder sweep. */
+@utility bg-skeleton {
+  background-color: var(--orra-surface-muted);
+  background-image: linear-gradient(90deg, transparent 0%, color-mix(in oklab, var(--orra-fg) 7%, transparent) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* Primary action surface: accent gradient with a soft top highlight. */
+@utility bg-accent-gradient {
+  background-image: linear-gradient(180deg, var(--orra-accent-500), var(--orra-accent-600));
+  box-shadow: var(--orra-shadow-accent);
+}
+
+@utility bg-danger-gradient {
+  background-image: linear-gradient(180deg, oklch(0.62 0.21 25), oklch(0.55 0.21 25));
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.2), 0 1px 2px oklch(0.4 0.15 25 / 0.3);
+}
+
+/* Focus ring used by every interactive control. */
+@utility focus-ring {
+  outline: 2px solid var(--orra-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}

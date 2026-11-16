@@ -1,0 +1,235 @@
+{
+  "slug": "data-grid",
+  "name": "Data Grid",
+  "title": "数据网格",
+  "category": "blocks",
+  "files": [
+    "components/data-grid/data-grid.tsx",
+    "components/data-grid/data-grid-types.ts",
+    "components/data-grid/data-grid-sample.ts"
+  ],
+  "description": "类电子表格的数据网格：键盘单元格导航、行内编辑、拖拽调整列宽、排序、按列筛选与全局搜索、行选择、固定首列、底部汇总（合计 / 平均 / 计数），并对行做虚拟滚动，轻松承载上千行。",
+  "keywords": [
+    "data grid",
+    "spreadsheet",
+    "table",
+    "editable",
+    "virtual",
+    "excel",
+    "数据网格",
+    "表格",
+    "电子表格",
+    "可编辑",
+    "虚拟滚动"
+  ],
+  "exports": [
+    "DataGrid",
+    "type DataGridColumn",
+    "dataGridSampleColumns",
+    "dataGridSampleRows"
+  ],
+  "demos": [
+    {
+      "file": "data-grid/overview.tsx",
+      "title": "概览",
+      "description": "240 行示例数据。双击或按 Enter 编辑，直接打字覆盖，Delete 清空，⌘/Ctrl+C / V 复制粘贴单元格。",
+      "height": 600,
+      "layout": "padded"
+    },
+    {
+      "file": "data-grid/custom-cells.tsx",
+      "title": "自定义单元格与筛选",
+      "description": "render 自定义显示（头像、进度条）；筛选行中数字列支持 >100、<=5、10..20 这样的条件。",
+      "height": 460,
+      "layout": "padded"
+    },
+    {
+      "file": "data-grid/selection.tsx",
+      "title": "行选择",
+      "description": "受控的 selectedKeys，配合工具栏操作批量处理。",
+      "height": 480,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "键盘：方向键移动，Home / End 到行首尾，⌘/Ctrl + 方向键跳到边缘，PageUp / PageDown 翻页；编辑时 Enter 下移、Tab 右移、Esc 取消。表头上 Enter 排序，Alt + ←/→ 调整列宽。",
+    "rows + onRowsChange 受控；onCellEdit 拿到单次修改（行、字段、新旧值）。percent 列存小数（0.25），date 列存 \"YYYY-MM-DD\"。",
+    "外层需要明确高度（或传 height）；只有可见行会被渲染，行高固定（comfortable 40px / compact 32px）。"
+  ],
+  "props": [
+    {
+      "component": "DataGrid",
+      "props": [
+        {
+          "name": "columns",
+          "type": "DataGridColumn<T>[]",
+          "default": "示例列",
+          "description": "列定义。"
+        },
+        {
+          "name": "rows / defaultRows",
+          "type": "T[]",
+          "description": "行数据，每行需要稳定 id。"
+        },
+        {
+          "name": "onRowsChange",
+          "type": "(rows: T[]) => void",
+          "description": "编辑后的完整数据。"
+        },
+        {
+          "name": "onCellEdit",
+          "type": "(edit: DataGridCellEdit<T>) => void",
+          "description": "单个单元格提交后回调。"
+        },
+        {
+          "name": "getRowId",
+          "type": "(row: T) => string",
+          "default": "row.id",
+          "description": "行 id。"
+        },
+        {
+          "name": "editable",
+          "type": "boolean",
+          "default": "true",
+          "description": "允许行内编辑，列可用 editable: false 单独关闭。"
+        },
+        {
+          "name": "selectable",
+          "type": "boolean",
+          "default": "true",
+          "description": "显示复选框列。"
+        },
+        {
+          "name": "selectedKeys / defaultSelectedKeys / onSelectionChange",
+          "type": "Set<string>",
+          "description": "选中的行。"
+        },
+        {
+          "name": "sort / defaultSort / onSortChange",
+          "type": "DataGridSort | null",
+          "description": "排序：{ key, direction }。"
+        },
+        {
+          "name": "showFilters / defaultShowFilters / onShowFiltersChange",
+          "type": "boolean",
+          "description": "按列筛选行。"
+        },
+        {
+          "name": "toolbar",
+          "type": "boolean",
+          "default": "true",
+          "description": "显示搜索、筛选开关与行数统计。"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "工具栏标题。"
+        },
+        {
+          "name": "toolbarActions",
+          "type": "ReactNode",
+          "description": "工具栏末尾的按钮。"
+        },
+        {
+          "name": "stickyFirstColumn",
+          "type": "boolean",
+          "default": "true",
+          "description": "横向滚动时固定第一列。"
+        },
+        {
+          "name": "density",
+          "type": "\"comfortable\" | \"compact\"",
+          "default": "\"comfortable\"",
+          "description": "行高 40 / 32 px。"
+        },
+        {
+          "name": "showFooter",
+          "type": "boolean",
+          "default": "有 summary 时为 true",
+          "description": "底部汇总行。"
+        },
+        {
+          "name": "emptyState",
+          "type": "ReactNode",
+          "description": "无匹配行时的内容。"
+        },
+        {
+          "name": "height",
+          "type": "number | string",
+          "description": "高度；默认撑满父级。"
+        },
+        {
+          "name": "overscan",
+          "type": "number",
+          "default": "8",
+          "description": "视口外额外渲染的行数。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<DataGridLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "DataGridColumn",
+      "props": [
+        {
+          "name": "key",
+          "type": "keyof T",
+          "required": true,
+          "description": "字段名，也是列 id。"
+        },
+        {
+          "name": "header",
+          "type": "string",
+          "required": true,
+          "description": "列标题。"
+        },
+        {
+          "name": "type",
+          "type": "\"text\" | \"number\" | \"currency\" | \"percent\" | \"select\" | \"date\"",
+          "default": "\"text\"",
+          "description": "决定显示、编辑、排序和筛选方式。"
+        },
+        {
+          "name": "width / minWidth",
+          "type": "number",
+          "default": "160 / 64",
+          "description": "列宽。"
+        },
+        {
+          "name": "currency",
+          "type": "string",
+          "default": "\"USD\"",
+          "description": "货币代码。"
+        },
+        {
+          "name": "options",
+          "type": "DataGridOption[]",
+          "description": "select 列的选项（以徽标显示）。"
+        },
+        {
+          "name": "align",
+          "type": "\"start\" | \"center\" | \"end\"",
+          "description": "对齐，数字默认靠尾。"
+        },
+        {
+          "name": "editable / sortable / filterable",
+          "type": "boolean",
+          "description": "逐列开关。"
+        },
+        {
+          "name": "summary",
+          "type": "\"sum\" | \"avg\" | \"count\" | \"min\" | \"max\" | ((values, rows) => ReactNode)",
+          "description": "底部汇总。"
+        },
+        {
+          "name": "render",
+          "type": "(value, row) => ReactNode",
+          "description": "自定义显示。"
+        }
+      ]
+    }
+  ]
+}

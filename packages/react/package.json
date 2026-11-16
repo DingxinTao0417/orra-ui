@@ -1,0 +1,76 @@
+{
+  "name": "@orra-ui/react",
+  "version": "0.1.0",
+  "description": "Orra UI — a React + Tailwind CSS v4 design system for dashboards and agentic interfaces.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DingxinTao0417/orra-ui.git",
+    "directory": "packages/react"
+  },
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "keywords": [
+    "react",
+    "tailwindcss",
+    "components",
+    "design-system",
+    "dashboard",
+    "ai",
+    "agent",
+    "ui"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs --strict",
+    "dev": "node scripts/build.mjs --watch",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build:dev": "node scripts/build.mjs"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19",
+    "tailwindcss": ">=4.1"
+  },
+  "dependencies": {
+    "@orra-ui/styles": "workspace:^",
+    "@internationalized/date": "^3.12.4",
+    "@remixicon/react": "^4.9.0",
+    "motion": "^14.14.0",
+    "react-aria-components": "^1.22.1",
+    "recharts": "^3.7.0",
+    "tailwind-merge": "^3.7.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

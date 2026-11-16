@@ -1,0 +1,221 @@
+{
+  "slug": "notification-center",
+  "name": "Notification Center",
+  "title": "通知中心",
+  "category": "blocks",
+  "files": [
+    "components/notification-center/notification-center.tsx"
+  ],
+  "description": "收件箱式通知中心：全部 / 未读 / 提及标签页，按天分组，条目带头像或图标、相对时间、未读标记和内联操作（接受 / 拒绝），支持全部已读、归档和空状态；可内嵌为面板或由铃铛按钮弹出。",
+  "keywords": [
+    "notification",
+    "inbox",
+    "bell",
+    "activity",
+    "feed",
+    "通知",
+    "消息中心",
+    "收件箱",
+    "提醒",
+    "未读"
+  ],
+  "exports": [
+    "NotificationCenter",
+    "NotificationCenterPopover",
+    "type NotificationCenterItem"
+  ],
+  "demos": [
+    {
+      "file": "notification-center/overview.tsx",
+      "title": "概览",
+      "height": 620
+    },
+    {
+      "file": "notification-center/popover.tsx",
+      "title": "铃铛弹出",
+      "description": "NotificationCenterPopover 在铃铛上显示未读数，面板与徽标共享同一份状态。",
+      "height": 200
+    },
+    {
+      "file": "notification-center/empty.tsx",
+      "title": "空状态",
+      "description": "每个标签页都有对应的空状态文案。",
+      "height": 340
+    }
+  ],
+  "notes": [
+    "items + onItemsChange 受控：标为已读、归档、执行操作都会回传新的数组；也可以用 defaultItems 非受控。",
+    "time 接受 Date、ISO 字符串或时间戳；相对时间和「今天 / 昨天」分组在客户端挂载后计算，避免服务端与浏览器时区不同导致的水合不一致。",
+    "点击或在条目上按 Enter 会标为已读并触发 onItemPress；条目内的操作按钮触发 onAction，默认随后把操作名显示为处理结果。"
+  ],
+  "props": [
+    {
+      "component": "NotificationCenter",
+      "props": [
+        {
+          "name": "items",
+          "type": "NotificationCenterItem[]",
+          "description": "通知列表（受控）。"
+        },
+        {
+          "name": "defaultItems",
+          "type": "NotificationCenterItem[]",
+          "default": "示例数据",
+          "description": "非受控初始列表。"
+        },
+        {
+          "name": "onItemsChange",
+          "type": "(items) => void",
+          "description": "列表变化（已读、归档、处理）后回调。"
+        },
+        {
+          "name": "tab / defaultTab / onTabChange",
+          "type": "\"all\" | \"unread\" | \"mentions\"",
+          "default": "\"all\"",
+          "description": "当前标签页。"
+        },
+        {
+          "name": "onAction",
+          "type": "(item, actionId) => void",
+          "description": "点击条目内操作按钮。"
+        },
+        {
+          "name": "onItemPress",
+          "type": "(item) => void",
+          "description": "打开条目。"
+        },
+        {
+          "name": "onSettings",
+          "type": "() => void",
+          "description": "提供后在标题栏显示设置按钮。"
+        },
+        {
+          "name": "archivable",
+          "type": "boolean",
+          "default": "true",
+          "description": "悬停显示归档按钮。"
+        },
+        {
+          "name": "groupByDay",
+          "type": "boolean",
+          "default": "true",
+          "description": "按天分组。"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "标题，默认「通知」。"
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode",
+          "description": "列表下方内容，如「查看全部」。"
+        },
+        {
+          "name": "maxHeight",
+          "type": "number | string",
+          "default": "420",
+          "description": "列表最大高度。"
+        },
+        {
+          "name": "variant",
+          "type": "\"card\" | \"plain\"",
+          "default": "\"card\"",
+          "description": "是否绘制卡片外观。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<NotificationCenterLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "NotificationCenterPopover",
+      "description": "接受 NotificationCenter 的全部属性，另外：",
+      "props": [
+        {
+          "name": "isOpen / defaultOpen / onOpenChange",
+          "type": "boolean",
+          "description": "弹出层开关。"
+        },
+        {
+          "name": "placement",
+          "type": "Placement",
+          "default": "\"bottom end\"",
+          "description": "弹出位置。"
+        },
+        {
+          "name": "width",
+          "type": "number",
+          "default": "400",
+          "description": "面板宽度。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "铃铛按钮尺寸。"
+        }
+      ]
+    },
+    {
+      "component": "NotificationCenterItem",
+      "props": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "唯一标识。"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "required": true,
+          "description": "动态描述，人名等可用 <b> 加粗。"
+        },
+        {
+          "name": "time",
+          "type": "Date | string | number",
+          "required": true,
+          "description": "发生时间。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "引用内容或详情。"
+        },
+        {
+          "name": "actor",
+          "type": "{ name: string; src?: string }",
+          "description": "触发者，显示为头像。"
+        },
+        {
+          "name": "icon / tone",
+          "type": "ReactNode / NotificationCenterTone",
+          "description": "没有 actor 时的系统图标及其底色。"
+        },
+        {
+          "name": "read",
+          "type": "boolean",
+          "description": "是否已读。"
+        },
+        {
+          "name": "mention",
+          "type": "boolean",
+          "description": "归入「提及」。"
+        },
+        {
+          "name": "actions",
+          "type": "NotificationCenterAction[]",
+          "description": "内联操作按钮。"
+        },
+        {
+          "name": "resolution",
+          "type": "ReactNode",
+          "description": "处理结果文字。"
+        }
+      ]
+    }
+  ]
+}

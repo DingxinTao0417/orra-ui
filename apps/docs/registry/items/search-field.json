@@ -1,0 +1,105 @@
+{
+  "slug": "search-field",
+  "name": "Search Field",
+  "title": "搜索框",
+  "category": "base",
+  "files": [
+    "components/search-field/search-field.tsx"
+  ],
+  "description": "搜索框：前置搜索图标、一键清空、Esc 清空，可在末端显示 ⌘K / Ctrl K 快捷键提示并全局绑定聚焦；支持圆角胶囊样式。",
+  "keywords": [
+    "search",
+    "search field",
+    "filter",
+    "shortcut",
+    "搜索",
+    "搜索框",
+    "过滤",
+    "快捷键"
+  ],
+  "exports": [
+    "SearchField"
+  ],
+  "demos": [
+    {
+      "file": "search-field/overview.tsx",
+      "title": "概览",
+      "height": 160
+    },
+    {
+      "file": "search-field/filter.tsx",
+      "title": "受控过滤",
+      "description": "value + onChange 受控，实时筛选列表。",
+      "height": 360
+    },
+    {
+      "file": "search-field/variants.tsx",
+      "title": "尺寸与样式",
+      "height": 220
+    }
+  ],
+  "notes": [
+    "shortcut 传一个字母（如 \"k\"）后，在页面任意位置按 ⌘ / Ctrl + 该键即可聚焦；提示在 Mac 显示 ⌘，其他平台显示 Ctrl，且不会造成 SSR 水合差异。",
+    "快捷键提示只在输入为空且未聚焦时显示；Enter 触发 onSubmit，Esc 清空并触发 onClear。"
+  ],
+  "props": [
+    {
+      "component": "SearchField",
+      "description": "其余属性透传给 React Aria SearchField（value、defaultValue、onChange、onSubmit、onClear、isDisabled 等）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "字段标签。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "标签下方的辅助说明。"
+        },
+        {
+          "name": "errorMessage",
+          "type": "ReactNode | ((v: ValidationResult) => ReactNode)",
+          "description": "校验失败（isInvalid 或原生校验）时显示的错误文案。"
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "description": "占位文本，默认「搜索…」。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸：32 / 36 / 44 px。"
+        },
+        {
+          "name": "shortcut",
+          "type": "string",
+          "description": "全局聚焦快捷键字母，同时显示按键提示。"
+        },
+        {
+          "name": "round",
+          "type": "boolean",
+          "default": "false",
+          "description": "胶囊圆角样式。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "替换前置图标；传 null 隐藏。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<SearchFieldLabels>",
+          "description": "覆盖内置文案（占位、清空）。"
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLInputElement>",
+          "description": "转发到 <input>。"
+        }
+      ]
+    }
+  ]
+}

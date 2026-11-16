@@ -1,0 +1,119 @@
+{
+  "slug": "agent-progress",
+  "name": "Agent Progress",
+  "title": "任务进度",
+  "category": "agents",
+  "files": [
+    "components/agent-progress/agent-progress.tsx"
+  ],
+  "description": "智能体多步计划的进度卡：总进度条与「还剩 N 步」摘要，步骤有待开始、进行中、已完成、失败、已跳过五种状态，可折叠为仅显示当前步骤。",
+  "keywords": [
+    "agent progress",
+    "plan",
+    "steps",
+    "stepper",
+    "checklist",
+    "任务进度",
+    "执行计划",
+    "步骤",
+    "进度"
+  ],
+  "exports": [
+    "AgentProgress"
+  ],
+  "demos": [
+    {
+      "file": "agent-progress/overview.tsx",
+      "title": "概览",
+      "description": "当前步骤显示说明文字，已完成步骤之间的连线变为强调色。",
+      "height": 360
+    },
+    {
+      "file": "agent-progress/live.tsx",
+      "title": "实时推进",
+      "description": "更新 steps 的 status 即可，进度条、摘要和标记都会平滑过渡。",
+      "height": 340
+    },
+    {
+      "file": "agent-progress/failed.tsx",
+      "title": "失败与折叠",
+      "description": "defaultExpanded={false} 时只显示当前（或失败的）步骤；footer 放重试操作。",
+      "height": 260
+    }
+  ],
+  "notes": [
+    "摘要文案自动生成：未开始、进行中（已完成 x/y · 还剩 n 步）、全部完成、第 n 步失败。",
+    "skipped 计入已完成进度，并以删除线显示。",
+    "collapsible={false} 渲染为不可折叠的静态卡片；variant=\"plain\" 去掉卡片外框，便于嵌入消息中。"
+  ],
+  "props": [
+    {
+      "component": "AgentProgress",
+      "props": [
+        {
+          "name": "steps",
+          "type": "AgentProgressStep[]",
+          "description": "步骤列表：{ id, title, description?, meta?, status? }。",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "标题。",
+          "default": "\"执行计划\""
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "标题前的图标元素。"
+        },
+        {
+          "name": "collapsible",
+          "type": "boolean",
+          "description": "标题可折叠列表。",
+          "default": "true"
+        },
+        {
+          "name": "isExpanded / defaultExpanded / onExpandedChange",
+          "type": "boolean / boolean / (v: boolean) => void",
+          "description": "展开状态。",
+          "default": "defaultExpanded: true"
+        },
+        {
+          "name": "showDescriptions",
+          "type": "boolean",
+          "description": "为所有步骤显示说明，而不只是当前步骤。",
+          "default": "false"
+        },
+        {
+          "name": "variant",
+          "type": "\"card\" | \"plain\"",
+          "description": "外观。",
+          "default": "\"card\""
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode",
+          "description": "列表下方的内容，例如重试按钮。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<AgentProgressLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "AgentProgressStep",
+      "props": [
+        {
+          "name": "status",
+          "type": "\"pending\" | \"active\" | \"done\" | \"failed\" | \"skipped\"",
+          "description": "步骤状态。",
+          "default": "\"pending\""
+        }
+      ]
+    }
+  ],
+  "isNew": true
+}

@@ -1,0 +1,129 @@
+{
+  "slug": "textarea",
+  "name": "Textarea",
+  "title": "多行文本框",
+  "category": "base",
+  "files": [
+    "components/textarea/textarea.tsx"
+  ],
+  "description": "多行文本框：随内容在最小与最大行数之间自动长高，可显示字符计数并设置上限，接近或超出上限时变色提醒。",
+  "keywords": [
+    "textarea",
+    "multiline",
+    "comment",
+    "counter",
+    "多行",
+    "文本域",
+    "字数",
+    "备注"
+  ],
+  "exports": [
+    "Textarea"
+  ],
+  "demos": [
+    {
+      "file": "textarea/overview.tsx",
+      "title": "概览",
+      "height": 260
+    },
+    {
+      "file": "textarea/autogrow.tsx",
+      "title": "自动长高",
+      "description": "minRows 决定初始高度，超过 maxRows 后出现滚动条；把两者设为相同值即可关闭自动长高。",
+      "height": 260
+    },
+    {
+      "file": "textarea/limit.tsx",
+      "title": "软上限",
+      "description": "enforceLimit={false} 时允许继续输入，超出部分会将字段标为无效并显示 errorMessage。",
+      "height": 240
+    }
+  ],
+  "notes": [
+    "limit 默认作为原生 maxLength 硬性截断；showCount 显示「当前 / 上限」，达到 90% 时变为警告色，并通过读屏播报剩余字数。",
+    "值可受控（value + onChange）或非受控（defaultValue）。"
+  ],
+  "props": [
+    {
+      "component": "Textarea",
+      "description": "其余属性透传给 React Aria TextField（name、isRequired、isInvalid、isDisabled、isReadOnly、validate 等）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "字段标签。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "标签下方的辅助说明。"
+        },
+        {
+          "name": "errorMessage",
+          "type": "ReactNode | ((v: ValidationResult) => ReactNode)",
+          "description": "校验失败（isInvalid 或原生校验）时显示的错误文案。"
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "description": "占位文本。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸：32 / 36 / 44 px。"
+        },
+        {
+          "name": "value / defaultValue",
+          "type": "string",
+          "description": "受控 / 非受控的值。"
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "description": "值变化回调。"
+        },
+        {
+          "name": "minRows",
+          "type": "number",
+          "default": "3",
+          "description": "最少显示行数。"
+        },
+        {
+          "name": "maxRows",
+          "type": "number",
+          "default": "8",
+          "description": "自动长高的最大行数，超出后滚动。"
+        },
+        {
+          "name": "limit",
+          "type": "number",
+          "description": "字符上限。"
+        },
+        {
+          "name": "enforceLimit",
+          "type": "boolean",
+          "default": "true",
+          "description": "是否在上限处截断输入；为 false 时超出会标记为无效。"
+        },
+        {
+          "name": "showCount",
+          "type": "boolean",
+          "default": "false",
+          "description": "显示字符计数（需配合 limit）。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<TextareaLabels>",
+          "description": "覆盖读屏播报文案。"
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLTextAreaElement>",
+          "description": "转发到 <textarea>。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "slug": "dashboard",
+  "name": "Home Dashboard",
+  "title": "首页仪表盘",
+  "description": "公司经营首页：KPI 指标卡、营收趋势与渠道占比、最近订单表、团队动态、季度目标进度、热销商品与区域订单。",
+  "route": "/templates/dashboard",
+  "files": [
+    "templates/dashboard/dashboard.tsx"
+  ],
+  "exports": [
+    "DashboardTemplate"
+  ],
+  "usage": "<DashboardTemplate />",
+  "keywords": [
+    "dashboard",
+    "overview",
+    "home",
+    "kpi",
+    "revenue",
+    "orders",
+    "analytics",
+    "仪表盘",
+    "总览",
+    "经营",
+    "首页",
+    "订单",
+    "营收"
+  ]
+}

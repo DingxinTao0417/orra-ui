@@ -1,0 +1,75 @@
+{
+  "slug": "divider",
+  "name": "Divider",
+  "title": "分割线",
+  "category": "base",
+  "files": [
+    "components/divider/divider.tsx"
+  ],
+  "description": "水平或垂直分割线，可在线中放置文字（如「或」），支持虚线、加深线条和文字位置。",
+  "keywords": [
+    "divider",
+    "separator",
+    "hr",
+    "line",
+    "分割线",
+    "分隔符",
+    "或"
+  ],
+  "exports": [
+    "Divider"
+  ],
+  "demos": [
+    {
+      "file": "divider/overview.tsx",
+      "title": "概览",
+      "height": 240
+    },
+    {
+      "file": "divider/orientation.tsx",
+      "title": "方向与样式",
+      "description": "垂直分割线在 flex 行中会自动撑满行高。",
+      "height": 260
+    }
+  ],
+  "notes": [
+    "无文字时使用 React Aria Separator，带正确的 role 与 aria-orientation。",
+    "带文字的分割线仅支持水平方向；labelPosition 可让文字靠在开头或结尾。"
+  ],
+  "props": [
+    {
+      "component": "Divider",
+      "props": [
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "default": "\"horizontal\"",
+          "description": "方向。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "线中的文字（仅水平）。"
+        },
+        {
+          "name": "labelPosition",
+          "type": "\"start\" | \"center\" | \"end\"",
+          "default": "\"center\"",
+          "description": "文字位置。"
+        },
+        {
+          "name": "dashed",
+          "type": "boolean",
+          "default": "false",
+          "description": "虚线。"
+        },
+        {
+          "name": "strong",
+          "type": "boolean",
+          "default": "false",
+          "description": "使用更深的线条颜色。"
+        }
+      ]
+    }
+  ]
+}

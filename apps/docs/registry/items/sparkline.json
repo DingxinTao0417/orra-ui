@@ -1,0 +1,126 @@
+{
+  "slug": "sparkline",
+  "name": "Sparkline",
+  "title": "迷你趋势图",
+  "category": "charts",
+  "files": [
+    "components/sparkline/sparkline.tsx"
+  ],
+  "description": "迷你趋势图：用于指标卡和表格单元格的折线 / 面积 / 柱状小图，可显示末端点与最值标记，支持按涨跌自动着色。",
+  "keywords": [
+    "sparkline",
+    "mini chart",
+    "trend",
+    "inline chart",
+    "迷你图",
+    "趋势",
+    "小图",
+    "表格图表"
+  ],
+  "exports": [
+    "Sparkline",
+    "ChartDeltaBadge"
+  ],
+  "demos": [
+    {
+      "file": "sparkline/overview.tsx",
+      "title": "概览",
+      "description": "指标卡中的迷你图与变化徽标。",
+      "height": 320,
+      "layout": "padded"
+    },
+    {
+      "file": "sparkline/variants.tsx",
+      "title": "形态",
+      "description": "折线、面积 + 最值、柱状与按趋势着色；width=\"100%\" 填满容器。",
+      "height": 260,
+      "layout": "padded"
+    },
+    {
+      "file": "sparkline/table.tsx",
+      "title": "表格中",
+      "description": "color=\"trend\" 上涨为绿、下跌为红。",
+      "height": 300,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "不带坐标轴和提示框；需要读数时请使用 LineChart / AreaChart。",
+    "默认是装饰性的（aria-hidden）；传入 aria-label 后作为图片向读屏软件描述趋势。"
+  ],
+  "props": [
+    {
+      "component": "Sparkline",
+      "props": [
+        {
+          "name": "data",
+          "type": "readonly number[]",
+          "description": "数值序列；缺省为示例数据。"
+        },
+        {
+          "name": "variant",
+          "type": "\"line\" | \"area\" | \"bar\"",
+          "default": "\"line\"",
+          "description": "形态。"
+        },
+        {
+          "name": "width",
+          "type": "number | \"100%\"",
+          "default": "96",
+          "description": "宽度。"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": "28",
+          "description": "高度。"
+        },
+        {
+          "name": "color",
+          "type": "string | \"trend\"",
+          "default": "var(--color-chart-1)",
+          "description": "颜色，trend 按首尾涨跌着色。"
+        },
+        {
+          "name": "curve",
+          "type": "\"smooth\" | \"linear\"",
+          "default": "\"smooth\"",
+          "description": "线型。"
+        },
+        {
+          "name": "endDot",
+          "type": "boolean",
+          "default": "true",
+          "description": "末端圆点。"
+        },
+        {
+          "name": "showMinMax",
+          "type": "boolean",
+          "default": "false",
+          "description": "最值标记。"
+        },
+        {
+          "name": "strokeWidth",
+          "type": "number",
+          "default": "1.5",
+          "description": "线宽。"
+        },
+        {
+          "name": "domain",
+          "type": "[number, number]",
+          "description": "固定数值范围。"
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "description": "无障碍描述。"
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLSpanElement>",
+          "description": "转发到外层 <span>。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "slug": "scatter-chart",
+  "name": "Scatter Chart",
+  "title": "散点图",
+  "category": "charts",
+  "files": [
+    "components/scatter-chart/scatter-chart.tsx"
+  ],
+  "description": "散点 / 气泡图：x–y 数值点，可选气泡大小维度、按字段分组着色，以及把平面分成四个象限的参考线与角标。",
+  "keywords": [
+    "scatter",
+    "bubble",
+    "quadrant",
+    "correlation",
+    "散点图",
+    "气泡图",
+    "象限",
+    "相关性"
+  ],
+  "exports": [
+    "ScatterChart",
+    "ChartCard"
+  ],
+  "demos": [
+    {
+      "file": "scatter-chart/overview.tsx",
+      "title": "概览",
+      "description": "三个渠道的投放活动，气泡大小为营收（示例数据）。",
+      "height": 460,
+      "layout": "padded"
+    },
+    {
+      "file": "scatter-chart/quadrants.tsx",
+      "title": "四象限",
+      "description": "quadrants 绘制分割线与角标，nameKey 作为提示框标题。",
+      "height": 460,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "x / y / size / groupBy 都是数据字段名；不传 size 时为普通散点。",
+    "图例可切换分组显示。"
+  ],
+  "props": [
+    {
+      "component": "ScatterChart",
+      "props": [
+        {
+          "name": "data",
+          "type": "readonly object[]",
+          "description": "数据点；缺省为示例数据。"
+        },
+        {
+          "name": "x / y",
+          "type": "string",
+          "description": "坐标字段。"
+        },
+        {
+          "name": "size",
+          "type": "string",
+          "description": "气泡大小字段。"
+        },
+        {
+          "name": "groupBy",
+          "type": "string",
+          "description": "分组字段。"
+        },
+        {
+          "name": "groups",
+          "type": "{ key; label?; color? }[]",
+          "description": "分组名称与颜色。"
+        },
+        {
+          "name": "nameKey",
+          "type": "string",
+          "description": "点名称字段（提示框标题）。"
+        },
+        {
+          "name": "xLabel / yLabel / sizeLabel",
+          "type": "string",
+          "description": "维度名称。"
+        },
+        {
+          "name": "xFormat / yFormat / sizeFormat",
+          "type": "\"number\" | \"compact\" | \"percent\" | \"currency\" | Intl.NumberFormatOptions | ((v: number) => string)",
+          "description": "各维度格式。"
+        },
+        {
+          "name": "sizeRange",
+          "type": "[number, number]",
+          "default": "[36, 420]",
+          "description": "气泡面积范围（px²）。"
+        },
+        {
+          "name": "quadrants",
+          "type": "{ x: number; y: number; labels?: [ReactNode?, ReactNode?, ReactNode?, ReactNode?] }",
+          "description": "象限分割线与角标（上起始、上末端、下起始、下末端）。"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": "280",
+          "description": "高度。"
+        },
+        {
+          "name": "showLegend / showGrid",
+          "type": "boolean",
+          "description": "图例与网格。"
+        }
+      ]
+    }
+  ]
+}

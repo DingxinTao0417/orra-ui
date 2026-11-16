@@ -1,0 +1,42 @@
+{
+  "slug": "button",
+  "name": "Button",
+  "title": "按钮",
+  "category": "base",
+  "files": ["components/button/button.tsx"],
+  "description": "基于 React Aria 的操作按钮：solid / outline / soft / plain 四种形态 × accent / neutral / danger 三种语气，三种尺寸，支持前后图标、加载状态和链接形态。",
+  "keywords": ["button", "btn", "cta", "按钮", "提交", "操作"],
+  "exports": ["Button", "ButtonLink", "buttonClass"],
+  "demos": [
+    { "file": "button/overview.tsx", "title": "概览", "height": 200 },
+    { "file": "button/variants.tsx", "title": "形态与语气", "description": "variant 决定填充方式，tone 决定颜色角色，两者自由组合。主要操作用 solid + accent，次要操作用 outline + neutral。", "height": 260 },
+    { "file": "button/sizes.tsx", "title": "尺寸", "description": "sm 32px、md 36px（默认）、lg 44px，图标尺寸随之变化。", "height": 180 },
+    { "file": "button/loading.tsx", "title": "加载与禁用", "description": "loading 会显示旋转图标并阻止重复点击；禁用使用 React Aria 的 isDisabled。", "height": 180 }
+  ],
+  "notes": [
+    "图标以元素形式传入：startIcon={<RiAddLine />}，尺寸由按钮统一控制。",
+    "点击事件使用 onPress（React Aria），它统一处理鼠标、触摸与键盘；也兼容 onClick。",
+    "需要跳转时使用 ButtonLink（渲染为 <a>），样式与 Button 一致；buttonClass() 可以把其他元素（如下拉菜单触发器）样式化为按钮。"
+  ],
+  "props": [
+    {
+      "component": "Button",
+      "description": "其余属性透传给 React Aria Button（onPress、isDisabled、type、form 等）。",
+      "props": [
+        { "name": "variant", "type": "\"solid\" | \"outline\" | \"soft\" | \"plain\"", "default": "\"solid\"", "description": "填充形态。" },
+        { "name": "tone", "type": "\"accent\" | \"neutral\" | \"danger\"", "default": "\"accent\"", "description": "颜色角色。" },
+        { "name": "size", "type": "\"sm\" | \"md\" | \"lg\"", "default": "\"md\"", "description": "尺寸：32 / 36 / 44 px。" },
+        { "name": "startIcon", "type": "ReactNode", "description": "文字前的图标元素。" },
+        { "name": "endIcon", "type": "ReactNode", "description": "文字后的图标元素，RTL 下自动镜像。" },
+        { "name": "loading", "type": "boolean", "default": "false", "description": "显示加载图标并阻止点击。" },
+        { "name": "fullWidth", "type": "boolean", "default": "false", "description": "占满容器宽度。" },
+        { "name": "ref", "type": "Ref<HTMLButtonElement>", "description": "转发到 <button>。" }
+      ]
+    },
+    {
+      "component": "ButtonLink",
+      "description": "渲染为 <a>，其余属性透传给 React Aria Link。",
+      "props": [{ "name": "href", "type": "string", "description": "链接地址。" }]
+    }
+  ]
+}

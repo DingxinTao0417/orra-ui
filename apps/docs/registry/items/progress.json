@@ -1,0 +1,119 @@
+{
+  "slug": "progress",
+  "name": "Progress",
+  "title": "进度条",
+  "category": "base",
+  "files": [
+    "components/progress/progress.tsx"
+  ],
+  "description": "基于 React Aria ProgressBar 的进度指示：线性进度条与环形进度，支持确定与不确定状态、标签与数值、多种色调和尺寸。",
+  "keywords": [
+    "progress",
+    "progress bar",
+    "ring",
+    "circular",
+    "loading",
+    "upload",
+    "进度",
+    "进度条",
+    "环形进度",
+    "上传"
+  ],
+  "exports": [
+    "Progress",
+    "ProgressRing"
+  ],
+  "demos": [
+    {
+      "file": "progress/overview.tsx",
+      "title": "概览",
+      "height": 220
+    },
+    {
+      "file": "progress/ring.tsx",
+      "title": "环形进度",
+      "description": "中心默认显示百分比，也可以通过 children 放入自定义内容。",
+      "height": 200
+    },
+    {
+      "file": "progress/sizes.tsx",
+      "title": "色调与尺寸",
+      "height": 280
+    }
+  ],
+  "notes": [
+    "没有可见 label 时请传 aria-label。",
+    "isIndeterminate 用于无法预估时长的任务；数值格式可以通过 formatOptions 或 valueLabel 定制。",
+    "进度变化带 500ms 的平滑过渡，减少动态效果时自动关闭。"
+  ],
+  "props": [
+    {
+      "component": "Progress",
+      "description": "其余属性透传给 React Aria ProgressBar（value、minValue、maxValue、isIndeterminate、formatOptions、valueLabel 等）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "可见标签。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "进度条下方的说明。"
+        },
+        {
+          "name": "showValue",
+          "type": "boolean",
+          "default": "有 label 时为 true",
+          "description": "在标签行末显示数值。"
+        },
+        {
+          "name": "tone",
+          "type": "\"accent\" | \"success\" | \"warning\" | \"danger\" | \"neutral\"",
+          "default": "\"accent\"",
+          "description": "颜色。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "轨道粗细 4 / 6 / 10 px。"
+        }
+      ]
+    },
+    {
+      "component": "ProgressRing",
+      "description": "其余属性同 Progress。",
+      "props": [
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "直径 32 / 56 / 96 px。"
+        },
+        {
+          "name": "tone",
+          "type": "ProgressTone",
+          "default": "\"accent\"",
+          "description": "颜色。"
+        },
+        {
+          "name": "showValue",
+          "type": "boolean",
+          "default": "md / lg 为 true",
+          "description": "中心显示数值。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "自定义中心内容。"
+        },
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "环旁边的文字。"
+        }
+      ]
+    }
+  ]
+}

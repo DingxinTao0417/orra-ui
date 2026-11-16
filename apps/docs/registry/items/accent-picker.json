@@ -1,0 +1,96 @@
+{
+  "slug": "accent-picker",
+  "name": "Accent Picker",
+  "title": "主题色选择",
+  "category": "blocks",
+  "files": [
+    "components/accent-picker/accent-picker.tsx"
+  ],
+  "description": "主题色选择器：预设色板 + 自定义颜色，接入 setAccent / useAccent，选中后整个界面即时换色并持久化；支持内联色板和紧凑的弹出按钮两种形态。",
+  "keywords": [
+    "accent",
+    "theme color",
+    "brand color",
+    "palette",
+    "swatch",
+    "主题色",
+    "品牌色",
+    "强调色",
+    "色板",
+    "换肤"
+  ],
+  "exports": [
+    "AccentPicker"
+  ],
+  "demos": [
+    {
+      "file": "accent-picker/overview.tsx",
+      "title": "概览",
+      "height": 320
+    },
+    {
+      "file": "accent-picker/popover.tsx",
+      "title": "弹出形态",
+      "description": "variant=\"popover\" 显示当前颜色名称，点击后在浮层中选择，适合放在设置行或顶栏。",
+      "height": 200
+    },
+    {
+      "file": "accent-picker/presets.tsx",
+      "title": "限定色板",
+      "description": "presets 指定可选颜色及顺序，allowCustom={false} 关闭自定义颜色。",
+      "height": 180
+    }
+  ],
+  "notes": [
+    "选择写入 lib/theme.ts 的主题色存储，会同时生成浅色与深色两套 accent 色阶，所有使用 accent-* 的组件随之变化。",
+    "色板是一个单选组：方向键在颜色间移动，当前颜色带勾选标记，不只依赖颜色表达状态。",
+    "选择默认的海蓝等同于恢复默认（清除存储）；showValue 会显示当前颜色名称和「恢复默认」入口。"
+  ],
+  "props": [
+    {
+      "component": "AccentPicker",
+      "props": [
+        {
+          "name": "presets",
+          "type": "AccentPreset[]",
+          "default": "全部预设",
+          "description": "可选的预设颜色及顺序。"
+        },
+        {
+          "name": "allowCustom",
+          "type": "boolean",
+          "default": "true",
+          "description": "末尾提供自定义颜色色块，点击打开完整取色器。"
+        },
+        {
+          "name": "variant",
+          "type": "\"inline\" | \"popover\"",
+          "default": "\"inline\"",
+          "description": "内联色板，或点击按钮弹出色板。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "色块尺寸：24 / 32 / 40 px。"
+        },
+        {
+          "name": "showValue",
+          "type": "boolean",
+          "default": "false（popover 内为 true）",
+          "description": "在色板下方显示当前颜色和恢复默认。"
+        },
+        {
+          "name": "onChange",
+          "type": "(choice: AccentChoice | null) => void",
+          "description": "颜色变化后回调，null 表示默认。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<AccentPickerLabels>",
+          "description": "覆盖内置文案（含各颜色名称）。"
+        }
+      ]
+    }
+  ]
+}

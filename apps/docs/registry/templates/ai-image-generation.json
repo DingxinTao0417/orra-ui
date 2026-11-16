@@ -1,0 +1,27 @@
+{
+  "slug": "ai-image-generation",
+  "name": "AI Image Generation",
+  "title": "AI 图像生成",
+  "description": "AI 图像生成：每轮对话是一次生成，从进度和逐渐清晰的预览过渡到四宫格结果，支持变体、放大、下载与收藏；输入框内可设置比例、风格、数量与创意度，右侧作品库按类型筛选、搜索并支持设为参考图。",
+  "route": "/templates/ai-image-generation",
+  "files": [
+    "templates/ai-image-generation/ai-image-generation.tsx"
+  ],
+  "exports": [
+    "AiImageGenerationTemplate"
+  ],
+  "usage": "<AiImageGenerationTemplate />",
+  "keywords": [
+    "image generation",
+    "text to image",
+    "gallery",
+    "prompt",
+    "variations",
+    "upscale",
+    "AI 绘图",
+    "图像生成",
+    "文生图",
+    "作品库",
+    "提示词"
+  ]
+}

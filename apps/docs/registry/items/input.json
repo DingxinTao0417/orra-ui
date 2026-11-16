@@ -1,0 +1,160 @@
+{
+  "slug": "input",
+  "name": "Input",
+  "title": "输入框",
+  "category": "base",
+  "files": [
+    "components/input/input.tsx"
+  ],
+  "description": "单行文本输入：标签、说明与错误提示，支持前后图标、前后附加文本（如 URL 前缀）、一键清空，以及密码显示切换；三种尺寸。",
+  "keywords": [
+    "input",
+    "text field",
+    "textbox",
+    "password",
+    "输入框",
+    "文本框",
+    "表单",
+    "密码"
+  ],
+  "exports": [
+    "Input",
+    "InputGroup",
+    "InputControl",
+    "InputAddon",
+    "InputAction"
+  ],
+  "demos": [
+    {
+      "file": "input/overview.tsx",
+      "title": "概览",
+      "height": 320
+    },
+    {
+      "file": "input/addons.tsx",
+      "title": "图标与附加文本",
+      "description": "startIcon / endIcon 放图标，startAddon / endAddon 放贴边的文本块，适合网址前缀、货币和单位。",
+      "height": 300
+    },
+    {
+      "file": "input/validation.tsx",
+      "title": "校验、只读与禁用",
+      "description": "受控模式下用 isInvalid + errorMessage 自定义校验；isRequired 与 type=\"email\" 会走原生校验，errorMessage 可以是函数。",
+      "height": 420
+    },
+    {
+      "file": "input/sizes.tsx",
+      "title": "尺寸",
+      "height": 220
+    }
+  ],
+  "notes": [
+    "值可受控（value + onChange(value: string)）或非受控（defaultValue），onChange 直接返回字符串。",
+    "type=\"password\" 时自动出现显示/隐藏切换按钮，可用 revealable={false} 关闭；isClearable 在有值时显示清空按钮。",
+    "没有可见标签时请传 aria-label。需要自定义布局时，可用 InputGroup + InputControl + InputAddon 自行组合。"
+  ],
+  "props": [
+    {
+      "component": "Input",
+      "description": "其余属性透传给 React Aria TextField（name、type、isRequired、isInvalid、isDisabled、isReadOnly、validate、autoComplete 等）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "字段标签。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "标签下方的辅助说明。"
+        },
+        {
+          "name": "errorMessage",
+          "type": "ReactNode | ((v: ValidationResult) => ReactNode)",
+          "description": "校验失败（isInvalid 或原生校验）时显示的错误文案。"
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "description": "占位文本。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸：32 / 36 / 44 px。"
+        },
+        {
+          "name": "value / defaultValue",
+          "type": "string",
+          "description": "受控 / 非受控的值。"
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "description": "值变化回调。"
+        },
+        {
+          "name": "startIcon / endIcon",
+          "type": "ReactNode",
+          "description": "输入框内前 / 后的图标元素。"
+        },
+        {
+          "name": "startAddon / endAddon",
+          "type": "ReactNode",
+          "description": "贴边的附加文本块，如 \"https://\"、\"元\"。"
+        },
+        {
+          "name": "isClearable",
+          "type": "boolean",
+          "default": "false",
+          "description": "有值时显示清空按钮。"
+        },
+        {
+          "name": "revealable",
+          "type": "boolean",
+          "default": "true",
+          "description": "密码输入是否显示可见性切换。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<InputLabels>",
+          "description": "覆盖内置文案（清空、显示密码、隐藏密码）。"
+        },
+        {
+          "name": "inputClassName",
+          "type": "string",
+          "description": "附加到 <input> 的类名。"
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLInputElement>",
+          "description": "转发到 <input>。"
+        }
+      ]
+    },
+    {
+      "component": "InputGroup",
+      "description": "带边框的输入框外壳（React Aria Group），用于自定义组合。",
+      "props": [
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸：32 / 36 / 44 px。"
+        }
+      ]
+    },
+    {
+      "component": "InputAddon",
+      "props": [
+        {
+          "name": "side",
+          "type": "\"start\" | \"end\"",
+          "default": "\"start\"",
+          "description": "贴在哪一侧。"
+        }
+      ]
+    }
+  ]
+}

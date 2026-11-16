@@ -1,0 +1,12 @@
+/* ---------------------------------------------------------------------------
+ * @orra-ui/styles — framework-neutral design tokens, type scale and motion.
+ *
+ *   @import "tailwindcss";
+ *   @import "@orra-ui/styles";
+ *
+ * React users import "@orra-ui/react/styles.css", which includes this file.
+ * --------------------------------------------------------------------------- */
+@import "./tokens.css";
+@import "./typography.css";
+@import "./motion.css";
+@import "./base.css";

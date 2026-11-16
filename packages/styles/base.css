@@ -1,0 +1,16 @@
+/* Orra UI — base element defaults (opt-in through the package entry). */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: var(--orra-canvas);
+    color: var(--orra-fg);
+    font-family: var(--font-sans);
+  }
+  ::selection {
+    background-color: color-mix(in oklab, var(--orra-accent-500) 22%, transparent);
+  }
+}

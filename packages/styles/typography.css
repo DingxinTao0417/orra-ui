@@ -1,0 +1,49 @@
+/* ===========================================================================
+ * Orra UI — type scale
+ *
+ * Size utilities set font-size, line-height and tracking together
+ * (text-body, text-title, …). Weight is separate: pair with font-medium /
+ * font-semibold. Numbers in tables and charts: add `tabular-nums`.
+ * ======================================================================== */
+
+@theme {
+  --text-display-lg: 3rem;
+  --text-display-lg--line-height: 3.25rem;
+  --text-display-lg--letter-spacing: -0.035em;
+
+  --text-display: 2.25rem;
+  --text-display--line-height: 2.625rem;
+  --text-display--letter-spacing: -0.03em;
+
+  --text-title-lg: 1.5rem;
+  --text-title-lg--line-height: 1.875rem;
+  --text-title-lg--letter-spacing: -0.022em;
+
+  --text-title: 1.25rem;
+  --text-title--line-height: 1.75rem;
+  --text-title--letter-spacing: -0.018em;
+
+  --text-title-sm: 1.0625rem;
+  --text-title-sm--line-height: 1.5rem;
+  --text-title-sm--letter-spacing: -0.012em;
+
+  --text-body-lg: 0.9375rem;
+  --text-body-lg--line-height: 1.4375rem;
+  --text-body-lg--letter-spacing: -0.008em;
+
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.3125rem;
+  --text-body--letter-spacing: -0.006em;
+
+  --text-body-sm: 0.8125rem;
+  --text-body-sm--line-height: 1.1875rem;
+  --text-body-sm--letter-spacing: -0.003em;
+
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1rem;
+  --text-caption--letter-spacing: 0em;
+
+  --text-micro: 0.6875rem;
+  --text-micro--line-height: 0.875rem;
+  --text-micro--letter-spacing: 0.01em;
+}

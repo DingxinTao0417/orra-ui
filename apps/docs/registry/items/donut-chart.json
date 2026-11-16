@@ -1,0 +1,107 @@
+{
+  "slug": "donut-chart",
+  "name": "Donut Chart",
+  "title": "环形图",
+  "category": "charts",
+  "files": [
+    "components/donut-chart/donut-chart.tsx"
+  ],
+  "description": "环形图 / 饼图：中心显示总计（悬停时显示对应扇区），图例列出数值与占比，扇区与图例互相高亮。",
+  "keywords": [
+    "donut chart",
+    "pie chart",
+    "ring",
+    "share",
+    "环形图",
+    "饼图",
+    "占比",
+    "构成"
+  ],
+  "exports": [
+    "DonutChart",
+    "ChartCard"
+  ],
+  "demos": [
+    {
+      "file": "donut-chart/overview.tsx",
+      "title": "概览",
+      "description": "访问来源构成（示例数据），图例在右侧，窄屏时移到下方。",
+      "height": 360,
+      "layout": "padded"
+    },
+    {
+      "file": "donut-chart/budget.tsx",
+      "title": "饼图与细环",
+      "description": "variant=\"pie\"；thickness 控制环宽，centerLabel / centerValue 自定义中心内容。",
+      "height": 520,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "图例行可聚焦，键盘用户也能查看每个扇区的数值。",
+    "activeKey / onActiveChange 可受控高亮，用于与其他组件联动。"
+  ],
+  "props": [
+    {
+      "component": "DonutChart",
+      "props": [
+        {
+          "name": "data",
+          "type": "ChartSlice[]",
+          "description": "{ label, value, key?, color? }；缺省为示例数据。"
+        },
+        {
+          "name": "variant",
+          "type": "\"donut\" | \"pie\"",
+          "default": "\"donut\"",
+          "description": "环形或饼图。"
+        },
+        {
+          "name": "thickness",
+          "type": "number",
+          "default": "0.24",
+          "description": "环宽占半径比例。"
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "default": "200",
+          "description": "直径（px）。"
+        },
+        {
+          "name": "centerLabel / centerValue",
+          "type": "ReactNode",
+          "description": "中心文案，默认「合计」与总和。"
+        },
+        {
+          "name": "valueFormat",
+          "type": "\"number\" | \"compact\" | \"percent\" | \"currency\" | Intl.NumberFormatOptions | ((v: number) => string)",
+          "default": "\"number\"",
+          "description": "数值格式。"
+        },
+        {
+          "name": "currency",
+          "type": "string",
+          "description": "货币代码。"
+        },
+        {
+          "name": "legend",
+          "type": "\"end\" | \"bottom\" | \"none\"",
+          "default": "\"end\"",
+          "description": "图例位置。"
+        },
+        {
+          "name": "showShare",
+          "type": "boolean",
+          "default": "true",
+          "description": "图例显示占比。"
+        },
+        {
+          "name": "activeKey / onActiveChange",
+          "type": "string | null / (key) => void",
+          "description": "受控高亮。"
+        }
+      ]
+    }
+  ]
+}

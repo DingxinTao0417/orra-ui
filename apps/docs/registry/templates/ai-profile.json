@@ -1,0 +1,31 @@
+{
+  "slug": "ai-profile",
+  "name": "AI Profile",
+  "title": "AI 贡献档案",
+  "description": "开发者的 AI 使用档案：头像与简介、常用语言与成就、四项核心指标、全年使用热力图、可切换范围的 Token 用量堆叠面积图、模型分布环形图、常用项目排行、本月额度，以及最近编程会话表格。",
+  "route": "/templates/ai-profile",
+  "files": [
+    "templates/ai-profile/ai-profile.tsx"
+  ],
+  "exports": [
+    "AiProfileTemplate"
+  ],
+  "usage": "<AiProfileTemplate />",
+  "keywords": [
+    "ai",
+    "usage",
+    "profile",
+    "developer",
+    "tokens",
+    "heatmap",
+    "models",
+    "sessions",
+    "AI 使用",
+    "个人档案",
+    "开发者",
+    "热力图",
+    "Token",
+    "模型分布",
+    "会话记录"
+  ]
+}

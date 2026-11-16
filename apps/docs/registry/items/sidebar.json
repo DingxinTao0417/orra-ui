@@ -1,0 +1,237 @@
+{
+  "slug": "sidebar",
+  "name": "Sidebar",
+  "title": "侧边导航",
+  "category": "blocks",
+  "files": [
+    "components/sidebar/sidebar.tsx",
+    "components/sidebar/sidebar-types.ts",
+    "components/sidebar/sidebar-sample.tsx"
+  ],
+  "description": "应用侧边导航：工作区切换、搜索按钮、带图标 / 徽标 / 子项的导航分区、底部用户菜单；桌面端是可收起为图标栏的固定侧栏，小屏自动变为抽屉，全部通过属性配置。",
+  "keywords": [
+    "sidebar",
+    "navigation",
+    "nav",
+    "menu",
+    "app shell",
+    "drawer",
+    "侧边栏",
+    "导航",
+    "菜单",
+    "工作区",
+    "抽屉"
+  ],
+  "exports": [
+    "Sidebar",
+    "SidebarTrigger",
+    "type SidebarNavSection",
+    "type SidebarNavItem"
+  ],
+  "demos": [
+    {
+      "file": "sidebar/overview.tsx",
+      "title": "概览",
+      "description": "lg 断点以上显示侧栏，以下由 SidebarTrigger 打开抽屉。",
+      "height": 700,
+      "layout": "full"
+    },
+    {
+      "file": "sidebar/collapsed.tsx",
+      "title": "图标栏 + inset 风格",
+      "description": "收起后只保留图标，悬停显示名称；含子项的条目以浮出菜单展开。",
+      "height": 560,
+      "layout": "full"
+    },
+    {
+      "file": "sidebar/mobile.tsx",
+      "title": "移动端抽屉",
+      "description": "mode=\"drawer\" 只渲染抽屉，用 mobileOpen 控制。",
+      "height": 420
+    }
+  ],
+  "notes": [
+    "放进 flex 布局并给父级高度，例如 <div className=\"flex h-dvh\">；侧栏本身是 h-full。",
+    "带 href 的条目渲染为链接，可配合 React Aria 的 RouterProvider 接入客户端路由；当前条目带 aria-current=\"page\"。",
+    "activeKey、collapsed、mobileOpen、workspaceKey 都支持受控与非受控；不传 sections / workspaces / user 时显示示例数据，user={null} 可隐藏用户行。"
+  ],
+  "props": [
+    {
+      "component": "Sidebar",
+      "props": [
+        {
+          "name": "sections",
+          "type": "SidebarNavSection[]",
+          "default": "示例导航",
+          "description": "导航分区。"
+        },
+        {
+          "name": "activeKey / defaultActiveKey",
+          "type": "string",
+          "description": "当前条目 id。"
+        },
+        {
+          "name": "onActiveChange",
+          "type": "(key, item) => void",
+          "description": "点击条目。"
+        },
+        {
+          "name": "workspaces",
+          "type": "SidebarWorkspace[]",
+          "default": "示例",
+          "description": "工作区列表，[] 隐藏切换器。"
+        },
+        {
+          "name": "workspaceKey / defaultWorkspaceKey / onWorkspaceChange",
+          "type": "string",
+          "description": "当前工作区。"
+        },
+        {
+          "name": "onCreateWorkspace",
+          "type": "() => void",
+          "description": "提供后菜单底部显示「新建工作区」。"
+        },
+        {
+          "name": "header",
+          "type": "ReactNode",
+          "description": "替换工作区切换器（如纯 Logo）。"
+        },
+        {
+          "name": "showSearch",
+          "type": "boolean",
+          "default": "true",
+          "description": "显示搜索按钮。"
+        },
+        {
+          "name": "onSearch",
+          "type": "() => void",
+          "description": "点击搜索（在此打开命令面板）。"
+        },
+        {
+          "name": "searchShortcut",
+          "type": "string | false",
+          "default": "\"mod+k\"",
+          "description": "搜索按钮上的快捷键提示。"
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode",
+          "description": "用户行上方的内容，如升级卡片；收起时隐藏。"
+        },
+        {
+          "name": "user",
+          "type": "SidebarUser | null",
+          "default": "示例",
+          "description": "当前用户，null 隐藏。"
+        },
+        {
+          "name": "userMenuItems",
+          "type": "SidebarUserMenuItem[]",
+          "description": "用户菜单项，默认个人资料 / 设置 / 帮助 / 退出。"
+        },
+        {
+          "name": "onUserAction",
+          "type": "(id: string) => void",
+          "description": "点击用户菜单项。"
+        },
+        {
+          "name": "collapsed / defaultCollapsed / onCollapsedChange",
+          "type": "boolean",
+          "description": "是否收起为图标栏。"
+        },
+        {
+          "name": "collapsible",
+          "type": "boolean",
+          "default": "true",
+          "description": "显示收起按钮。"
+        },
+        {
+          "name": "mode",
+          "type": "\"responsive\" | \"rail\" | \"drawer\"",
+          "default": "\"responsive\"",
+          "description": "响应式、始终侧栏或只用抽屉。"
+        },
+        {
+          "name": "mobileOpen / defaultMobileOpen / onMobileOpenChange",
+          "type": "boolean",
+          "description": "抽屉开关。"
+        },
+        {
+          "name": "variant",
+          "type": "\"bordered\" | \"inset\"",
+          "default": "\"bordered\"",
+          "description": "白底带分隔线，或融入画布、当前项为浮起的白色块。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<SidebarLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "SidebarNavItem",
+      "props": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "唯一标识。"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": true,
+          "description": "名称，也用于收起时的提示。"
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "description": "链接地址。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "图标元素。"
+        },
+        {
+          "name": "badge",
+          "type": "ReactNode",
+          "description": "数字或小节点；收起时显示为圆点。"
+        },
+        {
+          "name": "badgeTone",
+          "type": "\"neutral\" | \"accent\" | \"danger\"",
+          "default": "\"neutral\"",
+          "description": "数字徽标颜色。"
+        },
+        {
+          "name": "items",
+          "type": "SidebarNavItem[]",
+          "description": "子项。"
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "description": "禁用。"
+        }
+      ]
+    },
+    {
+      "component": "SidebarTrigger",
+      "props": [
+        {
+          "name": "onPress",
+          "type": "() => void",
+          "description": "打开抽屉。"
+        },
+        {
+          "name": "responsive",
+          "type": "boolean",
+          "default": "true",
+          "description": "在 lg 断点以上隐藏。"
+        }
+      ]
+    }
+  ]
+}

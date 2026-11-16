@@ -1,0 +1,128 @@
+{
+  "slug": "tabs",
+  "name": "Tabs",
+  "title": "标签页",
+  "category": "base",
+  "files": [
+    "components/tabs/tabs.tsx"
+  ],
+  "description": "带动画指示器的标签页：underline 下划线、pill 胶囊、segment 分段三种样式，支持图标与计数、水平与垂直方向、键盘导航和对应的内容面板。",
+  "keywords": [
+    "tabs",
+    "tab",
+    "tablist",
+    "segment",
+    "标签页",
+    "选项卡",
+    "页签"
+  ],
+  "exports": [
+    "Tabs",
+    "TabList",
+    "Tab",
+    "TabPanel"
+  ],
+  "demos": [
+    {
+      "file": "tabs/overview.tsx",
+      "title": "概览",
+      "layout": "padded",
+      "height": 200
+    },
+    {
+      "file": "tabs/variants.tsx",
+      "title": "样式",
+      "description": "underline 适合页面分区，pill 适合轻量筛选，segment 适合紧凑的视图切换。",
+      "height": 300
+    },
+    {
+      "file": "tabs/vertical.tsx",
+      "title": "垂直方向",
+      "description": "orientation=\"vertical\" 时指示器移到起始侧，方向键改为上下切换；两个示例共享受控的 selectedKey。",
+      "layout": "padded",
+      "height": 260
+    }
+  ],
+  "notes": [
+    "Tab 与 TabPanel 通过相同的 id 关联；TabList 需要 aria-label。",
+    "方向键切换标签，Home / End 跳到首尾；选中指示器在标签之间平滑移动。",
+    "受控用 selectedKey / onSelectionChange，非受控用 defaultSelectedKey（均透传给 React Aria Tabs）。",
+    "fullWidth 让水平标签平分整行，常用于移动端。"
+  ],
+  "props": [
+    {
+      "component": "Tabs",
+      "description": "其余属性透传给 React Aria Tabs（selectedKey、defaultSelectedKey、onSelectionChange、orientation、keyboardActivation、disabledKeys）。",
+      "props": [
+        {
+          "name": "variant",
+          "type": "\"underline\" | \"pill\" | \"segment\"",
+          "default": "\"underline\"",
+          "description": "样式。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸。"
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "default": "\"horizontal\"",
+          "description": "方向。"
+        },
+        {
+          "name": "fullWidth",
+          "type": "boolean",
+          "default": "false",
+          "description": "水平方向时标签平分宽度。"
+        }
+      ]
+    },
+    {
+      "component": "TabList",
+      "props": [
+        {
+          "name": "aria-label",
+          "type": "string",
+          "required": true,
+          "description": "标签列表的可访问名称。"
+        }
+      ]
+    },
+    {
+      "component": "Tab",
+      "description": "其余属性透传给 React Aria Tab（id、isDisabled、href）。",
+      "props": [
+        {
+          "name": "id",
+          "type": "Key",
+          "required": true,
+          "description": "与 TabPanel 对应的标识。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "图标元素。"
+        },
+        {
+          "name": "count",
+          "type": "ReactNode",
+          "description": "标签后的计数徽标。"
+        }
+      ]
+    },
+    {
+      "component": "TabPanel",
+      "props": [
+        {
+          "name": "id",
+          "type": "Key",
+          "required": true,
+          "description": "对应 Tab 的 id。"
+        }
+      ]
+    }
+  ]
+}

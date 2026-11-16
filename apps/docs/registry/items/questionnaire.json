@@ -1,0 +1,139 @@
+{
+  "slug": "questionnaire",
+  "name": "Questionnaire",
+  "title": "问卷澄清",
+  "category": "agents",
+  "files": [
+    "components/questionnaire/questionnaire.tsx"
+  ],
+  "description": "智能体动手前的澄清问卷：一次一个问题，支持单选、多选和「其他」自由填写，进度圆点、上一步 / 下一步 / 跳过，最后汇总确认；提交后折叠为只读回顾。",
+  "keywords": [
+    "questionnaire",
+    "clarifying questions",
+    "survey",
+    "wizard",
+    "form",
+    "问卷",
+    "澄清问题",
+    "追问",
+    "向导"
+  ],
+  "exports": [
+    "Questionnaire"
+  ],
+  "demos": [
+    {
+      "file": "questionnaire/overview.tsx",
+      "title": "概览",
+      "description": "数字键 1–9 可直接选择选项；第二题为多选并允许填写「其他」。",
+      "height": 460
+    },
+    {
+      "file": "questionnaire/controlled.tsx",
+      "title": "受控与提交",
+      "description": "value / onChange 受控答案；allowSkip={false} 要求每题必答。",
+      "height": 400
+    }
+  ],
+  "notes": [
+    "答案结构：{ [questionId]: { selected: string[]; other?: string; skipped?: boolean } }，「其他」的选项 id 固定为 \"other\"。",
+    "基于 React Aria RadioGroup / CheckboxGroup，方向键在选项间移动。",
+    "未作答时「下一步」禁用；汇总页每题都可点「修改」跳回。"
+  ],
+  "props": [
+    {
+      "component": "Questionnaire",
+      "props": [
+        {
+          "name": "questions",
+          "type": "QuestionnaireQuestion[]",
+          "description": "问题列表。",
+          "required": true
+        },
+        {
+          "name": "value / defaultValue / onChange",
+          "type": "QuestionnaireAnswers",
+          "description": "答案，受控或非受控。"
+        },
+        {
+          "name": "onSubmit",
+          "type": "(answers: QuestionnaireAnswers) => void",
+          "description": "在汇总页点击开始时调用。"
+        },
+        {
+          "name": "onDismiss",
+          "type": "() => void",
+          "description": "传入后在右上角显示关闭按钮。"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "标题。",
+          "default": "\"开始之前，确认几件事\""
+        },
+        {
+          "name": "allowSkip",
+          "type": "boolean",
+          "description": "允许跳过问题。",
+          "default": "true"
+        },
+        {
+          "name": "submitLabel",
+          "type": "ReactNode",
+          "description": "提交按钮文字。",
+          "default": "\"开始执行\""
+        },
+        {
+          "name": "labels",
+          "type": "Partial<QuestionnaireLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "QuestionnaireQuestion",
+      "props": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "唯一标识。",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "问题。",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "补充说明。"
+        },
+        {
+          "name": "type",
+          "type": "\"single\" | \"multiple\"",
+          "description": "单选或多选。",
+          "default": "\"single\""
+        },
+        {
+          "name": "options",
+          "type": "{ id, label, description? }[]",
+          "description": "选项。",
+          "required": true
+        },
+        {
+          "name": "allowOther",
+          "type": "boolean",
+          "description": "增加「其他」与输入框。"
+        },
+        {
+          "name": "otherPlaceholder",
+          "type": "string",
+          "description": "「其他」输入框占位文字。"
+        }
+      ]
+    }
+  ],
+  "isNew": true
+}

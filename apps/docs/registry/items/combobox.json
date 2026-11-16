@@ -1,0 +1,104 @@
+{
+  "slug": "combobox",
+  "name": "Combobox",
+  "title": "组合框",
+  "category": "base",
+  "files": [
+    "components/combobox/combobox.tsx"
+  ],
+  "description": "可输入筛选的选择器：输入关键字实时过滤选项，弹层与 Select 样式一致，支持图标、说明、分组和空状态，字符串子元素可直接作为文本值。",
+  "keywords": [
+    "combobox",
+    "autocomplete",
+    "typeahead",
+    "filter",
+    "search select",
+    "组合框",
+    "自动完成",
+    "搜索选择"
+  ],
+  "exports": [
+    "Combobox",
+    "ComboboxItem",
+    "ComboboxSection"
+  ],
+  "demos": [
+    {
+      "file": "combobox/overview.tsx",
+      "title": "概览",
+      "height": 380
+    },
+    {
+      "file": "combobox/rich.tsx",
+      "title": "富内容选项与空状态",
+      "description": "defaultItems 交给组件过滤；选项可带头像、邮箱和团队，emptyState 自定义无结果文案。",
+      "height": 400
+    },
+    {
+      "file": "combobox/controlled.tsx",
+      "title": "受控与自定义值",
+      "description": "同时受控 selectedKey 与 inputValue；allowsCustomValue 允许提交列表外的值。",
+      "height": 380
+    }
+  ],
+  "notes": [
+    "非受控过滤请用 defaultItems（或静态子元素）；需要远程搜索时改用 items + inputValue 自行过滤。",
+    "默认聚焦即展开（menuTrigger=\"focus\"），无匹配时显示空状态而不是关闭浮层。",
+    "ComboboxItem / ComboboxSection 与 SelectItem / SelectSection 是同一组件，属性见 Select 文档。"
+  ],
+  "props": [
+    {
+      "component": "Combobox",
+      "description": "其余属性透传给 React Aria ComboBox（selectedKey、onSelectionChange、inputValue、onInputChange、defaultItems、items、allowsCustomValue、menuTrigger、isDisabled 等）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "字段标签。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "标签下方的辅助说明。"
+        },
+        {
+          "name": "errorMessage",
+          "type": "ReactNode | ((v: ValidationResult) => ReactNode)",
+          "description": "校验失败时显示的错误文案。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸：32 / 36 / 44 px。"
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "description": "输入框占位文本。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode | ((item: T) => ReactNode)",
+          "description": "静态选项，或配合 items / defaultItems 的渲染函数。"
+        },
+        {
+          "name": "startIcon",
+          "type": "ReactNode | true",
+          "description": "输入框前置图标；传 true 显示搜索图标。"
+        },
+        {
+          "name": "emptyState",
+          "type": "ReactNode",
+          "default": "\"没有匹配的结果\"",
+          "description": "无匹配时显示的内容。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ComboboxLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "slug": "tag-group",
+  "name": "Tag Group",
+  "title": "标签组",
+  "category": "base",
+  "files": [
+    "components/tag-group/tag-group.tsx"
+  ],
+  "description": "标签组：一组胶囊标签，可作为单选/多选筛选器、可删除，并可在末尾内联添加新标签；无标签时显示空状态。方向键在标签间移动，Backspace 删除。",
+  "keywords": [
+    "tag",
+    "tags",
+    "tag group",
+    "pill",
+    "filter chips",
+    "label",
+    "标签",
+    "标签组",
+    "筛选"
+  ],
+  "exports": [
+    "TagGroup",
+    "Tag"
+  ],
+  "demos": [
+    {
+      "file": "tag-group/overview.tsx",
+      "title": "概览",
+      "description": "可删除 + 内联添加。",
+      "height": 200
+    },
+    {
+      "file": "tag-group/filters.tsx",
+      "title": "筛选",
+      "description": "selectionMode 为 multiple 或 single，选中的标签显示对勾。",
+      "height": 220
+    },
+    {
+      "file": "tag-group/empty.tsx",
+      "title": "空状态",
+      "height": 200
+    }
+  ],
+  "notes": [
+    "删除：传入 onRemove(keys) 后每个标签出现 ×，聚焦标签时按 Backspace / Delete 同样可删除。",
+    "添加：传入 onAdd(text) 显示「添加」胶囊，点击后变为输入框，Enter 提交、Esc 取消；你需要自行把新标签加入数据。",
+    "Tag 的 children 为字符串时自动作为 textValue；动态数据请为每个 Tag 传 id。"
+  ],
+  "props": [
+    {
+      "component": "TagGroup",
+      "description": "其余属性透传给 React Aria TagGroup（selectionMode、selectedKeys、defaultSelectedKeys、onSelectionChange、onRemove、disabledKeys 等）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "标签组标题。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "说明文字。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode | ((item: T) => ReactNode)",
+          "description": "静态 Tag，或配合 items 的渲染函数。"
+        },
+        {
+          "name": "items",
+          "type": "Iterable<T>",
+          "description": "动态数据。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\"",
+          "default": "\"md\"",
+          "description": "标签尺寸。"
+        },
+        {
+          "name": "onAdd",
+          "type": "(text: string) => void",
+          "description": "显示内联添加输入框。"
+        },
+        {
+          "name": "emptyState",
+          "type": "ReactNode",
+          "default": "\"暂无标签\"",
+          "description": "无标签时显示的内容。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<TagGroupLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "Tag",
+      "description": "其余属性透传给 React Aria Tag（id、textValue、isDisabled、href）。",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "标签文字。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "前置图标或小圆点。"
+        }
+      ]
+    }
+  ]
+}

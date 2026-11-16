@@ -1,0 +1,123 @@
+{
+  "slug": "bar-list",
+  "name": "Bar List",
+  "title": "排行条",
+  "category": "charts",
+  "files": [
+    "components/bar-list/bar-list.tsx"
+  ],
+  "description": "排行列表：标签背后是按比例绘制的浅色条，右侧显示数值与占比，可用标签页切换维度，超出部分可「查看全部」。",
+  "keywords": [
+    "bar list",
+    "ranking",
+    "top pages",
+    "leaderboard",
+    "排行",
+    "排行榜",
+    "热门页面",
+    "来源",
+    "占比"
+  ],
+  "exports": [
+    "BarList",
+    "ChartCard"
+  ],
+  "demos": [
+    {
+      "file": "bar-list/overview.tsx",
+      "title": "概览",
+      "description": "页面 / 来源 / 城市三个维度，默认显示前 5 项。",
+      "height": 520,
+      "layout": "padded"
+    },
+    {
+      "file": "bar-list/custom.tsx",
+      "title": "图标与货币",
+      "description": "每行可带图标，数值按货币格式显示。",
+      "height": 300,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "数据默认按数值从大到小排序，可用 sort={false} 保持原顺序。",
+    "行带 href 时渲染为链接，传入 onItemAction 时渲染为按钮，均可键盘操作。",
+    "维度标签页基于 React Aria Tabs，支持受控 dimension / onDimensionChange。"
+  ],
+  "props": [
+    {
+      "component": "BarList",
+      "props": [
+        {
+          "name": "data",
+          "type": "BarListItem[]",
+          "description": "{ label, value, key?, icon?, href?, color? }；未传 dimensions 时使用，缺省为示例数据。"
+        },
+        {
+          "name": "dimensions",
+          "type": "{ id; label; data: BarListItem[] }[]",
+          "description": "多个数据集，用标签页切换。"
+        },
+        {
+          "name": "dimension / defaultDimension / onDimensionChange",
+          "type": "string / string / (id: string) => void",
+          "description": "当前维度（受控 / 非受控）。"
+        },
+        {
+          "name": "limit",
+          "type": "number",
+          "default": "5",
+          "description": "「查看全部」之前显示的行数。"
+        },
+        {
+          "name": "valueFormat",
+          "type": "\"number\" | \"compact\" | \"percent\" | \"currency\" | Intl.NumberFormatOptions | ((v: number) => string)",
+          "default": "\"number\"",
+          "description": "数值格式。"
+        },
+        {
+          "name": "currency",
+          "type": "string",
+          "description": "货币代码。"
+        },
+        {
+          "name": "showShare",
+          "type": "boolean",
+          "default": "true",
+          "description": "显示占比列。"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "var(--color-chart-1)",
+          "description": "条形颜色。"
+        },
+        {
+          "name": "sort",
+          "type": "boolean",
+          "default": "true",
+          "description": "按数值降序。"
+        },
+        {
+          "name": "labelHeading / valueHeading",
+          "type": "ReactNode",
+          "description": "列标题。"
+        },
+        {
+          "name": "onItemAction",
+          "type": "(item: BarListItem) => void",
+          "description": "点击行（无 href 时）。"
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "description": "列表 / 标签页的无障碍名称。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ChartLabels>",
+          "description": "覆盖文案（查看全部 / 收起）。"
+        }
+      ]
+    }
+  ]
+}

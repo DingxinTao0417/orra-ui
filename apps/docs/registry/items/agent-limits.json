@@ -1,0 +1,106 @@
+{
+  "slug": "agent-limits",
+  "name": "Agent Limits",
+  "title": "用量限制卡片",
+  "category": "agents",
+  "files": [
+    "components/agent-limits/agent-limits.tsx"
+  ],
+  "description": "AI 方案的用量卡片：上下文窗口占用（按系统提示词、对话、文件分段），请求与搜索等额度的仪表条（接近上限自动变色），重置倒计时，以及升级入口。",
+  "keywords": [
+    "usage",
+    "limits",
+    "quota",
+    "context window",
+    "tokens",
+    "plan",
+    "用量",
+    "额度",
+    "上下文",
+    "配额",
+    "升级"
+  ],
+  "exports": [
+    "AgentLimits"
+  ],
+  "demos": [
+    {
+      "file": "agent-limits/overview.tsx",
+      "title": "概览",
+      "description": "resetsAt 传入时间点，卡片在客户端显示「x 小时 y 分钟后重置」。",
+      "height": 420
+    },
+    {
+      "file": "agent-limits/near-limit.tsx",
+      "title": "接近上限",
+      "description": "额度超过 75% 变为警告色、90% 变为危险色，升级按钮随之变为主按钮。",
+      "height": 420
+    },
+    {
+      "file": "agent-limits/in-popover.tsx",
+      "title": "嵌入弹出层",
+      "description": "variant=\"plain\" 去掉卡片外框，适合放在输入框旁的用量弹层中。",
+      "height": 200
+    }
+  ],
+  "notes": [
+    "额度条复用 Meter，颜色之外还会显示「接近上限 / 已达上限」文字。",
+    "相对重置时间只在客户端计算并每 30 秒刷新，服务端渲染为空，避免水合不一致；也可以用 description 直接写死文案。",
+    "上下文分段默认依次使用图表色 chart-1…6，可用 color 自定义。"
+  ],
+  "props": [
+    {
+      "component": "AgentLimits",
+      "props": [
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "卡片标题。",
+          "default": "\"用量\""
+        },
+        {
+          "name": "plan",
+          "type": "ReactNode",
+          "description": "方案名，显示为标题旁的徽标。"
+        },
+        {
+          "name": "context",
+          "type": "{ limit: number; segments: AgentContextSegment[] }",
+          "description": "上下文窗口大小与占用分段。"
+        },
+        {
+          "name": "quotas",
+          "type": "AgentQuota[]",
+          "description": "额度列表：{ id, label, used, limit, unit?, resetsAt?, description? }。"
+        },
+        {
+          "name": "onUpgrade",
+          "type": "() => void",
+          "description": "传入后显示升级按钮。"
+        },
+        {
+          "name": "upgradeLabel",
+          "type": "ReactNode",
+          "description": "升级按钮文字。"
+        },
+        {
+          "name": "upgradeHint",
+          "type": "ReactNode",
+          "description": "升级按钮旁的说明。"
+        },
+        {
+          "name": "variant",
+          "type": "\"card\" | \"plain\"",
+          "description": "外观。",
+          "default": "\"card\""
+        },
+        {
+          "name": "labels",
+          "type": "Partial<AgentLimitsLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ],
+  "isNew": true
+}

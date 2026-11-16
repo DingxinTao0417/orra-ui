@@ -1,0 +1,109 @@
+{
+  "slug": "web-search",
+  "name": "Web Search",
+  "title": "联网搜索",
+  "category": "agents",
+  "files": [
+    "components/web-search/web-search.tsx"
+  ],
+  "description": "智能体的联网调研轨迹：执行过的搜索词、打开的来源（生成的站点徽标、标题、域名）、阅读与整理中的实时状态和引用编号；另有行内引用标记，悬停预览来源。",
+  "keywords": [
+    "web search",
+    "research",
+    "sources",
+    "citations",
+    "browsing",
+    "联网搜索",
+    "来源",
+    "引用",
+    "调研"
+  ],
+  "exports": [
+    "WebSearch",
+    "WebCitation",
+    "WebSourceIcon",
+    "webSourceDomain"
+  ],
+  "demos": [
+    {
+      "file": "web-search/overview.tsx",
+      "title": "概览",
+      "description": "status 依次经过 searching → reading → summarizing → done，来源随之出现并标记阅读状态。",
+      "height": 320
+    },
+    {
+      "file": "web-search/citations.tsx",
+      "title": "引用",
+      "description": "完成后默认收起为一行摘要；正文中用 WebCitation 标注来源，悬停或聚焦显示标题与域名。",
+      "height": 260,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "站点徽标由域名首字母与稳定配色生成，不会请求任何外部图标。",
+    "默认在工作中展开、完成后收起；可用 isExpanded / defaultExpanded 控制。",
+    "来源超过 maxSources 时显示「还有 N 个」开关。"
+  ],
+  "props": [
+    {
+      "component": "WebSearch",
+      "props": [
+        {
+          "name": "status",
+          "type": "\"searching\" | \"reading\" | \"summarizing\" | \"done\"",
+          "description": "当前阶段。",
+          "default": "\"done\""
+        },
+        {
+          "name": "queries",
+          "type": "WebSearchQuery[]",
+          "description": "搜索词：{ id, query, status?, resultCount? }。"
+        },
+        {
+          "name": "sources",
+          "type": "WebSearchSource[]",
+          "description": "来源：{ id, title, url, status?, citation? }。"
+        },
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "替换标题文字。"
+        },
+        {
+          "name": "isExpanded / defaultExpanded / onExpandedChange",
+          "type": "boolean / boolean / (v: boolean) => void",
+          "description": "展开状态。"
+        },
+        {
+          "name": "maxSources",
+          "type": "number",
+          "description": "默认显示的来源数。",
+          "default": "5"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<WebSearchLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "WebCitation",
+      "props": [
+        {
+          "name": "index",
+          "type": "number",
+          "description": "引用编号。",
+          "required": true
+        },
+        {
+          "name": "source",
+          "type": "{ title: string; url: string }",
+          "description": "来源。",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "isNew": true
+}

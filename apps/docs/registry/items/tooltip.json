@@ -1,0 +1,122 @@
+{
+  "slug": "tooltip",
+  "name": "Tooltip",
+  "title": "文字提示",
+  "category": "base",
+  "files": [
+    "components/tooltip/tooltip.tsx"
+  ],
+  "description": "悬停或键盘聚焦时显示的简短提示，支持位置、延迟、箭头和快捷键标签；库内按钮可直接作为触发器，其他内容用 TooltipTarget 包裹。",
+  "keywords": [
+    "tooltip",
+    "hint",
+    "title",
+    "文字提示",
+    "提示",
+    "悬停"
+  ],
+  "exports": [
+    "Tooltip",
+    "TooltipTarget"
+  ],
+  "demos": [
+    {
+      "file": "tooltip/overview.tsx",
+      "title": "概览",
+      "description": "工具栏中的图标按钮配合快捷键提示。",
+      "height": 200
+    },
+    {
+      "file": "tooltip/placement.tsx",
+      "title": "位置与箭头",
+      "height": 200
+    },
+    {
+      "file": "tooltip/target.tsx",
+      "title": "非按钮触发",
+      "description": "文字、图标、头像等非交互内容用 TooltipTarget 包裹，使其可被键盘聚焦。",
+      "height": 180
+    }
+  ],
+  "notes": [
+    "触发器必须是 React Aria 元素（Button、IconButton、Link…）；普通元素请用 TooltipTarget。",
+    "鼠标悬停有延迟（默认 500ms），键盘聚焦立即显示，Esc 关闭。",
+    "提示内容不应包含可交互元素；需要交互请使用 Popover。",
+    "图标按钮仍需要自己的 aria-label，提示只是补充说明。"
+  ],
+  "props": [
+    {
+      "component": "Tooltip",
+      "description": "offset、crossOffset、shouldFlip 透传给 React Aria Tooltip。",
+      "props": [
+        {
+          "name": "content",
+          "type": "ReactNode",
+          "required": true,
+          "description": "提示内容。"
+        },
+        {
+          "name": "children",
+          "type": "ReactElement",
+          "required": true,
+          "description": "触发元素。"
+        },
+        {
+          "name": "shortcut",
+          "type": "string | string[]",
+          "description": "快捷键标签，如 \"mod+k\"；mod 在 Apple 平台显示为 ⌘。"
+        },
+        {
+          "name": "placement",
+          "type": "Placement",
+          "default": "\"top\"",
+          "description": "位置。"
+        },
+        {
+          "name": "delay / closeDelay",
+          "type": "number",
+          "default": "500 / 150",
+          "description": "悬停打开 / 关闭的延迟（毫秒）。"
+        },
+        {
+          "name": "showArrow",
+          "type": "boolean",
+          "default": "false",
+          "description": "显示箭头。"
+        },
+        {
+          "name": "focusOnly",
+          "type": "boolean",
+          "default": "false",
+          "description": "仅在键盘聚焦时显示。"
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "description": "禁用提示。"
+        },
+        {
+          "name": "isOpen / defaultOpen / onOpenChange",
+          "type": "boolean / boolean / (isOpen: boolean) => void",
+          "description": "打开状态。"
+        }
+      ]
+    },
+    {
+      "component": "TooltipTarget",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "任意内容，会被包裹为可聚焦的 span。"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "description": "附加类名。"
+        }
+      ]
+    }
+  ]
+}

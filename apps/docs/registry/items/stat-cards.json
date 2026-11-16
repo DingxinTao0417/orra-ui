@@ -1,0 +1,187 @@
+{
+  "slug": "stat-cards",
+  "name": "Stat Cards",
+  "title": "指标卡片",
+  "category": "blocks",
+  "files": [
+    "components/stat-cards/stat-cards.tsx"
+  ],
+  "description": "KPI 指标卡片组：标签、数值、较上期涨跌徽标、可选图标与迷你趋势图，支持加载骨架；列数随容器宽度自动收缩，也可合并成一张分隔卡片。",
+  "keywords": [
+    "stat",
+    "kpi",
+    "metric",
+    "dashboard",
+    "card",
+    "指标",
+    "数据卡片",
+    "统计",
+    "看板",
+    "概览"
+  ],
+  "exports": [
+    "StatCards",
+    "StatCard",
+    "type StatCardItem"
+  ],
+  "demos": [
+    {
+      "file": "stat-cards/overview.tsx",
+      "title": "概览",
+      "height": 220,
+      "layout": "padded"
+    },
+    {
+      "file": "stat-cards/joined.tsx",
+      "title": "合并卡片",
+      "description": "variant=\"joined\" 把多个指标放进一张卡片，用细线分隔；trendPlacement=\"end\" 把趋势图放在数值旁边。",
+      "height": 200
+    },
+    {
+      "file": "stat-cards/loading.tsx",
+      "title": "加载状态",
+      "description": "loading 时显示骨架占位，保持布局不跳动。",
+      "height": 260,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "数值用 format 按当前语言格式化（number / compact / currency / percent / Intl 选项 / 函数）；传入字符串则原样显示。",
+    "涨跌优先取 delta（小数，0.12 = +12%），否则由 previous 计算；流失率、延迟这类越低越好的指标设置 invertDelta。",
+    "列数基于容器查询而不是视口：放在窄侧栏里会自动变成单列。"
+  ],
+  "props": [
+    {
+      "component": "StatCards",
+      "props": [
+        {
+          "name": "stats",
+          "type": "StatCardItem[]",
+          "default": "示例数据",
+          "description": "指标列表。"
+        },
+        {
+          "name": "columns",
+          "type": "2 | 3 | 4",
+          "default": "按数量，最多 4",
+          "description": "最宽时的列数。"
+        },
+        {
+          "name": "variant",
+          "type": "\"cards\" | \"joined\"",
+          "default": "\"cards\"",
+          "description": "独立卡片，或合并为一张。"
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "default": "false",
+          "description": "显示骨架。"
+        },
+        {
+          "name": "dense",
+          "type": "boolean",
+          "default": "false",
+          "description": "更紧凑的内边距。"
+        },
+        {
+          "name": "trendPlacement",
+          "type": "\"bottom\" | \"end\"",
+          "default": "\"bottom\"",
+          "description": "趋势图位置。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<StatCardsLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "StatCardItem",
+      "props": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "唯一标识。"
+        },
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "required": true,
+          "description": "指标名称。"
+        },
+        {
+          "name": "value",
+          "type": "number | string",
+          "required": true,
+          "description": "数值。"
+        },
+        {
+          "name": "format",
+          "type": "ChartValueFormat",
+          "default": "\"number\"",
+          "description": "数字格式。"
+        },
+        {
+          "name": "currency",
+          "type": "string",
+          "default": "\"USD\"",
+          "description": "货币代码。"
+        },
+        {
+          "name": "previous",
+          "type": "number",
+          "description": "上期数值，用于计算涨跌。"
+        },
+        {
+          "name": "delta",
+          "type": "number",
+          "description": "直接给出涨跌幅（小数）。"
+        },
+        {
+          "name": "invertDelta",
+          "type": "boolean",
+          "description": "越低越好。"
+        },
+        {
+          "name": "deltaLabel",
+          "type": "ReactNode",
+          "description": "涨跌徽标后的说明，默认「较上一周期」。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "图标元素，显示在着色方块中。"
+        },
+        {
+          "name": "trend",
+          "type": "number[]",
+          "description": "趋势数据，绘制迷你图。"
+        },
+        {
+          "name": "trendVariant",
+          "type": "\"line\" | \"area\" | \"bar\"",
+          "default": "\"area\"",
+          "description": "迷你图样式。"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "description": "迷你图与图标颜色，默认按序取图表色。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "数值下方的补充说明。"
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "description": "整张卡片变为链接。"
+        }
+      ]
+    }
+  ]
+}

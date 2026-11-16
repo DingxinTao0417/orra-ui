@@ -1,0 +1,188 @@
+{
+  "slug": "file-upload",
+  "name": "File Upload",
+  "title": "文件上传",
+  "category": "base",
+  "files": [
+    "components/file-upload/file-upload.tsx"
+  ],
+  "description": "文件上传：支持拖拽与点击选择的投放区，自动生成格式和大小提示并校验；文件列表显示类型图标、大小、进度条与成功/失败状态，可删除和重试。上传逻辑由使用方实现。",
+  "keywords": [
+    "file upload",
+    "dropzone",
+    "drag and drop",
+    "attachment",
+    "upload",
+    "上传",
+    "文件上传",
+    "拖拽上传",
+    "附件"
+  ],
+  "exports": [
+    "FileUpload",
+    "FileDropZone",
+    "FileUploadList",
+    "FileUploadItem",
+    "formatFileSize",
+    "fileMatchesAccept"
+  ],
+  "demos": [
+    {
+      "file": "file-upload/overview.tsx",
+      "title": "概览",
+      "description": "选择或拖入文件后会模拟上传进度；失败的文件可以重试。",
+      "height": 480,
+      "layout": "padded"
+    },
+    {
+      "file": "file-upload/compact.tsx",
+      "title": "紧凑单行",
+      "description": "layout=\"compact\" 单行投放区，multiple={false} 只接收一个文件。",
+      "height": 180
+    },
+    {
+      "file": "file-upload/states.tsx",
+      "title": "文件状态",
+      "description": "queued / uploading / done / error 四种状态。",
+      "height": 340
+    }
+  ],
+  "notes": [
+    "组件不负责上传：onFilesAdded 拿到通过校验的 File，你自行上传并把进度、状态写回 files。",
+    "accept 支持 MIME（image/*、application/pdf）和扩展名（.pdf）；不符合 accept / maxSize / maxFiles 的文件进入 onFilesRejected，并在投放区内提示。",
+    "整个投放区都是可聚焦的按钮，键盘按 Enter / 空格即可打开文件选择器。"
+  ],
+  "props": [
+    {
+      "component": "FileUpload",
+      "description": "投放区 + 文件列表，同时接受 FileDropZone 的全部属性。",
+      "props": [
+        {
+          "name": "files",
+          "type": "UploadFileItem[]",
+          "default": "[]",
+          "description": "要显示的文件（id、name、size、type、progress、status、error）。"
+        },
+        {
+          "name": "onRemove",
+          "type": "(id: string) => void",
+          "description": "点击删除。"
+        },
+        {
+          "name": "onRetry",
+          "type": "(id: string) => void",
+          "description": "失败文件点击重试。"
+        },
+        {
+          "name": "label / description",
+          "type": "ReactNode",
+          "description": "标题与说明。"
+        }
+      ]
+    },
+    {
+      "component": "FileDropZone",
+      "props": [
+        {
+          "name": "accept",
+          "type": "string[]",
+          "description": "允许的 MIME 类型或扩展名。"
+        },
+        {
+          "name": "maxSize",
+          "type": "number",
+          "description": "单个文件最大字节数。"
+        },
+        {
+          "name": "maxFiles",
+          "type": "number",
+          "description": "单次最多文件数。"
+        },
+        {
+          "name": "multiple",
+          "type": "boolean",
+          "default": "true",
+          "description": "允许多选。"
+        },
+        {
+          "name": "onFilesAdded",
+          "type": "(files: File[]) => void",
+          "description": "通过校验的文件。"
+        },
+        {
+          "name": "onFilesRejected",
+          "type": "(rejections: FileRejection[]) => void",
+          "description": "未通过校验的文件及原因（type / size / count）。"
+        },
+        {
+          "name": "hint",
+          "type": "ReactNode",
+          "description": "替换自动生成的提示行。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "替换上传图标。"
+        },
+        {
+          "name": "layout",
+          "type": "\"default\" | \"compact\"",
+          "default": "\"default\"",
+          "description": "大投放区或单行。"
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "description": "禁用。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<FileUploadLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "UploadFileItem",
+      "description": "文件列表数据结构。",
+      "props": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "唯一标识。"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": "文件名。"
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "description": "字节数。"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "description": "MIME 类型，用于选择图标。"
+        },
+        {
+          "name": "progress",
+          "type": "number",
+          "description": "0–100 的上传进度。"
+        },
+        {
+          "name": "status",
+          "type": "\"queued\" | \"uploading\" | \"done\" | \"error\"",
+          "default": "\"done\"",
+          "description": "状态。"
+        },
+        {
+          "name": "error",
+          "type": "ReactNode",
+          "description": "失败原因。"
+        }
+      ]
+    }
+  ]
+}

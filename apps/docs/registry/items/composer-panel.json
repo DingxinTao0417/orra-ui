@@ -1,0 +1,164 @@
+{
+  "slug": "composer-panel",
+  "name": "Composer Panel",
+  "title": "对话输入面板",
+  "category": "agents",
+  "files": [
+    "components/composer-panel/composer-panel.tsx"
+  ],
+  "description": "AI 对话输入面板：自动增高的输入区、附件行，工具栏包含添加菜单（文件、图片、工具）、权限模式选择、模型选择插槽、语音按钮与发送 / 停止按钮；⌘/Ctrl + Enter 发送，支持禁用与生成中状态。",
+  "keywords": [
+    "composer",
+    "chat input",
+    "prompt input",
+    "message box",
+    "输入框",
+    "对话输入",
+    "发送",
+    "提示词输入"
+  ],
+  "exports": [
+    "ComposerPanel"
+  ],
+  "demos": [
+    {
+      "file": "composer-panel/overview.tsx",
+      "title": "概览",
+      "description": "发送后进入生成状态：边框流光、发送键变为停止键。添加菜单可选择本地文件，模型选择通过 modelPicker 插槽放入。",
+      "height": 340,
+      "layout": "padded"
+    },
+    {
+      "file": "composer-panel/simple.tsx",
+      "title": "回车发送",
+      "description": "submitShortcut=\"enter\" 时回车发送、Shift + 回车换行；modes={[]} 隐藏模式选择。",
+      "height": 200
+    },
+    {
+      "file": "composer-panel/states.tsx",
+      "title": "生成中与禁用",
+      "height": 300
+    }
+  ],
+  "notes": [
+    "中文输入法组字时按回车不会触发发送（检查 isComposing）。",
+    "文本支持受控（value / onChange）与非受控；非受控时发送后自动清空。",
+    "有附件正在上传时发送按钮保持禁用；onSubmit 收到 { text, attachments, mode }。",
+    "默认提供「先询问 / 自动执行 / 仅规划」三种权限模式，可用 modes 自定义。"
+  ],
+  "props": [
+    {
+      "component": "ComposerPanel",
+      "props": [
+        {
+          "name": "value / defaultValue / onChange",
+          "type": "string / string / (v: string) => void",
+          "description": "输入内容。"
+        },
+        {
+          "name": "onSubmit",
+          "type": "(payload: ComposerSubmitPayload) => void",
+          "description": "发送回调。"
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "description": "占位文字。"
+        },
+        {
+          "name": "attachments",
+          "type": "ComposerAttachmentItem[]",
+          "description": "附件列表。"
+        },
+        {
+          "name": "onRemoveAttachment / onRetryAttachment",
+          "type": "(id: string) => void",
+          "description": "移除 / 重试附件。"
+        },
+        {
+          "name": "onFilesSelected",
+          "type": "(files: File[]) => void",
+          "description": "启用添加菜单中的「上传文件」「添加图片」。"
+        },
+        {
+          "name": "addActions",
+          "type": "ComposerAddAction[]",
+          "description": "添加菜单「工具」分组中的额外项。"
+        },
+        {
+          "name": "onAddAction",
+          "type": "(id: string) => void",
+          "description": "选择工具项的回调。"
+        },
+        {
+          "name": "modelPicker",
+          "type": "ReactNode",
+          "description": "模型选择器插槽。"
+        },
+        {
+          "name": "modes",
+          "type": "ComposerMode[]",
+          "description": "权限模式；传 [] 隐藏。"
+        },
+        {
+          "name": "mode / defaultMode / onModeChange",
+          "type": "string / string / (id: string) => void",
+          "description": "当前模式。"
+        },
+        {
+          "name": "onVoice",
+          "type": "() => void",
+          "description": "传入后显示麦克风按钮。"
+        },
+        {
+          "name": "isRecording",
+          "type": "boolean",
+          "description": "录音中。"
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "description": "生成中：显示停止按钮与边框光效。"
+        },
+        {
+          "name": "loadingLabel",
+          "type": "ReactNode",
+          "description": "生成中时在上方显示的状态文字。"
+        },
+        {
+          "name": "onStop",
+          "type": "() => void",
+          "description": "停止生成。"
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "description": "禁用。"
+        },
+        {
+          "name": "submitShortcut",
+          "type": "\"mod-enter\" | \"enter\"",
+          "description": "发送快捷键。",
+          "default": "\"mod-enter\""
+        },
+        {
+          "name": "minRows / maxRows",
+          "type": "number",
+          "description": "输入区最小 / 最大行数。",
+          "default": "2 / 10"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ComposerPanelLabels>",
+          "description": "覆盖内置文案。"
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLTextAreaElement>",
+          "description": "转发到 <textarea>。"
+        }
+      ]
+    }
+  ],
+  "isNew": true
+}

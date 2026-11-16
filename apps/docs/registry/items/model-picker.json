@@ -1,0 +1,137 @@
+{
+  "slug": "model-picker",
+  "name": "Model Picker",
+  "title": "模型选择器",
+  "category": "agents",
+  "files": [
+    "components/model-picker/model-picker.tsx"
+  ],
+  "description": "AI 模型选择器：紧凑的触发按钮打开可搜索的弹层，按提供商分组，用生成的字母徽标代替品牌标志，展示快速、推理、视觉等能力徽标与上下文长度，底部可调推理强度或温度。",
+  "keywords": [
+    "model picker",
+    "model selector",
+    "llm",
+    "provider",
+    "模型选择",
+    "大模型",
+    "推理强度",
+    "温度"
+  ],
+  "exports": [
+    "ModelPicker",
+    "ModelProviderMark",
+    "MODEL_PICKER_SAMPLE"
+  ],
+  "demos": [
+    {
+      "file": "model-picker/overview.tsx",
+      "title": "概览",
+      "description": "超过 4 个模型时自动显示搜索框；带推理能力的模型会在触发按钮上显示当前推理强度。",
+      "height": 200
+    },
+    {
+      "file": "model-picker/temperature.tsx",
+      "title": "温度与工具栏样式",
+      "description": "control=\"temperature\" 换成温度滑块；variant=\"ghost\" 适合放进输入框工具栏。",
+      "height": 200
+    },
+    {
+      "file": "model-picker/controlled.tsx",
+      "title": "受控",
+      "height": 200
+    }
+  ],
+  "notes": [
+    "提供商徽标由名称生成（首字母 + 稳定配色），不使用任何真实品牌标志。",
+    "模型、推理强度、温度都支持受控与非受控。",
+    "不支持推理的模型会禁用推理强度控件。",
+    "不传 models 时使用虚构的 MODEL_PICKER_SAMPLE，仅供演示。"
+  ],
+  "props": [
+    {
+      "component": "ModelPicker",
+      "props": [
+        {
+          "name": "models",
+          "type": "ModelOption[]",
+          "description": "可选模型：{ id, name, provider, description?, capabilities?, contextWindow?, isNew?, isDisabled? }。",
+          "default": "MODEL_PICKER_SAMPLE"
+        },
+        {
+          "name": "value / defaultValue / onChange",
+          "type": "string / string / (id: string) => void",
+          "description": "选中的模型 id。"
+        },
+        {
+          "name": "control",
+          "type": "\"effort\" | \"temperature\" | \"none\"",
+          "description": "底部控件。",
+          "default": "\"effort\""
+        },
+        {
+          "name": "effort / defaultEffort / onEffortChange",
+          "type": "\"low\" | \"medium\" | \"high\"",
+          "description": "推理强度。",
+          "default": "defaultEffort: \"medium\""
+        },
+        {
+          "name": "temperature / defaultTemperature / onTemperatureChange",
+          "type": "number",
+          "description": "温度 0–2。",
+          "default": "defaultTemperature: 0.7"
+        },
+        {
+          "name": "searchable",
+          "type": "boolean",
+          "description": "显示搜索框；默认模型多于 4 个时显示。"
+        },
+        {
+          "name": "variant",
+          "type": "\"outline\" | \"ghost\"",
+          "description": "触发按钮外观。",
+          "default": "\"outline\""
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\"",
+          "description": "触发按钮尺寸。",
+          "default": "\"md\""
+        },
+        {
+          "name": "placement",
+          "type": "Placement",
+          "description": "弹层位置。",
+          "default": "\"bottom start\""
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "description": "禁用。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ModelPickerLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "ModelProviderMark",
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "description": "提供商名称。",
+          "required": true
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\"",
+          "description": "16 / 20 / 28 px。",
+          "default": "\"sm\""
+        }
+      ]
+    }
+  ],
+  "isNew": true
+}

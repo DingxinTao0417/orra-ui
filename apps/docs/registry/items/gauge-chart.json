@@ -1,0 +1,127 @@
+{
+  "slug": "gauge-chart",
+  "name": "Gauge Chart",
+  "title": "仪表图",
+  "category": "charts",
+  "files": [
+    "components/gauge-chart/gauge-chart.tsx"
+  ],
+  "description": "仪表盘图：半圆或四分之三圆弧展示得分 / 目标进度，按阈值自动着色，可标记目标值，以 meter 角色暴露给辅助技术。",
+  "keywords": [
+    "gauge",
+    "meter",
+    "score",
+    "progress",
+    "goal",
+    "仪表盘",
+    "得分",
+    "目标",
+    "进度",
+    "阈值"
+  ],
+  "exports": [
+    "GaugeChart",
+    "ChartCard"
+  ],
+  "demos": [
+    {
+      "file": "gauge-chart/overview.tsx",
+      "title": "概览",
+      "description": "阈值着色 + 目标标记 + 变化徽标。",
+      "height": 420,
+      "layout": "padded"
+    },
+    {
+      "file": "gauge-chart/variants.tsx",
+      "title": "四分之三圆弧",
+      "description": "同一组阈值下不同数值呈现不同语气。",
+      "height": 300,
+      "layout": "padded"
+    },
+    {
+      "file": "gauge-chart/goal.tsx",
+      "title": "自定义范围",
+      "description": "min / max 任意范围，数值可用 Intl 选项格式化。",
+      "height": 300,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "thresholds 中不高于当前值的最大阈值决定颜色，外圈细线标出各阈值区间。",
+    "宽度随容器缩放，size 为最大宽度。",
+    "数值变化时圆弧带过渡动画，遵循 prefers-reduced-motion。"
+  ],
+  "props": [
+    {
+      "component": "GaugeChart",
+      "props": [
+        {
+          "name": "value",
+          "type": "number",
+          "description": "当前值（缺省为示例值 72）。"
+        },
+        {
+          "name": "min / max",
+          "type": "number",
+          "default": "0 / 100",
+          "description": "取值范围。"
+        },
+        {
+          "name": "variant",
+          "type": "\"semi\" | \"three-quarter\"",
+          "default": "\"semi\"",
+          "description": "半圆或 270° 圆弧。"
+        },
+        {
+          "name": "target",
+          "type": "number",
+          "description": "目标标记。"
+        },
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "数值下方的说明。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "底部附加内容。"
+        },
+        {
+          "name": "thresholds",
+          "type": "{ value: number; tone: ChartTone }[]",
+          "description": "按值着色。"
+        },
+        {
+          "name": "tone",
+          "type": "ChartTone",
+          "default": "\"accent\"",
+          "description": "无阈值时的固定语气。"
+        },
+        {
+          "name": "thickness",
+          "type": "number",
+          "default": "14",
+          "description": "圆弧粗细（viewBox 单位，半径 80）。"
+        },
+        {
+          "name": "valueFormat",
+          "type": "\"number\" | \"compact\" | \"percent\" | \"currency\" | Intl.NumberFormatOptions | ((v: number) => string)",
+          "description": "数值格式。"
+        },
+        {
+          "name": "showRange",
+          "type": "boolean",
+          "default": "true",
+          "description": "在两端显示最小 / 最大值。"
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "default": "260",
+          "description": "最大宽度（px）。"
+        }
+      ]
+    }
+  ]
+}

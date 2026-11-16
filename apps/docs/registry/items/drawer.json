@@ -1,0 +1,117 @@
+{
+  "slug": "drawer",
+  "name": "Drawer",
+  "title": "抽屉",
+  "category": "base",
+  "files": [
+    "components/drawer/drawer.tsx"
+  ],
+  "description": "从起始边、结束边或底部滑出的抽屉面板：头部标题与操作、可滚动正文、吸底操作栏，四种尺寸，start / end 随文字方向自动镜像。",
+  "keywords": [
+    "drawer",
+    "sheet",
+    "side panel",
+    "bottom sheet",
+    "抽屉",
+    "侧边栏",
+    "底部面板"
+  ],
+  "exports": [
+    "Drawer"
+  ],
+  "demos": [
+    {
+      "file": "drawer/overview.tsx",
+      "title": "概览",
+      "height": 200
+    },
+    {
+      "file": "drawer/placement.tsx",
+      "title": "位置",
+      "description": "placement 为 start / end / bottom；底部抽屉带把手，适合移动端。",
+      "height": 180
+    },
+    {
+      "file": "drawer/detail.tsx",
+      "title": "受控与头部操作",
+      "description": "用 isOpen 受控打开；headerActions 在关闭按钮前放置额外操作。",
+      "height": 180
+    }
+  ],
+  "notes": [
+    "start / end 是逻辑方向：在 RTL 语言中会自动从另一侧滑出，动画方向同步翻转。",
+    "footer 固定在底部，正文内容过长时只滚动正文区域。",
+    "基于 React Aria Modal：焦点被限制在抽屉内，Esc 与点击遮罩可关闭（isDismissable 控制后者）。"
+  ],
+  "props": [
+    {
+      "component": "Drawer",
+      "props": [
+        {
+          "name": "trigger",
+          "type": "ReactElement",
+          "description": "打开抽屉的元素；省略时用 isOpen 受控。"
+        },
+        {
+          "name": "isOpen / defaultOpen / onOpenChange",
+          "type": "boolean / boolean / (isOpen: boolean) => void",
+          "description": "打开状态。"
+        },
+        {
+          "name": "placement",
+          "type": "\"end\" | \"start\" | \"bottom\"",
+          "default": "\"end\"",
+          "description": "滑出的边。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\" | \"full\"",
+          "default": "\"md\"",
+          "description": "侧边抽屉的宽度（360 / 440 / 640 / 全宽）或底部抽屉的最大高度。"
+        },
+        {
+          "name": "title / description",
+          "type": "ReactNode",
+          "description": "头部标题与说明。"
+        },
+        {
+          "name": "headerActions",
+          "type": "ReactNode",
+          "description": "头部关闭按钮前的额外操作。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode | ((api: { close }) => ReactNode)",
+          "description": "可滚动正文。"
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode | ((api: { close }) => ReactNode)",
+          "description": "吸底操作栏。"
+        },
+        {
+          "name": "isDismissable",
+          "type": "boolean",
+          "default": "true",
+          "description": "点击遮罩是否关闭。"
+        },
+        {
+          "name": "hideCloseButton",
+          "type": "boolean",
+          "default": "false",
+          "description": "隐藏关闭按钮。"
+        },
+        {
+          "name": "className / bodyClassName",
+          "type": "string",
+          "description": "面板 / 正文附加类名。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<DrawerLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ]
+}

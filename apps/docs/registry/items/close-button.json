@@ -1,0 +1,75 @@
+{
+  "slug": "close-button",
+  "name": "Close Button",
+  "title": "关闭按钮",
+  "category": "base",
+  "files": [
+    "components/close-button/close-button.tsx"
+  ],
+  "description": "对话框、抽屉、横幅和通知里使用的小号 × 按钮：三种尺寸、plain / soft / inverse 三种外观，无障碍名称来自内置中英文文案。",
+  "keywords": [
+    "close",
+    "dismiss",
+    "x button",
+    "关闭",
+    "关闭按钮",
+    "叉"
+  ],
+  "exports": [
+    "CloseButton"
+  ],
+  "demos": [
+    {
+      "file": "close-button/overview.tsx",
+      "title": "概览",
+      "height": 200
+    },
+    {
+      "file": "close-button/in-panel.tsx",
+      "title": "在卡片中使用",
+      "description": "通常放在容器的右上角（RTL 下自动在左上角），配合 end-3 top-3 定位。",
+      "height": 220
+    }
+  ],
+  "notes": [
+    "默认 aria-label 为「关闭」/「Close」，可用 aria-label 或 labels 覆盖。",
+    "放在 React Aria 的 Dialog 内时，传 slot=\"close\" 即可关闭对话框，无需写 onPress。",
+    "inverse 继承当前文字颜色，适合深色或品牌色的背景。"
+  ],
+  "props": [
+    {
+      "component": "CloseButton",
+      "description": "其余属性透传给 React Aria Button（onPress、isDisabled、slot 等）。",
+      "props": [
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸：24 / 28 / 32 px。"
+        },
+        {
+          "name": "variant",
+          "type": "\"plain\" | \"soft\" | \"inverse\"",
+          "default": "\"plain\"",
+          "description": "外观。"
+        },
+        {
+          "name": "round",
+          "type": "boolean",
+          "default": "false",
+          "description": "圆形。"
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "description": "覆盖无障碍名称。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<CloseButtonLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ]
+}

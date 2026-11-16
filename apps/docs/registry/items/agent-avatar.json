@@ -1,0 +1,102 @@
+{
+  "slug": "agent-avatar",
+  "name": "Agent Avatar",
+  "title": "智能体头像",
+  "category": "agents",
+  "files": [
+    "components/agent-avatar/agent-avatar.tsx"
+  ],
+  "description": "AI 智能体的动态形象：取自 Orra 标志的「光环 + 光球」，颜色由 seed 稳定生成，空闲、思考、回复、执行、出错五种状态用不同的动效表达；开启减少动效时显示静态光球。",
+  "keywords": [
+    "agent avatar",
+    "ai avatar",
+    "orb",
+    "bot",
+    "智能体头像",
+    "AI 头像",
+    "光球",
+    "机器人"
+  ],
+  "exports": [
+    "AgentAvatar",
+    "agentAvatarColors",
+    "agentSeedHash"
+  ],
+  "demos": [
+    {
+      "file": "agent-avatar/overview.tsx",
+      "title": "概览",
+      "description": "五种状态：缓慢漂移的空闲、光环快速绕行的思考、呼吸脉动的回复、虚线光环旋转的执行，以及静止的出错状态。",
+      "height": 240
+    },
+    {
+      "file": "agent-avatar/seeds.tsx",
+      "title": "颜色与尺寸",
+      "description": "传入 seed（如智能体 id）即可得到稳定且互不相同的配色；不传则使用主题强调色。五种尺寸 20–72px。",
+      "height": 300
+    },
+    {
+      "file": "agent-avatar/in-chat.tsx",
+      "title": "对话头部",
+      "description": "随智能体的实际进度切换 state，动效会自然过渡。",
+      "height": 200
+    }
+  ],
+  "notes": [
+    "state 只改变动效与光环形态，颜色不变（error 除外），因此颜色不是唯一信号：可访问名称会读出「名称 · 状态」。",
+    "seed 与 name 分开：name 只用于读屏标签，配色只由 seed 决定，改名不会换色。",
+    "所有循环动画都挂在 motion-safe 之下，系统开启「减少动效」时显示静态光球。"
+  ],
+  "props": [
+    {
+      "component": "AgentAvatar",
+      "description": "其余属性透传给根 <span>。",
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "description": "智能体名称，用于可访问标签。"
+        },
+        {
+          "name": "seed",
+          "type": "string",
+          "description": "决定配色的任意字符串；不传使用强调色。"
+        },
+        {
+          "name": "colors",
+          "type": "[string, string, string]",
+          "description": "直接指定三种 CSS 颜色，优先于 seed。"
+        },
+        {
+          "name": "state",
+          "type": "\"idle\" | \"thinking\" | \"speaking\" | \"working\" | \"error\"",
+          "description": "当前状态。",
+          "default": "\"idle\""
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "description": "20 / 28 / 36 / 48 / 72 px。",
+          "default": "\"md\""
+        },
+        {
+          "name": "halo",
+          "type": "boolean",
+          "description": "是否显示外圈光环。",
+          "default": "true"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<AgentAvatarLabels>",
+          "description": "覆盖内置文案（状态名等）。"
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLSpanElement>",
+          "description": "转发到根元素。"
+        }
+      ]
+    }
+  ],
+  "isNew": true
+}

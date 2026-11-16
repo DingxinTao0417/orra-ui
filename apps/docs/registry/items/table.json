@@ -1,0 +1,208 @@
+{
+  "slug": "table",
+  "name": "Table",
+  "title": "表格",
+  "category": "base",
+  "files": [
+    "components/table/table.tsx"
+  ],
+  "description": "基于 React Aria Table 的数据表格：可排序列、复选框行选择、吸顶表头、舒适/紧凑两种密度、按列对齐、斑马纹与空状态，并提供成员单元格和状态徽标等辅助组件。",
+  "keywords": [
+    "table",
+    "data table",
+    "grid",
+    "sort",
+    "selection",
+    "表格",
+    "数据表",
+    "排序",
+    "多选",
+    "列表"
+  ],
+  "exports": [
+    "Table",
+    "TableHeader",
+    "TableColumn",
+    "TableBody",
+    "TableRow",
+    "TableCell",
+    "TableUser",
+    "TableStatus",
+    "TableEmptyState"
+  ],
+  "demos": [
+    {
+      "file": "table/overview.tsx",
+      "title": "概览",
+      "description": "多选 + 排序：selectionMode=\"multiple\" 会自动加入复选框列。",
+      "layout": "padded",
+      "height": 400
+    },
+    {
+      "file": "table/compact.tsx",
+      "title": "紧凑密度与吸顶表头",
+      "description": "density=\"compact\"、stickyHeader + maxHeight，数字列右对齐并使用等宽数字。",
+      "layout": "padded",
+      "height": 340
+    },
+    {
+      "file": "table/empty.tsx",
+      "title": "空状态",
+      "layout": "padded",
+      "height": 320
+    }
+  ],
+  "notes": [
+    "Table 需要 aria-label（或 aria-labelledby），并给一列设置 isRowHeader。",
+    "排序由你来做：读取 sortDescriptor，在 onSortChange 中更新并对数据排序。",
+    "对齐需要同时设置 TableColumn 和 TableCell 的 align；数字列建议加 numeric 使用等宽数字。",
+    "variant=\"plain\" 去掉外层卡片边框，用于已经在卡片中的表格。"
+  ],
+  "props": [
+    {
+      "component": "Table",
+      "description": "其余属性透传给 React Aria Table（selectionMode、selectedKeys、onSelectionChange、sortDescriptor、onSortChange、onRowAction 等）。",
+      "props": [
+        {
+          "name": "density",
+          "type": "\"comfortable\" | \"compact\"",
+          "default": "\"comfortable\"",
+          "description": "行高密度。"
+        },
+        {
+          "name": "stickyHeader",
+          "type": "boolean",
+          "default": "false",
+          "description": "表头吸顶（配合 maxHeight）。"
+        },
+        {
+          "name": "maxHeight",
+          "type": "number | string",
+          "description": "滚动区域最大高度。"
+        },
+        {
+          "name": "variant",
+          "type": "\"card\" | \"plain\"",
+          "default": "\"card\"",
+          "description": "是否带卡片外框。"
+        },
+        {
+          "name": "striped",
+          "type": "boolean",
+          "default": "false",
+          "description": "斑马纹。"
+        },
+        {
+          "name": "tableClassName",
+          "type": "string",
+          "description": "内部 <table> 的类名。"
+        }
+      ]
+    },
+    {
+      "component": "TableColumn",
+      "description": "其余属性透传给 React Aria Column（id、isRowHeader、allowsSorting 等）。",
+      "props": [
+        {
+          "name": "align",
+          "type": "\"start\" | \"center\" | \"end\"",
+          "default": "\"start\"",
+          "description": "表头对齐。"
+        }
+      ]
+    },
+    {
+      "component": "TableCell",
+      "description": "其余属性透传给 React Aria Cell。",
+      "props": [
+        {
+          "name": "align",
+          "type": "\"start\" | \"center\" | \"end\"",
+          "default": "\"start\"",
+          "description": "单元格对齐。"
+        },
+        {
+          "name": "muted",
+          "type": "boolean",
+          "default": "false",
+          "description": "次要文字颜色。"
+        },
+        {
+          "name": "numeric",
+          "type": "boolean",
+          "default": "false",
+          "description": "等宽数字。"
+        }
+      ]
+    },
+    {
+      "component": "TableUser",
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "姓名。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "第二行（邮箱、职位），紧凑密度下隐藏。"
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "description": "头像图片。"
+        },
+        {
+          "name": "status",
+          "type": "AvatarStatus",
+          "description": "在线状态。"
+        }
+      ]
+    },
+    {
+      "component": "TableStatus",
+      "props": [
+        {
+          "name": "tone",
+          "type": "BadgeTone",
+          "default": "\"neutral\"",
+          "description": "状态颜色。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "状态文字。"
+        }
+      ]
+    },
+    {
+      "component": "TableEmptyState",
+      "props": [
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "图标。"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "default": "\"暂无数据\"",
+          "description": "标题。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "说明。"
+        },
+        {
+          "name": "action",
+          "type": "ReactNode",
+          "description": "操作按钮。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "slug": "line-chart",
+  "name": "Line Chart",
+  "title": "折线图",
+  "category": "charts",
+  "files": [
+    "components/line-chart/line-chart.tsx"
+  ],
+  "description": "多系列折线图：曲线 / 直线 / 阶梯，悬停圆点或常驻圆点，虚线对比系列与目标参考线，图例可切换和高亮系列。",
+  "keywords": [
+    "line chart",
+    "line",
+    "trend",
+    "target",
+    "reference line",
+    "折线图",
+    "趋势",
+    "目标线",
+    "参考线"
+  ],
+  "exports": [
+    "LineChart",
+    "ChartCard"
+  ],
+  "demos": [
+    {
+      "file": "line-chart/overview.tsx",
+      "title": "概览",
+      "description": "三条渠道折线和一条目标参考线（示例数据）。",
+      "height": 420,
+      "layout": "padded"
+    },
+    {
+      "file": "line-chart/target.tsx",
+      "title": "目标线与圆点",
+      "description": "dots=\"always\" 显示所有数据点；referenceLines 绘制 SLO 目标。",
+      "height": 400,
+      "layout": "padded"
+    },
+    {
+      "file": "line-chart/comparison.tsx",
+      "title": "阶梯与对比",
+      "description": "curve=\"step\"，上月作为虚线对比系列，y 轴贴合数据范围。",
+      "height": 380,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "dots 默认 hover：只在悬停的点上显示圆点。",
+    "referenceLines 超出数据范围时会自动扩展 y 轴。",
+    "connectNulls 可以跨越缺失值连线。"
+  ],
+  "props": [
+    {
+      "component": "LineChart",
+      "props": [
+        {
+          "name": "data",
+          "type": "readonly object[]",
+          "description": "数据行；不传时使用标注为示例的演示数据。"
+        },
+        {
+          "name": "index",
+          "type": "string",
+          "default": "\"label\"",
+          "description": "x 轴（类目）字段名。"
+        },
+        {
+          "name": "series",
+          "type": "ChartSeries[]",
+          "description": "系列配置：key（数据字段）、label、color、comparison（对比系列：虚线/淡色）、format。"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "description": "绘图区高度（px），保证在普通纵向布局中不塌陷。"
+        },
+        {
+          "name": "valueFormat",
+          "type": "\"number\" | \"compact\" | \"percent\" | \"currency\" | Intl.NumberFormatOptions | ((v: number) => string)",
+          "default": "\"number\"",
+          "description": "数值格式，跟随 React Aria 语言环境。"
+        },
+        {
+          "name": "currency",
+          "type": "string",
+          "default": "\"USD\"",
+          "description": "valueFormat 为 currency 时的币种。"
+        },
+        {
+          "name": "indexFormatter",
+          "type": "(value: unknown) => string",
+          "description": "格式化 x 轴刻度与提示框标题。"
+        },
+        {
+          "name": "showLegend",
+          "type": "boolean",
+          "description": "显示图例；多系列时默认显示。"
+        },
+        {
+          "name": "interactiveLegend",
+          "type": "boolean",
+          "default": "true",
+          "description": "点击图例显示 / 隐藏系列。"
+        },
+        {
+          "name": "showGrid / showXAxis / showYAxis",
+          "type": "boolean",
+          "default": "true",
+          "description": "网格线与坐标轴开关。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ChartLabels>",
+          "description": "覆盖内置文案（en / zh）。"
+        },
+        {
+          "name": "curve",
+          "type": "\"smooth\" | \"linear\" | \"step\"",
+          "default": "\"smooth\"",
+          "description": "线型。"
+        },
+        {
+          "name": "dots",
+          "type": "\"hover\" | \"always\" | \"none\"",
+          "default": "\"hover\"",
+          "description": "数据点显示方式。"
+        },
+        {
+          "name": "referenceLines",
+          "type": "{ value: number; label?: string; color?: string }[]",
+          "description": "水平目标 / 参考线。"
+        },
+        {
+          "name": "yDomain",
+          "type": "[min, max]",
+          "description": "y 轴范围，可用 \"auto\" / \"dataMin\" / \"dataMax\"。"
+        },
+        {
+          "name": "connectNulls",
+          "type": "boolean",
+          "default": "false",
+          "description": "跨越空值连线。"
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDivElement>",
+          "description": "转发到外层容器。"
+        }
+      ]
+    }
+  ]
+}

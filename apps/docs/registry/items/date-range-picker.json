@@ -1,0 +1,83 @@
+{
+  "slug": "date-range-picker",
+  "name": "Date Range Picker",
+  "title": "日期范围选择器",
+  "category": "base",
+  "files": [
+    "components/date-range-picker/date-range-picker.tsx"
+  ],
+  "description": "起止日期输入框 + 浮层：左侧预设区间（最近 7 / 30 / 90 天、本月、上月、今年），右侧两个月并排的范围日历，选择先作为草稿，点击「应用」才生效。",
+  "keywords": [
+    "date range picker",
+    "range",
+    "period",
+    "日期范围",
+    "时间段",
+    "起止日期",
+    "区间选择"
+  ],
+  "exports": [
+    "DateRangePicker"
+  ],
+  "demos": [
+    {
+      "file": "date-range-picker/overview.tsx",
+      "title": "概览",
+      "height": 200
+    },
+    {
+      "file": "date-range-picker/custom.tsx",
+      "title": "自定义预设与单月",
+      "description": "presets 的 value 可以是函数，参数为今天；minValue / maxValue 同时约束输入框和日历。",
+      "layout": "padded",
+      "height": 220
+    }
+  ],
+  "notes": [
+    "浮层内的选择是草稿：「应用」写入值，「取消」或 Esc 放弃修改。",
+    "底部会显示草稿区间和总天数，方便确认。",
+    "输入框中的开始、结束日期都可以用键盘逐段编辑。",
+    "窄屏时两个月上下堆叠、预设改为横向滚动。"
+  ],
+  "props": [
+    {
+      "component": "DateRangePicker",
+      "description": "其余属性透传给 React Aria DateRangePicker（value 为 { start, end }、onChange、minValue、maxValue、isDateUnavailable、isRequired…）。",
+      "props": [
+        {
+          "name": "label / description / errorMessage",
+          "type": "ReactNode",
+          "description": "字段标签、说明与错误提示。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸。"
+        },
+        {
+          "name": "presets",
+          "type": "DateRangePreset[] | false",
+          "description": "预设区间：{ label, value: { start, end } | (today) => { start, end } }。"
+        },
+        {
+          "name": "visibleMonths",
+          "type": "1 | 2",
+          "default": "2",
+          "description": "浮层中显示的月份数。"
+        },
+        {
+          "name": "isClearable",
+          "type": "boolean",
+          "default": "true",
+          "description": "有值时显示清除按钮。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<DateRangePickerLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ]
+}

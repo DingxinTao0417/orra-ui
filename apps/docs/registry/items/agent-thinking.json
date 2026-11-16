@@ -1,0 +1,125 @@
+{
+  "slug": "agent-thinking",
+  "name": "Agent Thinking",
+  "title": "思考过程",
+  "category": "agents",
+  "files": [
+    "components/agent-thinking/agent-thinking.tsx",
+    "components/agent-thinking/use-agent-elapsed.ts"
+  ],
+  "description": "智能体的「思考中」指示器：流光 / 跳点 / 脉冲三种样式，带计时器；可展开查看流式输出的推理过程，收起时显示最新一行预览，结束后变为「已思考 N 秒」。",
+  "keywords": [
+    "thinking",
+    "reasoning",
+    "chain of thought",
+    "loading",
+    "思考",
+    "推理过程",
+    "思考中",
+    "深度思考"
+  ],
+  "exports": [
+    "AgentThinking",
+    "useAgentElapsed",
+    "formatAgentDuration"
+  ],
+  "demos": [
+    {
+      "file": "agent-thinking/overview.tsx",
+      "title": "概览",
+      "description": "推理文本逐字流入，面板自动滚动到最新内容；结束后标题变为思考用时。",
+      "height": 300
+    },
+    {
+      "file": "agent-thinking/variants.tsx",
+      "title": "指示器样式",
+      "description": "shimmer 让光扫过文字，dots 是依次闪烁的三点，pulse 是呼吸的光点。没有推理内容时只显示一行状态。",
+      "height": 200
+    },
+    {
+      "file": "agent-thinking/done.tsx",
+      "title": "思考完成",
+      "description": "active={false} 并传入 duration，默认收起，读者可以按需展开。",
+      "height": 220,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "计时器只在客户端的 effect 中运行，服务端渲染为 0 秒，不会产生水合不一致；自己统计用时可传 duration。",
+    "children 为字符串时保留换行，并在收起时显示最后一行预览；也可以传任意 ReactNode。",
+    "展开状态支持受控（isExpanded / onExpandedChange）与非受控（defaultExpanded）。",
+    "useAgentElapsed(active) 也可单独使用，为其他「进行中」界面计时。"
+  ],
+  "props": [
+    {
+      "component": "AgentThinking",
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "description": "是否仍在思考。",
+          "default": "true"
+        },
+        {
+          "name": "variant",
+          "type": "\"shimmer\" | \"dots\" | \"pulse\"",
+          "description": "指示器样式。",
+          "default": "\"shimmer\""
+        },
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "替换「思考中」。"
+        },
+        {
+          "name": "doneLabel",
+          "type": "ReactNode",
+          "description": "替换完成后的「已思考 N 秒」。"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "description": "总秒数；传入后不再使用内部计时。"
+        },
+        {
+          "name": "startedAt",
+          "type": "number",
+          "description": "开始时间戳（毫秒），重新挂载后计时不归零。"
+        },
+        {
+          "name": "showTimer",
+          "type": "boolean",
+          "description": "显示计时。",
+          "default": "true"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "替换指示器的图标元素。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "推理内容（可流式更新）。"
+        },
+        {
+          "name": "showPreview",
+          "type": "boolean",
+          "description": "思考中且收起时显示最新一行。",
+          "default": "true"
+        },
+        {
+          "name": "isExpanded / defaultExpanded / onExpandedChange",
+          "type": "boolean / boolean / (v: boolean) => void",
+          "description": "展开状态，受控或非受控。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<AgentThinkingLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ],
+  "isNew": true
+}

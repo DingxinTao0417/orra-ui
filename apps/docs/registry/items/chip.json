@@ -1,0 +1,111 @@
+{
+  "slug": "chip",
+  "name": "Chip",
+  "title": "标签",
+  "category": "base",
+  "files": [
+    "components/chip/chip.tsx"
+  ],
+  "description": "可交互的紧凑标签：基于 React Aria TagGroup，支持单选/多选筛选、可移除（收件人）、前置图标或头像，并带键盘方向键导航。",
+  "keywords": [
+    "chip",
+    "filter",
+    "token",
+    "recipient",
+    "tag",
+    "筛选",
+    "标签",
+    "收件人",
+    "可移除"
+  ],
+  "exports": [
+    "ChipGroup",
+    "Chip"
+  ],
+  "demos": [
+    {
+      "file": "chip/overview.tsx",
+      "title": "概览",
+      "description": "selectionMode=\"multiple\" 的筛选条件，选中后显示对勾。",
+      "height": 200
+    },
+    {
+      "file": "chip/recipients.tsx",
+      "title": "可移除的收件人",
+      "description": "提供 onRemove 后每个标签出现 × 按钮，也可以用 Backspace / Delete 删除。",
+      "height": 220
+    },
+    {
+      "file": "chip/sizes.tsx",
+      "title": "尺寸、外观与禁用",
+      "height": 220
+    }
+  ],
+  "notes": [
+    "Chip 必须放在 ChipGroup 里；ChipGroup 需要 label 或 aria-label。",
+    "选中状态支持受控（selectedKeys + onSelectionChange）与非受控（defaultSelectedKeys）。",
+    "动态数据用 items + 渲染函数，并给每个 Chip 传 id；列表为空时显示 renderEmptyState。"
+  ],
+  "props": [
+    {
+      "component": "ChipGroup",
+      "description": "其余属性透传给 React Aria TagGroup（selectionMode、selectedKeys、onRemove、disabledKeys 等）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "可见标签。"
+        },
+        {
+          "name": "items",
+          "type": "Iterable<T>",
+          "description": "动态数据。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode | (item: T) => ReactNode",
+          "required": true,
+          "description": "Chip 元素或渲染函数。"
+        },
+        {
+          "name": "renderEmptyState",
+          "type": "() => ReactNode",
+          "description": "没有标签时显示的内容。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "高度 24 / 28 / 32 px。"
+        },
+        {
+          "name": "variant",
+          "type": "\"outline\" | \"soft\"",
+          "default": "\"outline\"",
+          "description": "外观。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ChipLabels>",
+          "description": "覆盖「移除 {name}」文案。"
+        }
+      ]
+    },
+    {
+      "component": "Chip",
+      "description": "其余属性透传给 React Aria Tag（id、textValue、isDisabled、href 等）。",
+      "props": [
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "前置图标元素。"
+        },
+        {
+          "name": "avatar",
+          "type": "ReactNode",
+          "description": "前置头像，如 <Avatar name=\"林晓雨\" />，会自动缩放。"
+        }
+      ]
+    }
+  ]
+}

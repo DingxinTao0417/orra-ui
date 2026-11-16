@@ -1,0 +1,27 @@
+{
+  "slug": "multi-agent-chat",
+  "name": "Multi-agent Chat",
+  "title": "多智能体协作",
+  "description": "多智能体协作：多位 AI 成员在群聊中分工与交接任务，消息中展示联网调研轨迹、运行记录、任务清单和交付物；右侧成员面板显示每位智能体的角色、模型、工具与实时状态，并可通过对话框添加新的智能体。",
+  "route": "/templates/multi-agent-chat",
+  "files": [
+    "templates/multi-agent-chat/multi-agent-chat.tsx"
+  ],
+  "exports": [
+    "MultiAgentChatTemplate"
+  ],
+  "usage": "<MultiAgentChatTemplate />",
+  "keywords": [
+    "multi-agent",
+    "agent team",
+    "group chat",
+    "handoff",
+    "orchestration",
+    "roster",
+    "多智能体",
+    "智能体团队",
+    "协作",
+    "任务交接",
+    "群聊"
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "slug": "agent-log",
+  "name": "Agent Log",
+  "title": "智能体日志",
+  "category": "agents",
+  "files": [
+    "components/agent-log/agent-log.tsx"
+  ],
+  "description": "智能体运行记录的纵向时间线：工具调用、文件编辑、搜索、命令、消息等步骤，各带图标、状态与时间戳，可展开查看输出详情，末尾可显示实时的「正在处理」行。",
+  "keywords": [
+    "agent log",
+    "activity",
+    "timeline",
+    "tool call",
+    "trace",
+    "运行记录",
+    "日志",
+    "时间线",
+    "工具调用"
+  ],
+  "exports": [
+    "AgentLog"
+  ],
+  "demos": [
+    {
+      "file": "agent-log/overview.tsx",
+      "title": "概览",
+      "description": "带时间戳与 diff 详情的一次重构过程，最后一步正在运行。",
+      "height": 340
+    },
+    {
+      "file": "agent-log/streaming.tsx",
+      "title": "实时追加",
+      "description": "新步骤上浮出现；working 在末尾显示带计时的进行中行。",
+      "height": 300
+    },
+    {
+      "file": "agent-log/errors.tsx",
+      "title": "失败与排队",
+      "description": "error 状态用红色节点和文字标出，pending 用虚线节点表示尚未执行；dense 收紧行距。",
+      "height": 300
+    }
+  ],
+  "notes": [
+    "kind 决定图标（tool / edit / read / search / web / command / message / think），也可以用 icon 覆盖。",
+    "有 detail 的行可以展开，展开状态由 expandedKeys / defaultExpandedKeys 控制（基于 React Aria DisclosureGroup）。",
+    "时间按访问者的时区和语言格式化（24 小时制），只要任一项传了 time 就会显示时间列。"
+  ],
+  "props": [
+    {
+      "component": "AgentLog",
+      "props": [
+        {
+          "name": "items",
+          "type": "AgentLogItem[]",
+          "description": "步骤列表。",
+          "required": true
+        },
+        {
+          "name": "working",
+          "type": "boolean",
+          "description": "在末尾显示实时的进行中行。"
+        },
+        {
+          "name": "workingLabel",
+          "type": "ReactNode",
+          "description": "进行中行的文字。"
+        },
+        {
+          "name": "showTime",
+          "type": "boolean",
+          "description": "显示时间戳；默认在有 time 时显示。"
+        },
+        {
+          "name": "expandedKeys / defaultExpandedKeys",
+          "type": "Iterable<Key>",
+          "description": "展开详情的步骤 id。"
+        },
+        {
+          "name": "onExpandedChange",
+          "type": "(keys: Set<Key>) => void",
+          "description": "展开变化回调。"
+        },
+        {
+          "name": "dense",
+          "type": "boolean",
+          "description": "更紧凑的行距。",
+          "default": "false"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<AgentLogLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "AgentLogItem",
+      "props": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "唯一标识。",
+          "required": true
+        },
+        {
+          "name": "kind",
+          "type": "AgentLogKind",
+          "description": "步骤类型，决定图标。",
+          "default": "\"tool\""
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "一行摘要。",
+          "required": true
+        },
+        {
+          "name": "meta",
+          "type": "ReactNode",
+          "description": "同行的次要信息：路径、diff 统计、结果数。"
+        },
+        {
+          "name": "detail",
+          "type": "ReactNode",
+          "description": "可展开的详情。"
+        },
+        {
+          "name": "status",
+          "type": "\"pending\" | \"running\" | \"done\" | \"error\"",
+          "description": "状态。",
+          "default": "\"done\""
+        },
+        {
+          "name": "time",
+          "type": "Date | number",
+          "description": "发生时间。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "自定义图标元素。"
+        }
+      ]
+    }
+  ],
+  "isNew": true
+}

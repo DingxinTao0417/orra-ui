@@ -1,0 +1,95 @@
+{
+  "slug": "rings-chart",
+  "name": "Rings Chart",
+  "title": "多环进度",
+  "category": "charts",
+  "files": [
+    "components/rings-chart/rings-chart.tsx"
+  ],
+  "description": "同心进度环：每个目标一个圆环（如活动 / 锻炼 / 站立），图例行显示「当前 / 目标」与完成百分比。",
+  "keywords": [
+    "rings",
+    "activity rings",
+    "progress",
+    "goals",
+    "圆环",
+    "进度环",
+    "目标",
+    "完成度"
+  ],
+  "exports": [
+    "RingsChart",
+    "ChartCard"
+  ],
+  "demos": [
+    {
+      "file": "rings-chart/overview.tsx",
+      "title": "概览",
+      "description": "示例数据，children 放入环心内容。",
+      "height": 320,
+      "layout": "padded"
+    },
+    {
+      "file": "rings-chart/sprint.tsx",
+      "title": "图例在下方",
+      "description": "四个迭代目标，legend=\"bottom\"。",
+      "height": 480,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "第一项为最外圈；超过目标时圆环画满，百分比照常显示（如 103%）。",
+    "悬停或聚焦图例行会突出对应圆环。"
+  ],
+  "props": [
+    {
+      "component": "RingsChart",
+      "props": [
+        {
+          "name": "data",
+          "type": "RingsChartItem[]",
+          "description": "{ label, value, goal, unit?, color?, key? }；缺省为示例数据。"
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "default": "168",
+          "description": "直径（px）。"
+        },
+        {
+          "name": "thickness",
+          "type": "number",
+          "default": "14",
+          "description": "环宽（px）。"
+        },
+        {
+          "name": "gap",
+          "type": "number",
+          "default": "4",
+          "description": "环间距（px）。"
+        },
+        {
+          "name": "valueFormat",
+          "type": "\"number\" | \"compact\" | \"percent\" | \"currency\" | Intl.NumberFormatOptions | ((v: number) => string)",
+          "description": "数值格式。"
+        },
+        {
+          "name": "legend",
+          "type": "\"end\" | \"bottom\" | \"none\"",
+          "default": "\"end\"",
+          "description": "图例位置。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "环心内容。"
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "description": "无障碍描述，默认由各项完成度生成。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "slug": "breadcrumb",
+  "name": "Breadcrumb",
+  "title": "面包屑",
+  "category": "base",
+  "files": [
+    "components/breadcrumb/breadcrumb.tsx"
+  ],
+  "description": "页面路径导航：分隔符可选、末项为当前页、支持图标；层级过多时中间部分折叠为「…」菜单。",
+  "keywords": [
+    "breadcrumb",
+    "breadcrumbs",
+    "path",
+    "navigation",
+    "面包屑",
+    "路径",
+    "导航"
+  ],
+  "exports": [
+    "Breadcrumb"
+  ],
+  "demos": [
+    {
+      "file": "breadcrumb/overview.tsx",
+      "title": "概览",
+      "height": 160
+    },
+    {
+      "file": "breadcrumb/collapsed.tsx",
+      "title": "折叠中间层级",
+      "description": "maxItems 控制最多显示几项，itemsBeforeCollapse / itemsAfterCollapse 决定两端保留的数量；没有 href 的项通过 onAction 处理点击。",
+      "height": 220
+    },
+    {
+      "file": "breadcrumb/separators.tsx",
+      "title": "分隔符与尺寸",
+      "height": 200
+    }
+  ],
+  "notes": [
+    "最后一项自动标记为当前页（aria-current=\"page\"），不可点击。",
+    "整体包裹在带 aria-label 的 nav 中；分隔符对读屏软件隐藏。",
+    "有 href 的项渲染为链接，可配合 React Aria 的 RouterProvider 做客户端路由。"
+  ],
+  "props": [
+    {
+      "component": "Breadcrumb",
+      "props": [
+        {
+          "name": "items",
+          "type": "BreadcrumbItemData[]",
+          "required": true,
+          "description": "从根到当前页的路径：{ id?, label, href?, icon?, textValue?, isDisabled? }。"
+        },
+        {
+          "name": "separator",
+          "type": "\"chevron\" | \"slash\" | ReactNode",
+          "default": "\"chevron\"",
+          "description": "分隔符。"
+        },
+        {
+          "name": "maxItems",
+          "type": "number",
+          "description": "超过此数量时折叠中间层级。"
+        },
+        {
+          "name": "itemsBeforeCollapse",
+          "type": "number",
+          "default": "1",
+          "description": "折叠时开头保留的项数。"
+        },
+        {
+          "name": "itemsAfterCollapse",
+          "type": "number",
+          "default": "2",
+          "description": "折叠时末尾保留的项数。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\"",
+          "default": "\"md\"",
+          "description": "文字大小。"
+        },
+        {
+          "name": "onAction",
+          "type": "(id: Key) => void",
+          "description": "点击没有 href 的项时调用。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<BreadcrumbLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ]
+}

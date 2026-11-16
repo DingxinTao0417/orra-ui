@@ -1,0 +1,31 @@
+{
+  "slug": "medical-profile",
+  "name": "Medical Profile",
+  "title": "医疗档案",
+  "description": "个人健康档案页：患者信息卡、带迷你趋势图的生命体征、活动三环、睡眠评分仪表、每周步数对比柱状图、今日用药打卡、近期预约、可忽略的健康提醒，以及可切换报告的检验结果表格。",
+  "route": "/templates/medical-profile",
+  "files": [
+    "templates/medical-profile/medical-profile.tsx"
+  ],
+  "exports": [
+    "MedicalProfileTemplate"
+  ],
+  "usage": "<MedicalProfileTemplate />",
+  "keywords": [
+    "medical",
+    "health",
+    "patient",
+    "profile",
+    "vitals",
+    "sleep",
+    "activity",
+    "lab results",
+    "健康档案",
+    "医疗",
+    "患者",
+    "生命体征",
+    "睡眠",
+    "用药",
+    "检验报告"
+  ]
+}

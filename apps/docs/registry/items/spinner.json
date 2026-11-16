@@ -1,0 +1,75 @@
+{
+  "slug": "spinner",
+  "name": "Spinner",
+  "title": "加载指示器",
+  "category": "base",
+  "files": [
+    "components/spinner/spinner.tsx"
+  ],
+  "description": "加载指示器：默认是 Orra 独有的「轨道」造型——带渐隐尾迹的亮点绕着淡色轨道和中心核运行；另有跳动圆点与经典圆环，五种尺寸与多种色调。",
+  "keywords": [
+    "spinner",
+    "loader",
+    "loading",
+    "busy",
+    "加载",
+    "转圈",
+    "等待"
+  ],
+  "exports": [
+    "Spinner"
+  ],
+  "demos": [
+    {
+      "file": "spinner/overview.tsx",
+      "title": "概览",
+      "height": 220
+    },
+    {
+      "file": "spinner/sizes.tsx",
+      "title": "尺寸与色调",
+      "description": "inverse 用于深色背景；current 继承文字颜色，适合放进按钮里。",
+      "height": 240
+    }
+  ],
+  "notes": [
+    "带 role=\"status\"，默认读出「加载中」；传入 label 后显示可见文字并以它为准。",
+    "开启「减少动态效果」时动画会停下（dots 变为静态）。"
+  ],
+  "props": [
+    {
+      "component": "Spinner",
+      "description": "其余属性透传给外层 <span>。",
+      "props": [
+        {
+          "name": "variant",
+          "type": "\"orbit\" | \"dots\" | \"ring\"",
+          "default": "\"orbit\"",
+          "description": "造型。"
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "default": "\"md\"",
+          "description": "尺寸：12 / 16 / 20 / 28 / 40 px。"
+        },
+        {
+          "name": "tone",
+          "type": "\"accent\" | \"neutral\" | \"current\" | \"inverse\"",
+          "default": "\"accent\"",
+          "description": "颜色。"
+        },
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "旁边显示的文字。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<SpinnerLabels>",
+          "description": "覆盖隐藏的「加载中」文案。"
+        }
+      ]
+    }
+  ]
+}

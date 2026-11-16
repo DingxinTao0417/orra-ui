@@ -1,0 +1,148 @@
+{
+  "slug": "bar-chart",
+  "name": "Bar Chart",
+  "title": "柱状图",
+  "category": "charts",
+  "files": [
+    "components/bar-chart/bar-chart.tsx"
+  ],
+  "description": "柱状图：分组、堆叠或百分比，圆角柱端，竖向或横向，淡色对比系列用于本期 vs 上期。",
+  "keywords": [
+    "bar chart",
+    "column",
+    "stacked",
+    "grouped",
+    "horizontal",
+    "柱状图",
+    "条形图",
+    "堆叠",
+    "分组",
+    "对比"
+  ],
+  "exports": [
+    "BarChart",
+    "ChartCard"
+  ],
+  "demos": [
+    {
+      "file": "bar-chart/overview.tsx",
+      "title": "概览",
+      "description": "本周 vs 上周的每日订单（示例数据），上周以淡色显示。",
+      "height": 420,
+      "layout": "padded"
+    },
+    {
+      "file": "bar-chart/stacked.tsx",
+      "title": "堆叠",
+      "description": "type=\"stacked\" 时只有最上层系列有圆角，提示框显示合计。",
+      "height": 420,
+      "layout": "padded"
+    },
+    {
+      "file": "bar-chart/horizontal.tsx",
+      "title": "横向",
+      "description": "orientation=\"horizontal\" 适合较长的类目名称。",
+      "height": 400,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "comparison: true 的系列以 32% 透明度绘制，可与本期使用同一颜色。",
+    "horizontal 时类目在 y 轴，y 轴宽度自动适配标签。"
+  ],
+  "props": [
+    {
+      "component": "BarChart",
+      "props": [
+        {
+          "name": "data",
+          "type": "readonly object[]",
+          "description": "数据行；不传时使用标注为示例的演示数据。"
+        },
+        {
+          "name": "index",
+          "type": "string",
+          "default": "\"label\"",
+          "description": "x 轴（类目）字段名。"
+        },
+        {
+          "name": "series",
+          "type": "ChartSeries[]",
+          "description": "系列配置：key（数据字段）、label、color、comparison（对比系列：虚线/淡色）、format。"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "description": "绘图区高度（px），保证在普通纵向布局中不塌陷。"
+        },
+        {
+          "name": "valueFormat",
+          "type": "\"number\" | \"compact\" | \"percent\" | \"currency\" | Intl.NumberFormatOptions | ((v: number) => string)",
+          "default": "\"number\"",
+          "description": "数值格式，跟随 React Aria 语言环境。"
+        },
+        {
+          "name": "currency",
+          "type": "string",
+          "default": "\"USD\"",
+          "description": "valueFormat 为 currency 时的币种。"
+        },
+        {
+          "name": "indexFormatter",
+          "type": "(value: unknown) => string",
+          "description": "格式化 x 轴刻度与提示框标题。"
+        },
+        {
+          "name": "showLegend",
+          "type": "boolean",
+          "description": "显示图例；多系列时默认显示。"
+        },
+        {
+          "name": "interactiveLegend",
+          "type": "boolean",
+          "default": "true",
+          "description": "点击图例显示 / 隐藏系列。"
+        },
+        {
+          "name": "showGrid / showXAxis / showYAxis",
+          "type": "boolean",
+          "default": "true",
+          "description": "网格线与坐标轴开关。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ChartLabels>",
+          "description": "覆盖内置文案（en / zh）。"
+        },
+        {
+          "name": "type",
+          "type": "\"grouped\" | \"stacked\" | \"percent\"",
+          "default": "\"grouped\"",
+          "description": "分组 / 堆叠 / 百分比。"
+        },
+        {
+          "name": "orientation",
+          "type": "\"vertical\" | \"horizontal\"",
+          "default": "\"vertical\"",
+          "description": "竖向柱或横向条。"
+        },
+        {
+          "name": "radius",
+          "type": "number",
+          "default": "6",
+          "description": "柱端圆角。"
+        },
+        {
+          "name": "barSize",
+          "type": "number",
+          "description": "最大柱宽（px）。"
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDivElement>",
+          "description": "转发到外层容器。"
+        }
+      ]
+    }
+  ]
+}

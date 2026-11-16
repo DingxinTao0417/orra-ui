@@ -1,0 +1,106 @@
+{
+  "slug": "task-list",
+  "name": "Task List",
+  "title": "任务清单",
+  "category": "agents",
+  "files": [
+    "components/task-list/task-list.tsx"
+  ],
+  "description": "流式任务清单：任务逐条上浮出现，进行中的任务文字流光，完成时勾选线条画出并划掉文字；全部完成后可折叠为一行「已完成 N 项任务」。",
+  "keywords": [
+    "task list",
+    "todo",
+    "checklist",
+    "streaming",
+    "任务清单",
+    "待办",
+    "清单",
+    "进度"
+  ],
+  "exports": [
+    "TaskList"
+  ],
+  "demos": [
+    {
+      "file": "task-list/overview.tsx",
+      "title": "概览",
+      "description": "初次挂载时逐条出现，随后按顺序执行。",
+      "height": 300
+    },
+    {
+      "file": "task-list/collapse.tsx",
+      "title": "完成后折叠",
+      "description": "collapseOnComplete 在全部完成后收起为摘要，点击可重新展开。",
+      "height": 220
+    },
+    {
+      "file": "task-list/states.tsx",
+      "title": "四种状态",
+      "description": "pending、working、done、failed，以及可选的 detail 说明。",
+      "height": 300
+    }
+  ],
+  "notes": [
+    "只有首次挂载时已存在的任务按 revealStagger 依次出现，之后追加的任务会立即上浮。",
+    "状态除了图标与颜色，还会以隐藏文字读给读屏软件。"
+  ],
+  "props": [
+    {
+      "component": "TaskList",
+      "props": [
+        {
+          "name": "items",
+          "type": "TaskListItem[]",
+          "description": "任务：{ id, label, detail?, status? }。",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "标题。"
+        },
+        {
+          "name": "showCount",
+          "type": "boolean",
+          "description": "标题旁显示完成数。",
+          "default": "true"
+        },
+        {
+          "name": "reveal",
+          "type": "boolean",
+          "description": "首次挂载时逐条出现。",
+          "default": "true"
+        },
+        {
+          "name": "revealStagger",
+          "type": "number",
+          "description": "逐条出现的间隔（毫秒）。",
+          "default": "90"
+        },
+        {
+          "name": "collapseOnComplete",
+          "type": "boolean",
+          "description": "全部完成后折叠为一行摘要。",
+          "default": "false"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<TaskListLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "TaskListItem",
+      "props": [
+        {
+          "name": "status",
+          "type": "\"pending\" | \"working\" | \"done\" | \"failed\"",
+          "description": "任务状态。",
+          "default": "\"pending\""
+        }
+      ]
+    }
+  ],
+  "isNew": true
+}

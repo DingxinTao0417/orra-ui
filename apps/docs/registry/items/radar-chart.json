@@ -1,0 +1,110 @@
+{
+  "slug": "radar-chart",
+  "name": "Radar Chart",
+  "title": "雷达图",
+  "category": "charts",
+  "files": [
+    "components/radar-chart/radar-chart.tsx"
+  ],
+  "description": "雷达图：一个或多个系列，填充或描边，可选顶点圆点、圆形网格与半径刻度。",
+  "keywords": [
+    "radar chart",
+    "spider",
+    "polar",
+    "雷达图",
+    "蛛网图",
+    "多维评分"
+  ],
+  "exports": [
+    "RadarChart",
+    "ChartCard"
+  ],
+  "demos": [
+    {
+      "file": "radar-chart/overview.tsx",
+      "title": "概览",
+      "description": "本期（填充）与上期（虚线）六维评分（示例数据）。",
+      "height": 460,
+      "layout": "padded"
+    },
+    {
+      "file": "radar-chart/outline.tsx",
+      "title": "描边与圆点",
+      "description": "variant=\"outline\"、dots、gridShape=\"circle\" 与半径刻度。",
+      "height": 460,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "每行数据代表一个维度，index 指定维度名称字段。",
+    "max 固定半径上限，便于不同图之间比较。"
+  ],
+  "props": [
+    {
+      "component": "RadarChart",
+      "props": [
+        {
+          "name": "data",
+          "type": "readonly object[]",
+          "description": "每个维度一行；缺省为示例数据。"
+        },
+        {
+          "name": "index",
+          "type": "string",
+          "default": "\"label\"",
+          "description": "维度名称字段。"
+        },
+        {
+          "name": "series",
+          "type": "ChartSeries[]",
+          "description": "系列配置：key（数据字段）、label、color、comparison（对比系列：虚线/淡色）、format。"
+        },
+        {
+          "name": "variant",
+          "type": "\"filled\" | \"outline\"",
+          "default": "\"filled\"",
+          "description": "填充或描边。"
+        },
+        {
+          "name": "dots",
+          "type": "boolean",
+          "default": "false",
+          "description": "顶点圆点。"
+        },
+        {
+          "name": "gridShape",
+          "type": "\"polygon\" | \"circle\"",
+          "default": "\"polygon\"",
+          "description": "网格形状。"
+        },
+        {
+          "name": "showRadiusAxis",
+          "type": "boolean",
+          "default": "false",
+          "description": "显示半径刻度。"
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "description": "半径上限。"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": "300",
+          "description": "绘图区高度。"
+        },
+        {
+          "name": "valueFormat",
+          "type": "\"number\" | \"compact\" | \"percent\" | \"currency\" | Intl.NumberFormatOptions | ((v: number) => string)",
+          "description": "数值格式。"
+        },
+        {
+          "name": "showLegend",
+          "type": "boolean",
+          "description": "多系列时默认显示。"
+        }
+      ]
+    }
+  ]
+}

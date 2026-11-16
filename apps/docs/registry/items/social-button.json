@@ -1,0 +1,132 @@
+{
+  "slug": "social-button",
+  "name": "Social Button",
+  "title": "社交登录按钮",
+  "category": "base",
+  "files": [
+    "components/social-button/social-button.tsx",
+    "components/social-button/social-logos.tsx"
+  ],
+  "description": "第三方登录按钮：内置 Google、GitHub、Apple、Microsoft、X、Facebook、Discord、GitLab、Slack、LinkedIn、微信、支付宝的简化标志，自动生成本地化的「使用 … 继续」文案，支持描边、品牌色填充和纯图标三种样式。",
+  "keywords": [
+    "social login",
+    "oauth",
+    "sso",
+    "sign in",
+    "google",
+    "github",
+    "wechat",
+    "第三方登录",
+    "社交登录",
+    "微信登录",
+    "授权"
+  ],
+  "exports": [
+    "SocialButton",
+    "SocialLogo",
+    "SOCIAL_PROVIDERS"
+  ],
+  "demos": [
+    {
+      "file": "social-button/overview.tsx",
+      "title": "概览",
+      "height": 300
+    },
+    {
+      "file": "social-button/providers.tsx",
+      "title": "全部服务商",
+      "description": "action 可选 continue / signIn / signUp，文案随语言切换。",
+      "layout": "padded",
+      "height": 380
+    },
+    {
+      "file": "social-button/filled.tsx",
+      "title": "品牌色填充与纯图标",
+      "description": "variant=\"filled\" 使用品牌色背景（GitHub、Apple、X 等单色品牌使用反色背景）；iconOnly 只显示标志。",
+      "layout": "padded",
+      "height": 280
+    }
+  ],
+  "notes": [
+    "纯图标按钮会把完整文案（如「使用 GitHub 继续」）作为 aria-label。",
+    "按钮只负责外观和点击；在 onPress 中跳转到你的 OAuth 授权地址，loading 可在跳转前显示加载状态。",
+    "SocialLogo 可单独使用，mono 让标志跟随文字颜色。"
+  ],
+  "props": [
+    {
+      "component": "SocialButton",
+      "description": "其余属性透传给 React Aria Button（onPress、isDisabled 等）。",
+      "props": [
+        {
+          "name": "provider",
+          "type": "\"google\" | \"github\" | \"apple\" | \"microsoft\" | \"x\" | \"facebook\" | \"discord\" | \"gitlab\" | \"slack\" | \"linkedin\" | \"wechat\" | \"alipay\"",
+          "required": true,
+          "description": "服务商。"
+        },
+        {
+          "name": "variant",
+          "type": "\"outline\" | \"filled\"",
+          "default": "\"outline\"",
+          "description": "描边或品牌色填充。"
+        },
+        {
+          "name": "iconOnly",
+          "type": "boolean",
+          "default": "false",
+          "description": "只显示标志。"
+        },
+        {
+          "name": "action",
+          "type": "\"continue\" | \"signIn\" | \"signUp\"",
+          "default": "\"continue\"",
+          "description": "文案措辞。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "自定义文案。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸。"
+        },
+        {
+          "name": "fullWidth",
+          "type": "boolean",
+          "default": "false",
+          "description": "占满容器宽度。"
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "default": "false",
+          "description": "显示加载并阻止点击。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<SocialButtonLabels>",
+          "description": "覆盖文案与服务商名称。"
+        }
+      ]
+    },
+    {
+      "component": "SocialLogo",
+      "props": [
+        {
+          "name": "provider",
+          "type": "SocialProvider",
+          "required": true,
+          "description": "服务商。"
+        },
+        {
+          "name": "mono",
+          "type": "boolean",
+          "default": "false",
+          "description": "使用当前文字颜色绘制。"
+        }
+      ]
+    }
+  ]
+}

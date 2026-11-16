@@ -1,0 +1,115 @@
+{
+  "slug": "checkbox",
+  "name": "Checkbox",
+  "title": "复选框",
+  "category": "base",
+  "files": [
+    "components/checkbox/checkbox.tsx"
+  ],
+  "description": "复选框：带标签与说明、半选状态、对勾描边动画；CheckboxGroup 提供分组标签与多列布局，variant=\"card\" 变为可选中的卡片。",
+  "keywords": [
+    "checkbox",
+    "check",
+    "indeterminate",
+    "checkbox group",
+    "复选框",
+    "多选",
+    "勾选"
+  ],
+  "exports": [
+    "Checkbox",
+    "CheckboxGroup",
+    "CheckboxIndicator"
+  ],
+  "demos": [
+    {
+      "file": "checkbox/overview.tsx",
+      "title": "概览",
+      "height": 320
+    },
+    {
+      "file": "checkbox/indeterminate.tsx",
+      "title": "半选状态",
+      "description": "父级根据子项计算 isSelected / isIndeterminate，实现「全选」。",
+      "height": 300
+    },
+    {
+      "file": "checkbox/cards.tsx",
+      "title": "卡片样式",
+      "description": "variant=\"card\" + CheckboxGroup columns 组成多列可选卡片。",
+      "height": 300
+    }
+  ],
+  "notes": [
+    "单个复选框用 isSelected / defaultSelected / onChange(boolean)；在 CheckboxGroup 中用 value 标识，组上用 value / defaultValue / onChange(string[])。",
+    "整行（含标签）都可点击；空格键切换，Tab 在组内逐个聚焦。",
+    "CheckboxIndicator 是纯视觉的方框，可用于表格行等自定义场景。"
+  ],
+  "props": [
+    {
+      "component": "Checkbox",
+      "description": "其余属性透传给 React Aria Checkbox（isSelected、defaultSelected、onChange、isIndeterminate、value、isDisabled、isInvalid 等）。",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "description": "标签文字。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "标签下方的说明。"
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"card\"",
+          "default": "\"default\"",
+          "description": "普通或卡片样式。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "description": "卡片样式的前置图标。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\"",
+          "default": "\"md\"",
+          "description": "方框尺寸。"
+        }
+      ]
+    },
+    {
+      "component": "CheckboxGroup",
+      "description": "其余属性透传给 React Aria CheckboxGroup（value、defaultValue、onChange、isRequired、isDisabled 等）。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "字段标签。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "标签下方的辅助说明。"
+        },
+        {
+          "name": "errorMessage",
+          "type": "ReactNode | ((v: ValidationResult) => ReactNode)",
+          "description": "校验失败时显示的错误文案。"
+        },
+        {
+          "name": "orientation",
+          "type": "\"vertical\" | \"horizontal\"",
+          "default": "\"vertical\"",
+          "description": "排列方向。"
+        },
+        {
+          "name": "columns",
+          "type": "number",
+          "description": "按 N 列网格排列（适合卡片）。"
+        }
+      ]
+    }
+  ]
+}

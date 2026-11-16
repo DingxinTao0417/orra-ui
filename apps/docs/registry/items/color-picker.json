@@ -1,0 +1,147 @@
+{
+  "slug": "color-picker",
+  "name": "Color Picker",
+  "title": "颜色选择器",
+  "category": "base",
+  "files": [
+    "components/color-picker/color-picker.tsx"
+  ],
+  "description": "颜色选择器：饱和度/亮度面板、色相滑块、可选透明度滑块、HEX 输入与预设色板；既可内嵌展示，也可通过紧凑的色块触发器在浮层中打开。",
+  "keywords": [
+    "color picker",
+    "colour",
+    "hex",
+    "swatch",
+    "palette",
+    "hue",
+    "颜色",
+    "取色器",
+    "色板",
+    "调色"
+  ],
+  "exports": [
+    "ColorPicker",
+    "ColorPickerPanel",
+    "COLOR_PICKER_SWATCHES"
+  ],
+  "demos": [
+    {
+      "file": "color-picker/overview.tsx",
+      "title": "概览",
+      "height": 220
+    },
+    {
+      "file": "color-picker/panel.tsx",
+      "title": "内嵌面板",
+      "description": "ColorPickerPanel 直接渲染完整面板；showAlpha 显示透明度滑块。",
+      "height": 420
+    },
+    {
+      "file": "color-picker/swatches.tsx",
+      "title": "色块触发器",
+      "description": "trigger=\"swatch\" 只显示一个色块按钮，适合标签颜色等紧凑场景；swatches 自定义预设色。",
+      "height": 200
+    }
+  ],
+  "notes": [
+    "value / defaultValue 接受 HEX 字符串（支持 #RRGGBBAA）；onChange 返回 Color 对象，可用 color.toString(\"hex\") 转回字符串。",
+    "面板内所有部件（面板、滑块、HEX 输入、色板）都支持键盘操作：方向键微调，Shift + 方向键大步调整。",
+    "色块触发器没有可见标签时，用 labels={{ pick: \"…\" }} 提供无障碍名称。"
+  ],
+  "props": [
+    {
+      "component": "ColorPicker",
+      "description": "色块 / 输入框样式的触发器 + 浮层面板。",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "description": "触发器上方的标签。"
+        },
+        {
+          "name": "value / defaultValue",
+          "type": "string | Color",
+          "default": "\"#3B7BF6\"",
+          "description": "受控 / 非受控颜色。"
+        },
+        {
+          "name": "onChange",
+          "type": "(color: Color) => void",
+          "description": "颜色变化回调。"
+        },
+        {
+          "name": "trigger",
+          "type": "\"field\" | \"swatch\"",
+          "default": "\"field\"",
+          "description": "输入框样式（色块 + HEX）或仅色块。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸：32 / 36 / 44 px。"
+        },
+        {
+          "name": "showAlpha",
+          "type": "boolean",
+          "default": "false",
+          "description": "显示透明度滑块。"
+        },
+        {
+          "name": "swatches",
+          "type": "string[]",
+          "default": "COLOR_PICKER_SWATCHES",
+          "description": "预设颜色；传 [] 隐藏。"
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "description": "禁用触发器。"
+        },
+        {
+          "name": "isOpen / onOpenChange",
+          "type": "boolean / (open: boolean) => void",
+          "description": "受控浮层开关。"
+        },
+        {
+          "name": "placement",
+          "type": "Placement",
+          "default": "\"bottom start\"",
+          "description": "浮层位置。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ColorPickerLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    },
+    {
+      "component": "ColorPickerPanel",
+      "description": "内嵌的完整面板。",
+      "props": [
+        {
+          "name": "value / defaultValue",
+          "type": "string | Color",
+          "description": "受控 / 非受控颜色。"
+        },
+        {
+          "name": "onChange",
+          "type": "(color: Color) => void",
+          "description": "颜色变化回调。"
+        },
+        {
+          "name": "showAlpha",
+          "type": "boolean",
+          "default": "false",
+          "description": "显示透明度滑块。"
+        },
+        {
+          "name": "swatches",
+          "type": "string[]",
+          "description": "预设颜色。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "slug": "pagination",
+  "name": "Pagination",
+  "title": "分页",
+  "category": "base",
+  "files": [
+    "components/pagination/pagination.tsx"
+  ],
+  "description": "分页器：带省略号的页码、上一页 / 下一页、每页条数选择与「第 x–y 条，共 z 条」摘要；容器较窄时自动切换为「3 / 12」紧凑模式。",
+  "keywords": [
+    "pagination",
+    "pager",
+    "paging",
+    "page size",
+    "分页",
+    "翻页",
+    "页码"
+  ],
+  "exports": [
+    "Pagination",
+    "paginationRange"
+  ],
+  "demos": [
+    {
+      "file": "pagination/overview.tsx",
+      "title": "概览",
+      "layout": "padded",
+      "height": 160
+    },
+    {
+      "file": "pagination/variants.tsx",
+      "title": "样式与页码范围",
+      "description": "siblings 控制当前页两侧的页码数，boundaries 控制首尾保留的页码数；翻页时总宽度保持不变。",
+      "height": 220
+    },
+    {
+      "file": "pagination/compact.tsx",
+      "title": "紧凑模式",
+      "description": "mode=\"auto\"（默认）根据容器宽度自动切换；也可固定为 compact 或 full。",
+      "height": 240
+    }
+  ],
+  "notes": [
+    "页码从 1 开始；传 total + pageSize 自动计算页数，或直接传 pageCount。",
+    "切换每页条数时会保持当前第一条记录所在的页。",
+    "mode=\"auto\" 依赖容器查询，外层需要有确定的宽度（不要放在 w-fit 的容器里）。",
+    "paginationRange(page, count, siblings, boundaries) 导出了页码计算逻辑，可用于自定义分页 UI。"
+  ],
+  "props": [
+    {
+      "component": "Pagination",
+      "props": [
+        {
+          "name": "page / defaultPage / onPageChange",
+          "type": "number / number / (page: number) => void",
+          "default": "defaultPage = 1",
+          "description": "当前页（受控 / 非受控）。"
+        },
+        {
+          "name": "total",
+          "type": "number",
+          "description": "总条数。"
+        },
+        {
+          "name": "pageCount",
+          "type": "number",
+          "description": "总页数（优先于 total）。"
+        },
+        {
+          "name": "pageSize / defaultPageSize / onPageSizeChange",
+          "type": "number / number / (size: number) => void",
+          "default": "10",
+          "description": "每页条数。"
+        },
+        {
+          "name": "pageSizeOptions",
+          "type": "number[]",
+          "description": "显示每页条数选择器。"
+        },
+        {
+          "name": "showSummary",
+          "type": "boolean",
+          "default": "false",
+          "description": "显示条目范围摘要（需要 total）。"
+        },
+        {
+          "name": "siblings",
+          "type": "number",
+          "default": "1",
+          "description": "当前页两侧保留的页码数。"
+        },
+        {
+          "name": "boundaries",
+          "type": "number",
+          "default": "1",
+          "description": "首尾保留的页码数。"
+        },
+        {
+          "name": "mode",
+          "type": "\"auto\" | \"full\" | \"compact\"",
+          "default": "\"auto\"",
+          "description": "页码显示模式。"
+        },
+        {
+          "name": "variant",
+          "type": "\"plain\" | \"outline\"",
+          "default": "\"plain\"",
+          "description": "按钮样式。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "尺寸。"
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "description": "禁用全部按钮。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<PaginationLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ]
+}

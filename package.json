@@ -1,0 +1,17 @@
+{
+  "name": "orra-ui-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "packageManager": "pnpm@11.21.0",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm --filter @orra-ui/react build && pnpm registry && pnpm --filter @orra-ui/cli build && pnpm --filter docs build",
+    "build:packages": "pnpm --filter @orra-ui/react build && pnpm registry && pnpm --filter @orra-ui/cli build",
+    "dev": "pnpm --filter @orra-ui/react build && pnpm registry && pnpm --parallel --filter @orra-ui/react --filter docs dev",
+    "registry": "node scripts/build-registry.mjs",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

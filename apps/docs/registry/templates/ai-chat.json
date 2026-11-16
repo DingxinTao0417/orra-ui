@@ -1,0 +1,27 @@
+{
+  "slug": "ai-chat",
+  "name": "AI Chat",
+  "title": "AI 编程对话",
+  "description": "AI 编程助手：左侧按项目与日期分组的对话列表，消息里展示思考过程、执行计划、测试用例清单与代码块，右侧是可拖拽调宽的代码改动面板（文件列表 + 增删行对比）；底部输入框带附件与模型选择，点击发送会模拟智能体完整的工作流程，可重新演示。",
+  "route": "/templates/ai-chat",
+  "files": [
+    "templates/ai-chat/ai-chat.tsx"
+  ],
+  "exports": [
+    "AiChatTemplate"
+  ],
+  "usage": "<AiChatTemplate />",
+  "keywords": [
+    "ai chat",
+    "coding agent",
+    "code assistant",
+    "diff",
+    "composer",
+    "agent",
+    "AI 对话",
+    "编程助手",
+    "代码改动",
+    "智能体",
+    "对话模板"
+  ]
+}

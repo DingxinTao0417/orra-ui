@@ -1,0 +1,119 @@
+{
+  "slug": "carousel",
+  "name": "Carousel",
+  "title": "轮播",
+  "category": "base",
+  "files": [
+    "components/carousel/carousel.tsx"
+  ],
+  "description": "横向卡片轮播：原生滚动吸附、上一张/下一张按钮、分页圆点、可选自动播放与键盘方向键，slideSize 让下一张卡片露出一部分。",
+  "keywords": [
+    "carousel",
+    "slider",
+    "slideshow",
+    "swiper",
+    "gallery",
+    "轮播",
+    "走马灯",
+    "滑动",
+    "幻灯片"
+  ],
+  "exports": [
+    "Carousel"
+  ],
+  "demos": [
+    {
+      "file": "carousel/overview.tsx",
+      "title": "概览",
+      "layout": "padded",
+      "height": 340
+    },
+    {
+      "file": "carousel/autoplay.tsx",
+      "title": "自动播放",
+      "description": "悬停、聚焦或开启减少动态效果时暂停，并提供暂停/播放按钮。",
+      "layout": "padded",
+      "height": 280
+    },
+    {
+      "file": "carousel/multiple.tsx",
+      "title": "一次显示多张",
+      "description": "slideSize 写成 calc((100% - 间距) / 3) 即可一屏三张。",
+      "layout": "padded",
+      "height": 280
+    }
+  ],
+  "notes": [
+    "每个子元素是一张幻灯片；触控板/触屏可以直接滑动。",
+    "轨道可聚焦，←/→ 切换，Home/End 跳到首尾；RTL 下方向自动镜像。",
+    "使用 aria-roledescription=\"carousel\" / \"slide\"，每张都有「第 n 张，共 N 张」的名称；自动播放时关闭实时播报。"
+  ],
+  "props": [
+    {
+      "component": "Carousel",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "幻灯片。"
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "description": "轮播名称。"
+        },
+        {
+          "name": "slideSize",
+          "type": "string",
+          "default": "\"100%\"",
+          "description": "每张宽度（CSS 长度）。"
+        },
+        {
+          "name": "gap",
+          "type": "number",
+          "default": "16",
+          "description": "间距（px）。"
+        },
+        {
+          "name": "arrows",
+          "type": "\"overlay\" | \"footer\" | false",
+          "default": "\"overlay\"",
+          "description": "上一张/下一张按钮位置。"
+        },
+        {
+          "name": "dots",
+          "type": "boolean",
+          "default": "true",
+          "description": "分页圆点。"
+        },
+        {
+          "name": "autoplay",
+          "type": "number",
+          "description": "自动播放间隔（ms）。"
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "default": "false",
+          "description": "首尾循环（自动播放时始终循环）。"
+        },
+        {
+          "name": "index / defaultIndex / onIndexChange",
+          "type": "number / number / (i) => void",
+          "description": "受控或非受控的当前张。"
+        },
+        {
+          "name": "slideClassName",
+          "type": "string",
+          "description": "每个幻灯片容器的类名。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<CarouselLabels>",
+          "description": "覆盖内置文案。"
+        }
+      ]
+    }
+  ]
+}

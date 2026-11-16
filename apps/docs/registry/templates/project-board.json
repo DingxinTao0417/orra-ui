@@ -1,0 +1,29 @@
+{
+  "slug": "project-board",
+  "name": "Project Board",
+  "title": "项目看板",
+  "description": "项目看板：待处理 / 进行中 / 评审中 / 已完成四列，卡片可在列内和跨列拖拽（支持键盘与触屏），搜索、负责人与标签筛选，迭代进度；点击卡片在抽屉中编辑状态、优先级、负责人、标签、描述、检查清单和评论，可在列底部或对话框中新建任务。",
+  "route": "/templates/project-board",
+  "files": [
+    "templates/project-board/project-board.tsx"
+  ],
+  "exports": [
+    "ProjectBoardTemplate"
+  ],
+  "usage": "<ProjectBoardTemplate />",
+  "keywords": [
+    "kanban",
+    "board",
+    "project",
+    "tasks",
+    "drag and drop",
+    "sprint",
+    "drawer",
+    "看板",
+    "项目管理",
+    "任务",
+    "拖拽",
+    "迭代",
+    "检查清单"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "slug": "link-button",
+  "name": "Link Button",
+  "title": "链接按钮",
+  "category": "base",
+  "files": [
+    "components/link-button/link-button.tsx"
+  ],
+  "description": "看起来像链接的文字操作：悬停出现下划线，支持多种语气、前后图标与外部链接；传 href 渲染为 <a>，否则渲染为 <button>。",
+  "keywords": [
+    "link",
+    "text button",
+    "anchor",
+    "inline action",
+    "链接",
+    "文字按钮",
+    "超链接"
+  ],
+  "exports": [
+    "LinkButton",
+    "linkButtonClass"
+  ],
+  "demos": [
+    {
+      "file": "link-button/overview.tsx",
+      "title": "概览",
+      "height": 200
+    },
+    {
+      "file": "link-button/underline.tsx",
+      "title": "下划线与禁用",
+      "height": 220
+    }
+  ],
+  "notes": [
+    "size 默认 inherit，放在句子里会跟随周围文字大小。",
+    "external 会在新标签页打开、加上 ↗ 图标，并为读屏补充「在新标签页打开」。",
+    "导航用 href（<a>），触发动作用 onPress（<button>），不要混用。"
+  ],
+  "props": [
+    {
+      "component": "LinkButton",
+      "description": "有 href 时其余属性透传给 React Aria Link，否则透传给 React Aria Button。",
+      "props": [
+        {
+          "name": "href",
+          "type": "string",
+          "description": "链接地址；不传则渲染为按钮。"
+        },
+        {
+          "name": "tone",
+          "type": "\"accent\" | \"neutral\" | \"muted\" | \"danger\"",
+          "default": "\"accent\"",
+          "description": "颜色。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\" | \"inherit\"",
+          "default": "\"inherit\"",
+          "description": "文字大小。"
+        },
+        {
+          "name": "underline",
+          "type": "\"hover\" | \"always\" | \"none\"",
+          "default": "\"hover\"",
+          "description": "下划线显示时机。"
+        },
+        {
+          "name": "startIcon",
+          "type": "ReactNode",
+          "description": "前置图标。"
+        },
+        {
+          "name": "endIcon",
+          "type": "ReactNode",
+          "description": "后置图标，RTL 下自动镜像。"
+        },
+        {
+          "name": "external",
+          "type": "boolean",
+          "default": "false",
+          "description": "外部链接（新标签页打开）。"
+        }
+      ]
+    }
+  ]
+}

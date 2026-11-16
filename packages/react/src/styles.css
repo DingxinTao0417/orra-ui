@@ -1,0 +1,12 @@
+/* ---------------------------------------------------------------------------
+ * Orra UI for React — stylesheet entry.
+ *
+ *   @import "tailwindcss";
+ *   @import "@orra-ui/react/styles.css";
+ *
+ * Pulls in the shared design tokens from @orra-ui/styles; the @source line
+ * lets Tailwind see the class names used inside the compiled components.
+ * --------------------------------------------------------------------------- */
+@import "@orra-ui/styles";
+
+@source "./";

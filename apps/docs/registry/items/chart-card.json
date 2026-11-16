@@ -1,0 +1,296 @@
+{
+  "slug": "chart-card",
+  "name": "Chart Card",
+  "title": "图表卡片",
+  "category": "charts",
+  "files": [
+    "components/chart-card/chart-card.tsx",
+    "components/chart-card/chart-parts.tsx"
+  ],
+  "description": "所有图表共用的卡片外壳：标题、描述、主数值与变化徽标、时间范围选择（分段或下拉）、图例、页脚、加载与空状态；同时导出统一的提示框、图例、坐标轴样式、颜色与数字格式工具。",
+  "keywords": [
+    "chart card",
+    "chart",
+    "dashboard",
+    "kpi",
+    "tooltip",
+    "legend",
+    "range",
+    "图表卡片",
+    "图表",
+    "仪表盘",
+    "指标",
+    "图例",
+    "提示框",
+    "时间范围"
+  ],
+  "exports": [
+    "ChartCard",
+    "ChartRangeSelector",
+    "ChartDeltaBadge",
+    "ChartLegend",
+    "ChartTooltipContent",
+    "ChartTooltipPanel",
+    "ChartEmptyState",
+    "ChartSkeleton",
+    "useChartCardRange",
+    "useChartFormatter",
+    "chartColor",
+    "chartAxisProps",
+    "chartGridProps"
+  ],
+  "demos": [
+    {
+      "file": "chart-card/overview.tsx",
+      "title": "概览",
+      "description": "受控的时间范围驱动标题数值、变化徽标与图表数据。",
+      "height": 440,
+      "layout": "padded"
+    },
+    {
+      "file": "chart-card/states.tsx",
+      "title": "加载与空状态",
+      "description": "loading 显示骨架，empty 显示空状态，高度由 bodyHeight 与图表对齐。",
+      "height": 320,
+      "layout": "padded"
+    },
+    {
+      "file": "chart-card/select-range.tsx",
+      "title": "下拉范围、操作与页脚",
+      "description": "超过 4 个选项时自动使用下拉选择；deltaInvert 让下降显示为好的变化。",
+      "height": 420,
+      "layout": "padded"
+    },
+    {
+      "file": "chart-card/parts.tsx",
+      "title": "共享部件",
+      "description": "变化徽标、行内 / 列表图例和提示框面板可单独用于自定义图表。",
+      "height": 300,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "ChartCard 只负责外壳，图表组件（AreaChart、BarChart…）作为子元素放入；children 也可以是 (range) => ReactNode。",
+    "range / defaultRange / onRangeChange 支持受控与非受控；子组件可通过 useChartCardRange() 读取当前范围。",
+    "所有图表共用 chart-parts 中的颜色（--color-chart-1…8）、网格、坐标轴、提示框与图例，自定义 Recharts 图表时可直接展开 chartAxisProps / chartGridProps。",
+    "数字格式使用 useChartFormatter / createChartFormatter，跟随 React Aria 语言环境；文案通过 labels 覆盖。"
+  ],
+  "props": [
+    {
+      "component": "ChartCard",
+      "description": "图表卡片外壳。",
+      "props": [
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "标题。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "标题下的说明。"
+        },
+        {
+          "name": "value",
+          "type": "ReactNode",
+          "description": "主数值。"
+        },
+        {
+          "name": "delta",
+          "type": "number",
+          "description": "相对变化（小数，0.12 → +12%），显示为徽标。"
+        },
+        {
+          "name": "deltaInvert",
+          "type": "boolean",
+          "default": "false",
+          "description": "越低越好（如流失率），下降显示为绿色。"
+        },
+        {
+          "name": "deltaLabel",
+          "type": "ReactNode",
+          "description": "徽标后的说明，如「较上月」。"
+        },
+        {
+          "name": "ranges",
+          "type": "ChartRangeOption[]",
+          "description": "时间范围选项 { id, label }，显示在右上角。"
+        },
+        {
+          "name": "range / defaultRange / onRangeChange",
+          "type": "string / string / (range: string) => void",
+          "description": "当前范围（受控 / 非受控）。"
+        },
+        {
+          "name": "rangeVariant",
+          "type": "\"segmented\" | \"select\"",
+          "description": "范围选择器形态；默认 ≤4 项为分段，否则为下拉。"
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode",
+          "description": "标题行末端的额外操作。"
+        },
+        {
+          "name": "legend",
+          "type": "ReactNode",
+          "description": "标题下方的图例插槽。"
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode",
+          "description": "以分隔线隔开的页脚。"
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "default": "false",
+          "description": "显示骨架屏。"
+        },
+        {
+          "name": "empty",
+          "type": "boolean",
+          "default": "false",
+          "description": "显示空状态。"
+        },
+        {
+          "name": "emptyTitle / emptyDescription",
+          "type": "ReactNode",
+          "description": "空状态文案。"
+        },
+        {
+          "name": "bodyHeight",
+          "type": "number",
+          "default": "240",
+          "description": "骨架 / 空状态的高度，应与图表高度一致。"
+        },
+        {
+          "name": "dense",
+          "type": "boolean",
+          "default": "false",
+          "description": "紧凑内边距（p-4）。"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode | ((range: string) => ReactNode)",
+          "description": "卡片主体。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ChartLabels>",
+          "description": "覆盖内置文案。"
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLElement>",
+          "description": "转发到 <section>。"
+        }
+      ]
+    },
+    {
+      "component": "ChartRangeSelector",
+      "description": "分段控件（React Aria ToggleButtonGroup）或下拉（React Aria Select）。",
+      "props": [
+        {
+          "name": "options",
+          "type": "ChartRangeOption[]",
+          "required": true,
+          "description": "选项。"
+        },
+        {
+          "name": "value / defaultValue / onChange",
+          "type": "string / string / (v: string) => void",
+          "description": "选中值。"
+        },
+        {
+          "name": "variant",
+          "type": "\"segmented\" | \"select\"",
+          "default": "\"segmented\"",
+          "description": "形态。"
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "description": "无障碍名称，默认「时间范围」。"
+        }
+      ]
+    },
+    {
+      "component": "ChartDeltaBadge",
+      "props": [
+        {
+          "name": "value",
+          "type": "number",
+          "required": true,
+          "description": "相对变化（小数）。"
+        },
+        {
+          "name": "invert",
+          "type": "boolean",
+          "default": "false",
+          "description": "越低越好。"
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\"",
+          "default": "\"md\"",
+          "description": "尺寸。"
+        }
+      ]
+    },
+    {
+      "component": "ChartLegend",
+      "description": "所有图表共用的图例。",
+      "props": [
+        {
+          "name": "items",
+          "type": "ChartLegendItem[]",
+          "required": true,
+          "description": "{ key, label, color, comparison?, value?, detail? }。"
+        },
+        {
+          "name": "variant",
+          "type": "\"inline\" | \"list\"",
+          "default": "\"inline\"",
+          "description": "行内色块或带数值 / 占比的列表。"
+        },
+        {
+          "name": "hiddenKeys / activeKey",
+          "type": "ReadonlySet<string> / string | null",
+          "description": "隐藏与高亮状态。"
+        },
+        {
+          "name": "onToggle / onHighlight",
+          "type": "(key) => void",
+          "description": "传入 onToggle 后图例项变为切换按钮；onHighlight 在悬停 / 聚焦时触发。"
+        }
+      ]
+    },
+    {
+      "component": "ChartTooltipContent",
+      "description": "Recharts Tooltip 的 content：<Tooltip content={(p) => <ChartTooltipContent {...p} series={series} />} />。",
+      "props": [
+        {
+          "name": "series",
+          "type": "ResolvedChartSeries[]",
+          "description": "用于名称、颜色和对比样式。"
+        },
+        {
+          "name": "formatValue",
+          "type": "(value: number, key: string) => string",
+          "description": "数值格式。"
+        },
+        {
+          "name": "formatLabel",
+          "type": "(label: unknown) => ReactNode",
+          "description": "标题格式。"
+        },
+        {
+          "name": "total",
+          "type": "{ label: string; format: (v: number) => string }",
+          "description": "追加合计行（堆叠图）。"
+        }
+      ]
+    }
+  ]
+}

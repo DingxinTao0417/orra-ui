@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@import "@orra-ui/react/styles.css";
+
+/* Docs-site sources (the package's own classes are registered by its stylesheet). */
+@source "../app";
+@source "../components";
+@source "../demos";
+@source "../templates";
+
+html {
+  scroll-padding-top: 5rem;
+}
+
+/* Shiki dual themes: light by default, dark under .dark */
+.shiki,
+.shiki span {
+  background-color: transparent !important;
+}
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+}
+
+/* Prose defaults live in the components layer so demo previews (which use utilities) are never overridden. */
+@layer components {
+  .docs-prose p {
+    color: var(--color-fg-muted);
+  }
+  .docs-prose :where(code):not(pre code) {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    padding: 0.1em 0.35em;
+    border-radius: 6px;
+    background: var(--color-surface-muted);
+    color: var(--color-fg);
+    border: 1px solid var(--color-line);
+  }
+  .docs-prose a {
+    color: var(--color-fg-accent);
+    text-underline-offset: 3px;
+  }
+  .docs-prose a:hover {
+    text-decoration: underline;
+  }
+}

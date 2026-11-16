@@ -1,0 +1,95 @@
+{
+  "slug": "funnel-chart",
+  "name": "Funnel Chart",
+  "title": "漏斗图",
+  "category": "charts",
+  "files": [
+    "components/funnel-chart/funnel-chart.tsx"
+  ],
+  "description": "转化漏斗：每个阶段显示数值与转化率，可绘制为横向渐窄的漏斗带或竖向柱（虚线框表示流失），悬停查看转化、流失与占首阶段比例。",
+  "keywords": [
+    "funnel",
+    "conversion",
+    "drop-off",
+    "漏斗",
+    "转化",
+    "流失",
+    "转化率"
+  ],
+  "exports": [
+    "FunnelChart",
+    "ChartCard"
+  ],
+  "demos": [
+    {
+      "file": "funnel-chart/overview.tsx",
+      "title": "概览",
+      "description": "注册漏斗（示例数据），横向渐窄样式。",
+      "height": 440,
+      "layout": "padded"
+    },
+    {
+      "file": "funnel-chart/bars.tsx",
+      "title": "竖向柱",
+      "description": "variant=\"bars\"，conversionBase=\"first\" 显示相对首阶段的比例。",
+      "height": 440,
+      "layout": "padded"
+    }
+  ],
+  "notes": [
+    "每个阶段是可聚焦区域，键盘聚焦时同样显示提示框。",
+    "conversionBase 决定阶段下方百分比：相对上一阶段（默认）或首阶段。"
+  ],
+  "props": [
+    {
+      "component": "FunnelChart",
+      "props": [
+        {
+          "name": "data",
+          "type": "FunnelStage[]",
+          "description": "{ label, value, key? }；缺省为示例数据。"
+        },
+        {
+          "name": "variant",
+          "type": "\"tapered\" | \"bars\"",
+          "default": "\"tapered\"",
+          "description": "横向渐窄或竖向柱。"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": "200",
+          "description": "绘图区高度（阶段标题在上方）。"
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "default": "var(--color-chart-1)",
+          "description": "主色。"
+        },
+        {
+          "name": "valueFormat",
+          "type": "\"number\" | \"compact\" | \"percent\" | \"currency\" | Intl.NumberFormatOptions | ((v: number) => string)",
+          "description": "数值格式。"
+        },
+        {
+          "name": "conversionBase",
+          "type": "\"previous\" | \"first\"",
+          "default": "\"previous\"",
+          "description": "转化率基准。"
+        },
+        {
+          "name": "showConversion",
+          "type": "boolean",
+          "default": "true",
+          "description": "显示转化率与整体转化。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<FunnelChartLabels>",
+          "description": "覆盖文案。"
+        }
+      ]
+    }
+  ]
+}

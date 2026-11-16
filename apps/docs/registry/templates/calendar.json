@@ -1,0 +1,29 @@
+{
+  "slug": "calendar",
+  "name": "Calendar",
+  "title": "日程日历",
+  "description": "完整的日程页：基于 EventCalendar 的月 / 周 / 列表视图，侧栏包含与主日历联动的迷你月历、日历分类开关和「接下来」列表；新建日程对话框支持选择日历、日期、全天与起止时间，事件浮层可删除。",
+  "route": "/templates/calendar",
+  "files": [
+    "templates/calendar/calendar.tsx"
+  ],
+  "exports": [
+    "CalendarTemplate"
+  ],
+  "usage": "<CalendarTemplate />",
+  "keywords": [
+    "calendar",
+    "schedule",
+    "events",
+    "agenda",
+    "month view",
+    "week view",
+    "new event",
+    "日程",
+    "日历",
+    "排期",
+    "会议",
+    "新建日程",
+    "月视图"
+  ]
+}

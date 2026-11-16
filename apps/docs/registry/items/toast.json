@@ -1,0 +1,154 @@
+{
+  "slug": "toast",
+  "name": "Toast",
+  "title": "轻提示",
+  "category": "base",
+  "files": [
+    "components/toast/toast.tsx"
+  ],
+  "description": "命令式 toast() / toast.success | error | warning | info | loading | promise API 与 <Toaster /> 区域：堆叠展示、定时消失、悬停暂停，支持标题、描述、操作按钮、关闭按钮与原地更新。",
+  "keywords": [
+    "toast",
+    "snackbar",
+    "notification",
+    "message",
+    "轻提示",
+    "消息提示",
+    "吐司"
+  ],
+  "exports": [
+    "toast",
+    "Toaster"
+  ],
+  "demos": [
+    {
+      "file": "toast/overview.tsx",
+      "title": "概览",
+      "height": 180
+    },
+    {
+      "file": "toast/promise.tsx",
+      "title": "Promise 与原地更新",
+      "description": "toast.promise 自动在加载 → 成功 / 失败之间切换；toast.update(id, …) 可以随时修改同一条提示。",
+      "height": 180
+    },
+    {
+      "file": "toast/placement.tsx",
+      "title": "位置",
+      "description": "Toaster 的 placement 决定提示出现的角落；悬停时堆叠展开并暂停计时。",
+      "height": 180
+    }
+  ],
+  "notes": [
+    "在应用根部渲染一次 <Toaster />，之后在任何地方调用 toast()；同时存在多个 Toaster 时只有最后挂载的生效。",
+    "toast() 返回 id，可用于 toast.update(id, …) 或 toast.dismiss(id)；toast.dismiss() 关闭全部。",
+    "duration 为 Infinity 时不会自动消失；loading 状态始终不会自动消失。",
+    "基于 React Aria Toast：区域为地标，F6 可跳转到提示区域，悬停或聚焦时计时暂停。"
+  ],
+  "props": [
+    {
+      "component": "toast(title, options?)",
+      "description": "也可直接传入 options 对象；toast.success / error / warning / info / loading 预设了 tone。",
+      "props": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "传入已存在的 id 会原地更新该提示。"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "description": "标题。"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "description": "描述。"
+        },
+        {
+          "name": "tone",
+          "type": "\"neutral\" | \"success\" | \"error\" | \"warning\" | \"info\" | \"loading\"",
+          "default": "\"neutral\"",
+          "description": "语气与图标。"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode | false",
+          "description": "自定义图标，false 不显示。"
+        },
+        {
+          "name": "action",
+          "type": "{ label: ReactNode; onPress: () => void; dismiss?: boolean }",
+          "description": "操作按钮，默认点击后关闭提示。"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "description": "自动消失时间（毫秒），默认使用 Toaster 的 duration。"
+        },
+        {
+          "name": "dismissible",
+          "type": "boolean",
+          "default": "true",
+          "description": "显示关闭按钮。"
+        },
+        {
+          "name": "onDismiss",
+          "type": "() => void",
+          "description": "提示关闭后调用。"
+        }
+      ]
+    },
+    {
+      "component": "toast.promise(promise, messages, options?)",
+      "props": [
+        {
+          "name": "promise",
+          "type": "Promise<T> | () => Promise<T>",
+          "required": true,
+          "description": "要跟踪的异步任务。"
+        },
+        {
+          "name": "messages",
+          "type": "{ loading; success: ReactNode | (value: T) => ReactNode; error: ReactNode | (error) => ReactNode; description? }",
+          "required": true,
+          "description": "各阶段的文案。"
+        }
+      ]
+    },
+    {
+      "component": "Toaster",
+      "props": [
+        {
+          "name": "placement",
+          "type": "\"top-start\" | \"top-center\" | \"top-end\" | \"bottom-start\" | \"bottom-center\" | \"bottom-end\"",
+          "default": "\"bottom-end\"",
+          "description": "出现位置。"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "default": "5000",
+          "description": "默认自动消失时间（毫秒）。"
+        },
+        {
+          "name": "visibleToasts",
+          "type": "number",
+          "default": "4",
+          "description": "同时显示的数量。"
+        },
+        {
+          "name": "expanded",
+          "type": "boolean",
+          "default": "false",
+          "description": "始终展开，而不是悬停时才展开。"
+        },
+        {
+          "name": "labels",
+          "type": "Partial<ToasterLabels>",
+          "description": "覆盖内置文案（区域名、关闭）。"
+        }
+      ]
+    }
+  ]
+}
